@@ -1,0 +1,10 @@
+---
+title: "P8158 Final"
+author: "Waveley Qiu (wq2162)"
+date: "2022-04-14"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
