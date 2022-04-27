@@ -169,7 +169,7 @@ CONT_SOC: That you had something important to contribute to society
 
 LV3:
 BELONG: That you belonged to a community (like a social group or neighbourhood)
-BET_SOC:That our society is becoming a better place for people like you
+BET_SOC: That our society is becoming a better place for people like you
 PEOPLE_GOOD: That people are basically good
 SENSE_SOC: That the way our society works makes sense to you
 
