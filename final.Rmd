@@ -37,17 +37,163 @@ non_athletes <- dataset %>% filter(ATHLETE_YN == "2")
 ## Construct Reliability
 
 ```{r}
-features <- athletes[,15:67] %>% map_df(., as.numeric) 
-# %>% select(!ends_with("_HRS"))
-athlete_parallel <- fa.parallel(features, cor = "poly", fa = "pc")
-
-# broken :(
+features <- athletes[,15:67] %>% map_df(., as.numeric) %>% select(!ends_with("_HRS")) %>% select(-c("SPRT"))
+athlete_alpha <- psych::alpha(features)
 ```
+
+Chronbach's alpha is 0.67, with a 95 \% confidence interval of (0.63, 0.72).
+
+```{r}
+alpha_drop_names <- athlete_alpha$alpha.drop %>% as_tibble() %>%
+  mutate(names = athlete_alpha$alpha.drop %>% rownames()) %>%
+  arrange(raw_alpha) %>% 
+  filter(raw_alpha > 0.67) %>%
+  select(names, raw_alpha)
+
+features1 <- features %>% select(-alpha_drop_names$names)
+athlete_alpha2 <- psych::alpha(features1)
+```
+
 
 ## EFA
 
 ```{r}
+athlete_parallel <- fa.parallel(features1, cor = "poly", fa = "pc")
 
+athlete_eigen <- athlete_parallel$pc.values
+
+# count_levels <- function(col){
+#  count <- unique(col) %>% length()
+#  return(count)
+#}
+
+# apply(features, 2, FUN = count_levels)
+# apply(features, count_levels)
 ```
+
+The following describes the amount of variability captured by the first $n$ factors.
+
+```{r}
+dim <- c(1:7)
+var <- rep(0, 7)
+
+for (i in dim) {
+  var[i] <- (athlete_eigen[1:i] %>% sum() ) / ncol(features1)
+}
+
+dim_var <-
+  tibble(
+    dimensions = dim,
+    variability_captured = var %>% round(4),
+    variability_captured_pct = paste((var * 100) %>% round(2), "%")
+  )
+
+dim_var %>% knitr::kable( col.names = c("First $n$ Dimension",
+                           "Total Variability Captured",
+                           "Total Variability Captured (percentage)"))
+```
+
+Let's try a 4-factor model.
+
+```{r, warning=FALSE, message=FALSE}
+mod_4 <- fa(features1, 4, cor = 'poly', fm = 'wls')
+print.psych(mod_4, cut = 0, sort = FALSE)
+```
+
+The loadings for the 4-factor model are:
+
+```{r, warning=FALSE, message=FALSE}
+mod_4$loadings
+```
+
+Let's try to fit a 5-factor model.
+
+```{r, warning=FALSE, message=FALSE}
+mod_5 <- fa(features1, 5, cor = 'poly', fm = 'wls')
+print.psych(mod_5, cut = 0, sort = FALSE)
+```
+
+The loadings for the 5-factor model are:
+
+```{r, warning=FALSE, message=FALSE}
+mod_5$loadings
+```
+
+There is no correlation between factors for a one-factor model.
+
+Now, let's try a 6-factor model.
+
+```{r, warning=FALSE, message=FALSE}
+mod_6 <- fa(features1, 6, cor = 'poly', fm = 'wls')
+print.psych(mod_6, cut = 0, sort = FALSE)
+```
+
+The loadings for the 6-factor model are:
+
+```{r, warning=FALSE, message=FALSE}
+mod_6$loadings
+```
+
+The correlation between the two factors is `r res2$Phi[1,2]`.
+
+Now, let's try a 7-factor model.
+
+```{r, warning=FALSE, message=FALSE}
+mod_7 <- fa(features1, 7, cor = 'poly', fm = 'wls')
+print.psych(mod_7, cut = 0, sort = FALSE)
+```
+
+The loadings for the 7-factor model are:
+
+```{r, warning=FALSE, message=FALSE}
+mod_7$loadings
+```
+
+We think the 5-factor model is best.
+
+## Latent Variables
+
+LV1:
+CNSDR_ATH: I consider myself an athlete
+SPRT_GOALS: I have many goals related to sport
+FRNDS_ATH: Most of my friends are athlete
+SPRT_IMPT: Sport is the most important part of my life
+THINK_SPRT: I spend more time thinking about sport than anything else
+SPRT_LVL: Sport level
+
+LV2:
+HAPPY: Happy
+INT_LIFE: Interested in life
+SATISFIED: Satisfied
+CONT_SOC: That you had something important to contribute to society
+
+LV3:
+BELONG: That you belonged to a community (like a social group or neighbourhood)
+BET_SOC:That our society is becoming a better place for people like you
+PEOPLE_GOOD: That people are basically good
+SENSE_SOC: That the way our society works makes sense to you
+
+LV4: 
+LIKE_PER: That you liked most parts of your personality
+RESPONSIBLE: Good at managing the responsibilities of your daily life
+WARM_REL: That you had warm and trusting relationships with others
+CHAL_EXP: That you had experiences that challenged you to grow and become a better person
+EXP_IDEA: Confident to think or express your own ideas and opinions
+MEANING: That your life has a sense of direction or meaning to it
+
+LV5:
+BOUNCE: I tend to bounce back quickly after hard times
+STRS_EVNT: I have a hard time making it through stressful events
+STRS_RCVR: It does not take me long to recover from a stressful event
+SNAP_BACK: It is hard for me to snap back when something bad happens
+DIFFICULT: I usually come through difficult times with little trouble
+SETBACKS: I tend to take a long time to get obver setbacks in my life
+
+
+
+
+
+
+
 
 
