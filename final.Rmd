@@ -29,7 +29,7 @@ dataset_no_na <- dataset %>%
 athletes <- dataset %>% filter(ATHLETE_YN == "1") %>% select(-c("SHIELD_DTS", "DATE"))
 athletes %>% colnames()
 
-athletes_no_na <- athletes %>% select(-c("SHIELD_DTS")) %>% na.omit()
+athletes_no_na <- athletes %>% na.omit()
 
 non_athletes <- dataset %>% filter(ATHLETE_YN == "2")
 ```
@@ -38,7 +38,7 @@ non_athletes <- dataset %>% filter(ATHLETE_YN == "2")
 
 ```{r}
 features <- athletes[,15:67] %>% map_df(., as.numeric) %>% select(!ends_with("_HRS")) %>% select(-c("SPRT"))
-athlete_alpha <- psych::alpha(features)
+athlete_alpha <- psych::alpha(features, na.rm = TRUE)
 ```
 
 Chronbach's alpha is 0.67, with a 95 \% confidence interval of (0.63, 0.72).
