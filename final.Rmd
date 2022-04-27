@@ -13,13 +13,48 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(haven)
 library(psych)
+library(GPArotation)
+library(naniar)
+library(gtsummary)
 ```
 
 
 ```{r}
-dataset <- readxl::read_excel("data/Athlete_Non-Athlete MH Survey - ALL DATA.xlsx", sheet = "Coded Dataset For SPSS")
+dataset <- readxl::read_excel("data/Athlete_Non-Athlete MH Survey - ALL DATA.xlsx", 
+                              sheet = "athlete_fin") %>% 
+  slice(-1) %>%   
+  replace_with_na_all(condition = ~.x == "999") 
 
-dataset
+dataset_no_na <- dataset %>% 
+  select(-c("SHIELD_DTS", "DATE")) %>% 
+  na.omit()
+
+athletes <- dataset %>% filter(ATHLETE_YN == "1") %>% select(-c("SHIELD_DTS", "DATE"))
+athletes %>% colnames()
+
+athletes_no_na <- athletes %>% select(-c("SHIELD_DTS")) %>% na.omit()
+
+non_athletes <- dataset %>% filter(ATHLETE_YN == "2")
 ```
 
+## Construct Reliability
+
+```{r}
+features <- athletes[,15:67] %>% map_df(., as.numeric) 
+# %>% select(!ends_with("_HRS"))
+athlete_parallel <- fa.parallel(features, cor = "poly", fa = "pc")
+
+# broken :(
+```
+
+<<<<<<< HEAD
 >>>>>>> 867af6cd0b2ff7c4131eb9ec8adeca178446737c
+=======
+## EFA
+
+```{r}
+
+```
+
+
+>>>>>>> 5af5dfac355da123fab0b77a3dc462c0ff565245
