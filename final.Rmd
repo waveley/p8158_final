@@ -7,9 +7,9 @@ output: pdf_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-<<<<<<< HEAD
 ```
-=======
+
+```{r}
 library(tidyverse)
 library(haven)
 library(psych)
@@ -47,9 +47,7 @@ athlete_parallel <- fa.parallel(features, cor = "poly", fa = "pc")
 # broken :(
 ```
 
-<<<<<<< HEAD
->>>>>>> 867af6cd0b2ff7c4131eb9ec8adeca178446737c
-=======
+
 ## EFA
 
 ```{r}
@@ -57,4 +55,3 @@ athlete_parallel <- fa.parallel(features, cor = "poly", fa = "pc")
 ```
 
 
->>>>>>> 5af5dfac355da123fab0b77a3dc462c0ff565245
