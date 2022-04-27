@@ -44,7 +44,8 @@ athlete_alpha <- psych::alpha(features)
 Chronbach's alpha is 0.67, with a 95 \% confidence interval of (0.63, 0.72).
 
 ```{r}
-alpha_drop_names <- athlete_alpha$alpha.drop %>% as_tibble() %>%
+alpha_drop_names <- athlete_alpha$alpha.drop %>%
+  as_tibble() %>%
   mutate(names = athlete_alpha$alpha.drop %>% rownames()) %>%
   arrange(raw_alpha) %>% 
   filter(raw_alpha > 0.67) %>%
