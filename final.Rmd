@@ -7,4 +7,19 @@ output: pdf_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+<<<<<<< HEAD
 ```
+=======
+library(tidyverse)
+library(haven)
+library(psych)
+```
+
+
+```{r}
+dataset <- readxl::read_excel("data/Athlete_Non-Athlete MH Survey - ALL DATA.xlsx", sheet = "Coded Dataset For SPSS")
+
+dataset
+```
+
+>>>>>>> 867af6cd0b2ff7c4131eb9ec8adeca178446737c
