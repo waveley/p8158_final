@@ -151,7 +151,7 @@ We think the 5-factor model is best.
 
 ## Latent Variables
 
-LV1:
+LV1:dedication_to_sport
 CNSDR_ATH: I consider myself an athlete
 SPRT_GOALS: I have many goals related to sport
 FRNDS_ATH: Most of my friends are athlete
@@ -159,19 +159,19 @@ SPRT_IMPT: Sport is the most important part of my life
 THINK_SPRT: I spend more time thinking about sport than anything else
 SPRT_LVL: Sport level
 
-LV2:
+LV2:positive_outlook
 HAPPY: Happy
 INT_LIFE: Interested in life
 SATISFIED: Satisfied
 CONT_SOC: That you had something important to contribute to society
 
-LV3:
+LV3:interaction_society
 BELONG: That you belonged to a community (like a social group or neighbourhood)
 BET_SOC: That our society is becoming a better place for people like you
 PEOPLE_GOOD: That people are basically good
 SENSE_SOC: That the way our society works makes sense to you
 
-LV4: 
+LV4: maturity
 LIKE_PER: That you liked most parts of your personality
 RESPONSIBLE: Good at managing the responsibilities of your daily life
 WARM_REL: That you had warm and trusting relationships with others
@@ -179,7 +179,7 @@ CHAL_EXP: That you had experiences that challenged you to grow and become a bett
 EXP_IDEA: Confident to think or express your own ideas and opinions
 MEANING: That your life has a sense of direction or meaning to it
 
-LV5:
+LV5: resilience
 BOUNCE: I tend to bounce back quickly after hard times
 STRS_EVNT: I have a hard time making it through stressful events
 STRS_RCVR: It does not take me long to recover from a stressful event
@@ -187,7 +187,34 @@ SNAP_BACK: It is hard for me to snap back when something bad happens
 DIFFICULT: I usually come through difficult times with little trouble
 SETBACKS: I tend to take a long time to get obver setbacks in my life
 
+## factor diagram
+```{r}
+fa.diagram(mod_5,digits = 2,simple = TRUE, rsize = 2)
 
+model_5 = "
+dedication_to_sport = ~CNSDR_ATH + SPRT_GOALS + FRNDS_ATH + SPRT_IMPT + THINK_SPRT + SPRT_LVL
+positive_outlook = ~ HAPPY + INT_LIFE + SATISFIED + CONT_SOC
+interaction_society = ~ BELONG + BET_SOC + PEOPLE_GOOD + SENSE_SOC 
+maturity = ~ LIKE_PER + RESPONSIBLE + WARM_REL +  CHAL_EXP + EXP_IDEA + MEANING
+resilience = ~ BOUNCE + STRS_EVNT + STRS_RCVR + SNAP_BACK + DIFFICULT + SETBACKS
+"
+```
+
+## CFA
+```{r}
+library(lavaan)
+mod_5_cfa = cfa(model_5, data =features1,
+                #ordered = names(features1),
+                estimator = "WLSMV",
+                std.lv=TRUE)
+
+summary(mod_5_cfa, fit.measure= TRUE)
+```
+
+## Modificaition Indice (???)
+```{r}
+modindices(mod_5_cfa, power = TRUE, sort = TRUE, minimum.value = 10) 
+```
 
 
 
