@@ -29,7 +29,7 @@ dataset_no_na <- dataset %>%
 athletes <- dataset %>% filter(ATHLETE_YN == "1") %>% select(-c("SHIELD_DTS", "DATE"))
 athletes %>% colnames()
 
-athletes_no_na <- athletes %>% select(-c("SHIELD_DTS")) %>% na.omit()
+athletes_no_na <- athletes %>% na.omit()
 
 non_athletes <- dataset %>% filter(ATHLETE_YN == "2")
 ```
@@ -53,7 +53,6 @@ alpha_drop_names <- athlete_alpha$alpha.drop %>% as_tibble() %>%
 features1 <- features %>% select(-alpha_drop_names$names)
 athlete_alpha2 <- psych::alpha(features1)
 ```
-
 
 ## EFA
 
