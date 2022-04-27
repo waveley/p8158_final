@@ -44,7 +44,8 @@ athlete_alpha <- psych::alpha(features, na.rm = TRUE)
 Chronbach's alpha is 0.67, with a 95 \% confidence interval of (0.63, 0.72).
 
 ```{r}
-alpha_drop_names <- athlete_alpha$alpha.drop %>% as_tibble() %>%
+alpha_drop_names <- athlete_alpha$alpha.drop %>%
+  as_tibble() %>%
   mutate(names = athlete_alpha$alpha.drop %>% rownames()) %>%
   arrange(raw_alpha) %>% 
   filter(raw_alpha > 0.67) %>%
@@ -53,7 +54,6 @@ alpha_drop_names <- athlete_alpha$alpha.drop %>% as_tibble() %>%
 features1 <- features %>% select(-alpha_drop_names$names)
 athlete_alpha2 <- psych::alpha(features1)
 ```
-
 
 ## EFA
 
@@ -133,8 +133,6 @@ The loadings for the 6-factor model are:
 ```{r, warning=FALSE, message=FALSE}
 mod_6$loadings
 ```
-
-The correlation between the two factors is `r res2$Phi[1,2]`.
 
 Now, let's try a 7-factor model.
 
