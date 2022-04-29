@@ -15,7 +15,6 @@ library(naniar)
 library(gtsummary)
 ```
 
-
 ```{r}
 dataset <- readxl::read_excel("data/Athlete_Non-Athlete MH Survey - ALL DATA.xlsx", 
                               sheet = "athlete_fin") %>% 
@@ -34,25 +33,28 @@ athletes_no_na <- athletes %>% na.omit()
 non_athletes <- dataset %>% filter(ATHLETE_YN == "2")
 ```
 
-## Construct Reliability
+## Adding COVID-19 Quarantine Weeks & Sport Hours Measures
+
+0 to 7 weeks in quarantine ("s)
 
 ```{r}
-features <- athletes[,15:67] %>% map_df(., as.numeric) %>% select(!ends_with("_HRS")) %>% select(-c("SPRT"))
-athlete_alpha <- psych::alpha(features, na.rm = TRUE)
-```
-
-Chronbach's alpha is 0.67, with a 95 \% confidence interval of (0.63, 0.72).
-
-```{r}
-alpha_drop_names <- athlete_alpha$alpha.drop %>%
-  as_tibble() %>%
-  mutate(names = athlete_alpha$alpha.drop %>% rownames()) %>%
-  arrange(raw_alpha) %>% 
-  filter(raw_alpha > 0.67) %>%
-  select(names, raw_alpha)
-
-features1 <- features %>% select(-alpha_drop_names$names)
-athlete_alpha2 <- psych::alpha(features1)
+table(athletes$PLAY_HRS %>% as.numeric())
+hist(athletes$PLAY_HRS %>% as.numeric())
+athletes <-
+  athletes %>% 
+  mutate(
+    weeks_cat = WEEKS_SD %>% as.factor(),
+    PLAY_HRS = PLAY_HRS %>% as.numeric(),
+    play_hrs_cat = case_when(
+      PLAY_HRS < 5 ~ "less than 5 hrs",
+      5 <= PLAY_HRS & PLAY_HRS < 10 ~ "between 5 and 10 hrs",
+      10 <= PLAY_HRS & PLAY_HRS < 15 ~ "between 10 and 15 hrs",
+      15 <= PLAY_HRS & PLAY_HRS < 20 ~ "between 15 and 20 hrs",
+      20 <= PLAY_HRS & PLAY_HRS < 25 ~ "between 20 and 25 hrs",
+      25 <= PLAY_HRS & PLAY_HRS < 30 ~ "between 25 and 30 hrs",
+      30 <= PLAY_HRS ~ "30 or more hours"
+    )
+  )
 ```
 
 ## EFA
@@ -149,6 +151,29 @@ mod_7$loadings
 
 We think the 5-factor model is best.
 
+
+## Construct Reliability
+
+```{r}
+features <- athletes[,15:67] %>% map_df(., as.numeric) %>% select(!ends_with("_HRS")) %>% select(-c("SPRT"))
+athlete_alpha <- psych::alpha(features, na.rm = TRUE)
+```
+
+Chronbach's alpha is 0.67, with a 95 \% confidence interval of (0.63, 0.72).
+
+```{r}
+alpha_drop_names <- athlete_alpha$alpha.drop %>%
+  as_tibble() %>%
+  mutate(names = athlete_alpha$alpha.drop %>% rownames()) %>%
+  arrange(raw_alpha) %>% 
+  filter(raw_alpha > 0.67) %>%
+  select(names, raw_alpha)
+
+features1 <- features %>% select(-alpha_drop_names$names)
+athlete_alpha2 <- psych::alpha(features1)
+```
+
+
 ## Latent Variables
 
 LV1:dedication_to_sport
@@ -185,7 +210,7 @@ STRS_EVNT: I have a hard time making it through stressful events
 STRS_RCVR: It does not take me long to recover from a stressful event
 SNAP_BACK: It is hard for me to snap back when something bad happens
 DIFFICULT: I usually come through difficult times with little trouble
-SETBACKS: I tend to take a long time to get obver setbacks in my life
+SETBACKS: I tend to take a long time to get over setbacks in my life
 
 ## factor diagram
 ```{r}
