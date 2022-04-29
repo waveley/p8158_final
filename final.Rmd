@@ -63,126 +63,29 @@ athletes <-
 ## Interested Variables
 
 ```{r}
-
+features <- c("weeks_cat", "bubble_cat", "play_hrs_cat", "cnsdr_ath", "sprt_goals", "frnds_ath", "think_sprt", "sprt_lvl")
+athletes[,features]
 ```
 
-
-## EFA
+## Construct Reliability: Dedication to Sport
 
 ```{r}
-athlete_parallel <- fa.parallel(features1, cor = "poly", fa = "pc")
+dedication_to_sport <- c("cnsdr_ath", "sprt_goals", "frnds_ath", "think_sprt", "sprt_lvl")
 
-athlete_eigen <- athlete_parallel$pc.values
+table(athletes$happy)
+selected_features <- athletes[,dedication_to_sport] %>% map_df(., as.numeric)
 
-# count_levels <- function(col){
-#  count <- unique(col) %>% length()
-#  return(count)
-#}
+athlete_alpha <- psych::alpha(selected_features %>% as.matrix())
+athlete_alpha
 
-# apply(features, 2, FUN = count_levels)
-# apply(features, count_levels)
+habits <- c("smoking", "fruit_veg", "hr_sleep", "play_hrs")
+selected_habits <- athletes[, habits] %>% map_df(., as.numeric)
+habit_alpha <-  psych::alpha(selected_habits %>% as.matrix())
+habit_alpha
+athletes$fruit_veg
 ```
 
-The following describes the amount of variability captured by the first $n$ factors.
-
-```{r}
-dim <- c(1:7)
-var <- rep(0, 7)
-
-for (i in dim) {
-  var[i] <- (athlete_eigen[1:i] %>% sum() ) / ncol(features1)
-}
-
-dim_var <-
-  tibble(
-    dimensions = dim,
-    variability_captured = var %>% round(4),
-    variability_captured_pct = paste((var * 100) %>% round(2), "%")
-  )
-
-dim_var %>% knitr::kable( col.names = c("First $n$ Dimension",
-                           "Total Variability Captured",
-                           "Total Variability Captured (percentage)"))
-```
-
-Let's try a 4-factor model.
-
-```{r, warning=FALSE, message=FALSE}
-mod_4 <- fa(features1, 4, cor = 'poly', fm = 'wls')
-print.psych(mod_4, cut = 0, sort = FALSE)
-```
-
-The loadings for the 4-factor model are:
-
-```{r, warning=FALSE, message=FALSE}
-mod_4$loadings
-```
-
-Let's try to fit a 5-factor model.
-
-```{r, warning=FALSE, message=FALSE}
-mod_5 <- fa(features1, 5, cor = 'poly', fm = 'wls')
-print.psych(mod_5, cut = 0, sort = FALSE)
-```
-
-The loadings for the 5-factor model are:
-
-```{r, warning=FALSE, message=FALSE}
-mod_5$loadings
-```
-
-There is no correlation between factors for a one-factor model.
-
-Now, let's try a 6-factor model.
-
-```{r, warning=FALSE, message=FALSE}
-mod_6 <- fa(features1, 6, cor = 'poly', fm = 'wls')
-print.psych(mod_6, cut = 0, sort = FALSE)
-```
-
-The loadings for the 6-factor model are:
-
-```{r, warning=FALSE, message=FALSE}
-mod_6$loadings
-```
-
-Now, let's try a 7-factor model.
-
-```{r, warning=FALSE, message=FALSE}
-mod_7 <- fa(features1, 7, cor = 'poly', fm = 'wls')
-print.psych(mod_7, cut = 0, sort = FALSE)
-```
-
-The loadings for the 7-factor model are:
-
-```{r, warning=FALSE, message=FALSE}
-mod_7$loadings
-```
-
-We think the 5-factor model is best.
-
-
-## Construct Reliability
-
-```{r}
-features <- athletes[,15:67] %>% map_df(., as.numeric) %>% select(!ends_with("_HRS")) %>% select(-c("SPRT"))
-athlete_alpha <- psych::alpha(features, na.rm = TRUE)
-```
-
-Chronbach's alpha is 0.67, with a 95 \% confidence interval of (0.63, 0.72).
-
-```{r}
-alpha_drop_names <- athlete_alpha$alpha.drop %>%
-  as_tibble() %>%
-  mutate(names = athlete_alpha$alpha.drop %>% rownames()) %>%
-  arrange(raw_alpha) %>% 
-  filter(raw_alpha > 0.67) %>%
-  select(names, raw_alpha)
-
-features1 <- features %>% select(-alpha_drop_names$names)
-athlete_alpha2 <- psych::alpha(features1)
-```
-
+Chronbach's alpha is 0.68, with a 95 \% confidence interval of (0.63, 0.73).
 
 ## Latent Variables
 
@@ -215,7 +118,7 @@ EXP_IDEA: Confident to think or express your own ideas and opinions
 MEANING: That your life has a sense of direction or meaning to it
 
 LV5: resilience
-BOUNCE: I tend to bounce back quickly after hard times
+BOUNCE: I ten-d to bounce back quickly after hard times
 STRS_EVNT: I have a hard time making it through stressful events
 STRS_RCVR: It does not take me long to recover from a stressful event
 SNAP_BACK: It is hard for me to snap back when something bad happens
