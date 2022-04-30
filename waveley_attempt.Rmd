@@ -1,0 +1,139 @@
+---
+title: "waveley_attempt"
+author: "Waveley Qiu (wq2162)"
+date: "2022-04-30"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, 
+                      warning = FALSE, 
+                      message = FALSE)
+
+source("shared_code/data_prep_and_setup.R")
+```
+
+## Athletic Identity
+
+First, let's select the variables we are interested in.
+
+```{r}
+athletic_identity <- c("cnsdr_ath", "sprt_goals", "frnds_ath", "sprt_impt", "think_sprt", "bad_sprt", "dprs_sprt")
+
+athletic_identity_numeric <- athletes[,athletic_identity] %>% map_df(., as.numeric)
+
+athletic_identity_matrix <- athletic_identity_numeric %>% as.matrix()
+```
+
+### Polychoric Correlations
+
+Now, let us determine the number of factors that might underlie these variables.
+
+```{r}
+athlete_parallel <- fa.parallel(athletic_identity_matrix, cor = "poly", fa = "pc")
+athlete_parallel$pc.values
+```
+
+PCA indicates that two factors underlie these variables.
+
+### EFA
+
+We now want to examine which variables might load on which factors. To do so, we will perform EFA on a 2-factor model, and also on 1- and 3- factor models.
+
+First, the 2-factor model:
+
+```{r}
+athletic_efa2 <- fa(r = athletic_identity_matrix, nfactors = 2, cor = "poly")
+fa.diagram(athletic_efa2, digits = 2, simple = TRUE)
+```
+
+Now, the 3-factor model:
+
+```{r}
+athletic_efa3 <- fa(r = athletic_identity_matrix, nfactors = 3, cor = "poly")
+fa.diagram(athletic_efa3, digits = 2, simple = TRUE)
+```
+
+Now, the 1-factor model:
+
+```{r}
+athletic_efa1 <- fa(r = athletic_identity_matrix, nfactors = 1, cor = "poly")
+fa.diagram(athletic_efa1, digits = 2, simple = TRUE)
+```
+
+### Reliability
+
+LV 1: External Identity
+
+```{r}
+external_identity <- c("cnsdr_ath", "sprt_goals", "frnds_ath")
+
+external_identity_numeric <- athletes[,external_identity] %>% map_df(., as.numeric)
+
+external_identity_matrix <- external_identity_numeric %>% as.matrix()
+psych::alpha(external_identity_matrix)
+```
+
+Chronbach's alpha suggests we should drop `frnds_ath`.
+
+```{r}
+external_identity <- c("cnsdr_ath", "sprt_goals")
+
+external_identity_numeric <- athletes[,external_identity] %>% map_df(., as.numeric)
+
+external_identity_matrix <- external_identity_numeric %>% as.matrix()
+psych::alpha(external_identity_matrix)
+```
+
+LV 2: Internal Value
+
+```{r}
+internal_value <- c("sprt_impt", "think_sprt")
+
+internal_value_numeric <- athletes[,internal_value] %>% map_df(., as.numeric)
+
+internal_value_matrix <- internal_value_numeric %>% as.matrix()
+psych::alpha(internal_value_matrix)
+```
+
+LV 3: Negative Events
+
+```{r}
+negative_events <- c("dprs_sprt", "bad_sprt")
+
+negative_events_numeric <- athletes[,negative_events] %>% map_df(., as.numeric)
+
+negative_events_matrix <- negative_events_numeric %>% as.matrix()
+psych::alpha(negative_events_matrix)
+```
+
+Our final model is as follows:
+
+external_identity = sprt_goals + cnsdr_ath
+internal_value = sprt_impt + think_sprt
+negative_events = dprs_sprt + bad_sprt
+
+### CFA
+
+```{r}
+athlete_model <- 
+'external_identity =~ sprt_goals + cnsdr_ath
+ internal_value =~ sprt_impt + think_sprt
+ negative_events =~ dprs_sprt + bad_sprt'
+
+athlete_2CFA = cfa(athlete_model, data = selected_features,
+                   ordered = names(selected_features),
+                   std.lv = TRUE)
+summary(athlete_2CFA, fit.measures = TRUE)
+```
+
+
+
+
+
+
+
+
+
+
+
