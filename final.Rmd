@@ -67,10 +67,10 @@ features <- c("weeks_cat", "bubble_cat", "play_hrs_cat", "cnsdr_ath", "sprt_goal
 athletes[,features]
 ```
 
-## Construct Reliability: Dedication to Sport
+## Construct Reliability: Dedication to Sport/ athlete identity
 
 ```{r}
-dedication_to_sport <- c("cnsdr_ath", "sprt_goals", "frnds_ath", "think_sprt", "sprt_lvl")
+dedication_to_sport <- c("cnsdr_ath", "sprt_goals", "frnds_ath","sprt_impt", "think_sprt","bad_sprt","dprs_sprt")
 
 table(athletes$happy)
 selected_features <- athletes[,dedication_to_sport] %>% map_df(., as.numeric)
@@ -78,14 +78,19 @@ selected_features <- athletes[,dedication_to_sport] %>% map_df(., as.numeric)
 athlete_alpha <- psych::alpha(selected_features %>% as.matrix())
 athlete_alpha
 
-habits <- c("smoking", "fruit_veg", "hr_sleep", "play_hrs")
-selected_habits <- athletes[, habits] %>% map_df(., as.numeric)
-habit_alpha <-  psych::alpha(selected_habits %>% as.matrix())
-habit_alpha
+```
+Chronbach's alpha is 74, with a 95 \% confidence interval of (0.70, 0.78).
+
+## Construct Reliability: Resilience
+```{r}
+resilience <- c("bounce", "strs_evnt", "strs_rcvr", "snap_back","difficult","setbacks")
+selected_resilience <- athletes[, resilience] %>% map_df(., as.numeric)
+resilience_alpha <-  psych::alpha(selected_resilience %>% as.matrix())
+resilience_alpha
 athletes$fruit_veg
 ```
 
-Chronbach's alpha is 0.68, with a 95 \% confidence interval of (0.63, 0.73).
+Chronbach's alpha is 0.89, with a 95 \% confidence interval of (0.87, 0.90).
 
 ## Latent Variables
 
