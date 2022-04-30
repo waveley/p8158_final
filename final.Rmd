@@ -82,7 +82,7 @@ athlete_alpha
 ```
 Chronbach's alpha is 74, with a 95 \% confidence interval of (0.70, 0.78).
 
-# EFA & CFA
+# EFA & CFA of athlete identity scale
 ```{r}
 #parallel analysis
 athlete_parallel = fa.parallel(selected_features, cor = "poly", fa = "pc")
