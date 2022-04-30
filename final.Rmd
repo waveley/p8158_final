@@ -9,6 +9,7 @@ output: pdf_document
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(haven)
+library(lavaan)
 library(psych)
 library(GPArotation)
 library(naniar)
@@ -80,6 +81,46 @@ athlete_alpha
 
 ```
 Chronbach's alpha is 74, with a 95 \% confidence interval of (0.70, 0.78).
+
+# EFA & CFA
+```{r}
+#parallel analysis
+athlete_parallel = fa.parallel(selected_features, cor = "poly", fa = "pc")
+athlete_parallel$pc.values
+
+# 2 factor
+athlete_2factor = fa(r=selected_features, nfactors = 2, cor = "poly")
+fa.diagram(athlete_2factor, digits = 2, simple = TRUE)
+
+# 3 factor
+athlete_3factor = fa(r=selected_features, nfactors = 3, cor = "poly")
+fa.diagram(athlete_3factor, digits = 2, simple = TRUE)
+
+# 2 factor CFA
+athlete_2model <- 'A =~ sprt_goals + cnsdr_ath + frnds_ath + sprt_impt + think_sprt
+                  B =~ dprs_sprt + bad_sprt'
+
+athlete_2CFA = cfa(athlete_2model, data = selected_features,
+                   ordered = names(selected_features),
+                   std.lv = TRUE)
+summary(athlete_2CFA, fit.measures = TRUE)
+
+# 3 factor CFA
+athlete_3model <- 'social_identity =~ sprt_goals + cnsdr_ath + frnds_ath 
+                   exclusive = ~ sprt_impt + think_sprt
+                   negative_affectivity =~ dprs_sprt + bad_sprt'
+
+athlete_3CFA = cfa(athlete_3model, data = selected_features,
+                   ordered = names(selected_features),
+                   std.lv = TRUE)
+ summary(athlete_3CFA, fit.measures = TRUE)
+
+# chi-squared test
+teststatistic = 140.145 - 21.197
+df = 13-11
+1-pchisq(q = teststatistic, df)
+```
+Reject the 2 factor model and 3 factor model fits the data well.
 
 ## Construct Reliability: Resilience
 ```{r}
