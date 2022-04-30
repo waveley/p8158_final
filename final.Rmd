@@ -87,10 +87,38 @@ resilience <- c("bounce", "strs_evnt", "strs_rcvr", "snap_back","difficult","set
 selected_resilience <- athletes[, resilience] %>% map_df(., as.numeric)
 resilience_alpha <-  psych::alpha(selected_resilience %>% as.matrix())
 resilience_alpha
-athletes$fruit_veg
 ```
 
 Chronbach's alpha is 0.89, with a 95 \% confidence interval of (0.87, 0.90).
+
+## Construct Reliability: wellbeing (measured by The Adult Mental Health Continuum 14 items)
+```{r}
+#wellbeing <- c("happy", "strs_evnt", "strs_rcvr", "snap_back","difficult","setbacks")
+selected_wellbeing <- athletes[, 28:41] %>% map_df(., as.numeric)
+wellbeing_alpha <-  psych::alpha(selected_wellbeing %>% as.matrix())
+wellbeing_alpha
+```
+
+Chronbach's alpha is 0.91, with a 95 \% confidence interval of (0.90, 0.91).
+
+## Construct Reliability: Anxiety & Depression (measured by The hospital anxiety and depression scale 14 items)
+```{r}
+selected_AD <- athletes[, 42:55] %>% map_df(., as.numeric)
+ad_alpha <-  psych::alpha(selected_AD %>% as.matrix())
+ad_alpha
+```
+
+Chronbach's alpha is 0.88, with a 95 \% confidence interval of (0.86, 0.90).
+
+## Construct Reliability: Loneliness (measured by The Short Loneliness Scale 6 items)
+```{r}
+selected_lonelinss <- athletes[, 62:67] %>% map_df(., as.numeric)
+lonelinss_alpha <-  psych::alpha(selected_lonelinss %>% as.matrix())
+lonelinss_alpha
+```
+
+Chronbach's alpha is 0.68, with a 95 \% confidence interval of (0.63, 0.73).
+Drop miss_ppl to increase alpha to 0.76 (?)
 
 ## Latent Variables
 
