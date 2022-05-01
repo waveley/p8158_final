@@ -216,6 +216,12 @@ final_cfa = cfa(final_model,
 summary(final_cfa, fit.measures = TRUE)
 ```
 
+## Modification Indices
+
+```{r}
+modindices(final_cfa, power = TRUE, sort = TRUE, minimum.value = 10) 
+```
+
 # Structural Equation Modeling
 
 ```{r}
