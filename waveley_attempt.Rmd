@@ -9,18 +9,23 @@ output: pdf_document
 knitr::opts_chunk$set(echo = TRUE, 
                       warning = FALSE, 
                       message = FALSE)
-
+library(sem)
+library(semPlot)
 source("shared_code/data_prep_and_setup.R")
 ```
 
-## Athletic Identity
+Was there a difference in emotional well being between an athlete and non-athlete during the COVID-19 lockdown?
+
+# Latent Variable Construction
+
+## Latent Variable 1: Athletic Identity
 
 First, let's select the variables we are interested in.
 
 ```{r}
 athletic_identity <- c("cnsdr_ath", "sprt_goals", "frnds_ath", "sprt_impt", "think_sprt", "bad_sprt", "dprs_sprt")
 
-athletic_identity_numeric <- athletes[,athletic_identity] %>% map_df(., as.numeric)
+athletic_identity_numeric <- dataset[,athletic_identity] %>% map_df(., as.numeric)
 
 athletic_identity_matrix <- athletic_identity_numeric %>% as.matrix()
 ```
@@ -61,6 +66,8 @@ athletic_efa1 <- fa(r = athletic_identity_matrix, nfactors = 1, cor = "poly")
 fa.diagram(athletic_efa1, digits = 2, simple = TRUE)
 ```
 
+The 3-factor model seems to fit the data the best, as it has the smallest BIC. We will proceed by using the 3-factor model for athletic_identity.
+
 ### Reliability
 
 LV 1: External Identity
@@ -68,18 +75,7 @@ LV 1: External Identity
 ```{r}
 external_identity <- c("cnsdr_ath", "sprt_goals", "frnds_ath")
 
-external_identity_numeric <- athletes[,external_identity] %>% map_df(., as.numeric)
-
-external_identity_matrix <- external_identity_numeric %>% as.matrix()
-psych::alpha(external_identity_matrix)
-```
-
-Chronbach's alpha suggests we should drop `frnds_ath`.
-
-```{r}
-external_identity <- c("cnsdr_ath", "sprt_goals")
-
-external_identity_numeric <- athletes[,external_identity] %>% map_df(., as.numeric)
+external_identity_numeric <- dataset[,external_identity] %>% map_df(., as.numeric)
 
 external_identity_matrix <- external_identity_numeric %>% as.matrix()
 psych::alpha(external_identity_matrix)
@@ -107,9 +103,9 @@ negative_events_matrix <- negative_events_numeric %>% as.matrix()
 psych::alpha(negative_events_matrix)
 ```
 
-Our final model is as follows:
+Our final model for athlete_identity is as follows:
 
-external_identity = sprt_goals + cnsdr_ath
+external_identity = sprt_goals + cnsdr_ath + frnds_ath
 internal_value = sprt_impt + think_sprt
 negative_events = dprs_sprt + bad_sprt
 
@@ -117,14 +113,145 @@ negative_events = dprs_sprt + bad_sprt
 
 ```{r}
 athlete_model <- 
-'external_identity =~ sprt_goals + cnsdr_ath
+'external_identity =~ sprt_goals + cnsdr_ath + frnds_ath
  internal_value =~ sprt_impt + think_sprt
  negative_events =~ dprs_sprt + bad_sprt'
 
-athlete_2CFA = cfa(athlete_model, data = athletic_identity_matrix,
+athlete_CFA = cfa(athlete_model, data = athletic_identity_matrix,
                    ordered = names(athletic_identity_matrix),
                    std.lv = TRUE)
-summary(athlete_2CFA, fit.measures = TRUE)
+summary(athlete_CFA, fit.measures = TRUE)
+```
+
+## Latent Variable 2: Healthy Lifestyle
+
+```{r}
+healthy_lifestyle <- c("hr_sleep", "smoking", "fruit_veg")
+
+healthy_life_numeric <- dataset[,healthy_lifestyle] %>% map_df(., as.numeric)
+
+healthy_life_matrix <- healthy_life_numeric %>% as.matrix()
+```
+
+### Polychoric Correlations
+
+Now, let us determine the number of factors that might underlie these variables.
+
+```{r}
+health_parallel <- fa.parallel(healthy_life_matrix, fa = "pc")
+health_parallel$pc.values
+```
+
+1 latent factor appears to underlie these variables. *** need to check if this is the correct way to assess formative LV's ***
+
+## Latent Variable 3: Resilience
+
+Finally, we will look at resilience. 
+
+```{r}
+resilience <- c("bounce", "strs_evnt", "strs_rcvr", "snap_back", "difficult", "setbacks")
+
+resilience_numeric <- dataset[,resilience] %>% map_df(., as.numeric)
+
+resilience_matrix <- resilience_numeric %>% as.matrix()
+```
+
+### Polychoric Correlations
+
+```{r}
+resilience_parallel <- fa.parallel(resilience_matrix, fa = "pc")
+resilience_parallel$pc.values
+```
+
+It appears that a 1-factor model will sufficiently explain the variability across these variables.
+
+### EFA
+
+First, we can do a 1-factor EFA model:
+
+```{r}
+resilience_efa1 <- fa(r = resilience_matrix, nfactors = 1, cor = "poly")
+fa.diagram(resilience_efa1, digits = 2, simple = TRUE)
+summary(resilience_efa1)
+```
+
+Now, we can try a 2-factor EFA model:
+
+```{r}
+resilience_efa2 <- fa(r = resilience_matrix, nfactors = 2, cor = "poly")
+fa.diagram(resilience_efa2, digits = 2, simple = TRUE)
+summary(resilience_efa2)
+```
+
+Since a 1-factor model is sufficient, we will just proceed with the 1-factor model.
+
+### Reliability
+
+```{r}
+psych::alpha(resilience_matrix)
+```
+
+Chronbach's alpha is 0.89 (0.88, 0.91). No items can be dropped to improve this measure, so we will keep all of them in this latent variable.
+
+
+# Final CFA
+
+```{r}
+final_model <- 
+'external_identity =~ sprt_goals + cnsdr_ath + frnds_ath
+ internal_value =~ sprt_impt + think_sprt
+ negative_events =~ dprs_sprt + bad_sprt
+ 
+ athlete_identity =~ external_identity + internal_value + negative_events
+ 
+ healthy_lifestyle =~ hr_sleep + smoking + fruit_veg
+ 
+ resilience =~ bounce + strs_evnt + strs_rcvr + snap_back + difficult + setbacks
+'
+fin_df <- dataset %>% map_df(., as.numeric)
+
+final_cfa = cfa(final_model, 
+                data = fin_df,
+                std.lv = TRUE)
+summary(final_cfa, fit.measures = TRUE)
+```
+
+# Structural Equation Modeling
+
+```{r}
+
+athlete_sem <- '
+  # measurement model
+    external_identity =~ sprt_goals + cnsdr_ath + frnds_ath
+    internal_value =~ sprt_impt + think_sprt
+    negative_events =~ dprs_sprt + bad_sprt
+    
+    athlete_identity =~ external_identity + internal_value + negative_events
+    
+    healthy_lifestyle =~ hr_sleep + smoking + fruit_veg
+    
+    resilience =~ bounce + strs_evnt + strs_rcvr + snap_back + difficult + setbacks
+    
+  # structural model - direct effects
+    mhc_sf ~ a*athlete_identity + b*healthy_lifestyle + c*resilience
+    resilience ~ d*athlete_identity
+
+  # indirect
+    indirect_athlete_identity := d*c
+
+  # total
+    total_athlete_identity:= d*c + a
+'
+
+athlete_sem_fit <- sem(athlete_sem, 
+                       data = dataset, 
+                       sample.cov = TRUE, 
+                       missing = "ML")
+summary(athlete_sem_fit)
+semPaths(athlete_sem_fit,
+         whatLabels = "std", 
+         reorder = FALSE,
+         layout = "tree2")
 ```
 
 
