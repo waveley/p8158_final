@@ -3,6 +3,8 @@ title: "waveley_attempt"
 author: "Waveley Qiu (wq2162)"
 date: "2022-04-30"
 output: pdf_document
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r setup, include=FALSE}
@@ -258,7 +260,19 @@ semPaths(athlete_sem_fit,
          whatLabels = "std", 
          reorder = FALSE,
          layout = "tree2")
+
+# graph looks cleaner
+semPaths(athlete_sem_fit,
+         what = "paths",
+         whatLabels = "std", 
+         reorder = FALSE,
+         layout = "tree2",
+         rotation = 3,
+         intercepts = FALSE)
 ```
+
+Double headed arrow between healthy lifestyle and athlete identity means that they may share a common cause and their direct causal relationship is unspecified. We hypothesize that athlete identity causes healthy lifestyle. We can change the double headed arrow to direct causal arrow.
+
 
 
 
