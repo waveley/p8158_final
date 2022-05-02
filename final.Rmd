@@ -3,6 +3,8 @@ title: "P8158 Final"
 author: "Waveley Qiu (wq2162)"
 date: "2022-04-14"
 output: pdf_document
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r setup, include=FALSE}
@@ -113,7 +115,7 @@ athlete_3model <- 'social_identity =~ sprt_goals + cnsdr_ath + frnds_ath
 athlete_3CFA = cfa(athlete_3model, data = selected_features,
                    ordered = names(selected_features),
                    std.lv = TRUE)
- summary(athlete_3CFA, fit.measures = TRUE)
+summary(athlete_3CFA, fit.measures = TRUE)
 
 # chi-squared test
 teststatistic = 140.145 - 21.197
@@ -223,9 +225,43 @@ mod_5_cfa = cfa(model_5, data =features1,
 summary(mod_5_cfa, fit.measure= TRUE)
 ```
 
-## Modificaition Indice (???)
 ```{r}
-modindices(mod_5_cfa, power = TRUE, sort = TRUE, minimum.value = 10) 
+ athlete_sem2 <- '
+  # measurement model
+    external_identity =~ sprt_goals + cnsdr_ath + frnds_ath
+    internal_value =~ sprt_impt + think_sprt
+    negative_events =~ dprs_sprt + bad_sprt
+    
+    athlete_identity =~ external_identity + internal_value + negative_events
+    
+    healthy_lifestyle =~ hr_sleep + smoking + fruit_veg
+    
+    resilience =~ bounce + strs_evnt + strs_rcvr + snap_back + difficult + setbacks
+    
+  # structural model - direct effects
+    mhc_sf ~ a*athlete_identity + b*healthy_lifestyle + c*resilience
+    resilience ~ d*athlete_identity
+    healthy_lifestyle ~ e*athlete_identity
+
+  # indirect
+    indirect_athlete_identity := d*c + e*b
+
+  # total
+    total_athlete_identity:= d*c + a + e*b
+'
+
+athlete_sem_fit2 <- sem(athlete_sem2, 
+                       data = dataset, 
+                       sample.cov = TRUE, 
+                       missing = "ML")
+summary(athlete_sem_fit2)
+
+semPaths(athlete_sem_fit2,
+         what = "std",
+         whatLabels = "std", 
+         reorder = FALSE,
+         layout = "tree2",
+         intercepts = FALSE)
 ```
 
 
