@@ -1,7 +1,7 @@
 ---
 title: |
-  | P8158 - Final Project
-  | Effects of Athletic Identity and Resilience on Emotional Well-being during COVID-19
+  | P8158 - Must Athletes be Tough?
+  | Effects of Athletic Identity and Resilience on Well-Being during COVID-19
 author: |
   | Waveley Qiu, Yihan Qiu, Yuanyuan Zeng
 date: "2022-05-04"
@@ -22,15 +22,14 @@ library(gtsummary)
 
 - The onset of COVID-19 affected almost every sphere of work and leisure.
 
-- We are interested in investigating the impact one's athletic identity may have on mental well-being, particularly as the context of a global pandemic may have dramatically impacted one's experience of playing a sport/being an athlete.
+- We are interested in investigating the impact one's athletic identity may have on a person's overall well-being, particularly as the context of a global pandemic may have dramatically impacted one's experience of playing a sport/being an athlete.
 
 <!-- The sudden outbreak of COVID-19 was unexpected to everyone. According to an article written by Healeem et al. in 2020, the COVID-19 has rapidly affected our day to day life, businesses, disrupted the world trade and movements. As informed biostatistics students, we are specifically interested to investigate people's mental health conditions or wellbeing under the COVID-19 lockdown period and whether there are any potential factors that may affect them. -->
 
 ## Resilience, Healthy Lifestyle, and Mental Health
 
-- Resilience and healthy lifestyle are both characteristics that are associated with mental well-being (both of which increase positive indicators of mental health and decrease negative indicators of mental health)
-
-- We hypothesize that the effect that being a devoted athlete has on mental well-being would be mediated through these two characteristics, and will investigate the relationships between these variables as well.
+- Resilience and healthy lifestyle are both characteristics that are associated with improved mental health. 
+- We hypothesize that the effect that being a devoted athlete has on overall well-being would be mediated through these two characteristics, and will endeavor to investigate the relationships between these variables as well.
 
 ## Methodology
 
@@ -89,7 +88,7 @@ Fit statistics: CFI > 0.99, RMSEA < 0.05, $\chi^2$ = 0.514
 ## Latent Variable 2: Resilience
 
 \centering
-![The Brief Resilience Scale](images/resilience_annotated.jpg)
+![The Brief Resilience Scale (BRS)](images/resilience_annotated.jpg)
 
 ## Latent Variable 2 (Resilience): EFA
 
@@ -132,7 +131,7 @@ Chronbach's alpha is very low for these variables, indicating that the variables
 Since `healthy_lifestyle` is thus not reliably measured with these variables, we made the decision to exclude this latent variable from SEM analysis -- treating this latent variable as a formative (rather than a reflective) construct might more accurately reflect its nature.
 
 
-## Exploratory Analysis
+<!-- ## Exploratory Analysis
 
 - MHC-SF:
 
@@ -151,20 +150,22 @@ The side-by-side boxplot of MHC-SF score between athletes and non-athletes shows
 ## Exploratory Analysis
 
 The side-by-side boxplot of resilience score between athletes and non-athletes shows that athletes have a slightly larger median/mean resilience score than non-athletes. Both distributions are left-skewed, with a couple of outliers in the negative direction.
+-->
 
 
+## Outcome Variable: Mental Health Continuum Short Form (MHC-SF)
 
-## Outcome Variable: Well-Being Composite Score
+\centering
+![](images/mhc_sf.jpg)
 
-- The Mental Health Continuum Short Form (MHC-SF)
+## Outcome Variable: MHC-SF
 
-- Assess three components of well-being
--- Emotional
--- Social
--- Psychological
+Three components of well-being are assessed:
+> Emotional
+> Social
+> Psychological
 
-- Higher scores indicate greater levels of positive well-being (scores range from 0 to 70)
-
+We will use the MHC-SF composite score (sum of all responses) as our outcome variable. Higher scores indicate greater levels of positive well-being.
 
 ## Discussion 
 
@@ -174,8 +175,10 @@ The side-by-side boxplot of resilience score between athletes and non-athletes s
 
 2. Dale, H., Brassington, L., &amp; King, K. (2014, March 5). The impact of healthy lifestyle interventions on Mental Health and Wellbeing: A systematic review. Mental Health Review Journal. https://www.emerald.com/insight/content/doi/10.1108/MHRJ-05-2013-0016/full/html 
 
-3. .https://www.tandfonline.com/doi/full/10.1080/10413200802415048
-4. https://measure.whatworkswellbeing.org/measures-bank/brief-resilience-scale/
-5. https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7068432/#B17-ijerph-17-01265
-6. https://www.hsph.harvard.edu/health-happiness/mental-health-continuum-short-form/
-7. https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7147210/
+3. A cross-cultural psychometric evaluation of the Athletic Identity Measurement Scale. Taylor &amp; Francis. (n.d.). https://www.tandfonline.com/doi/full/10.1080/10413200802415048
+
+4. The brief resilience scale. Evaluating wellbeing. (2021, March 15). https://measure.whatworkswellbeing.org/measures-bank/brief-resilience-scale/ 
+
+5. Fung S. F. (2020). Validity of the Brief Resilience Scale and Brief Resilient Coping Scale in a Chinese Sample. International journal of environmental research and public health, 17(4), 1265. https://doi.org/10.3390/ijerph17041265
+
+6. Mental health continuum short form. Lee Kum Sheung Center for Health and Happiness. (2022, March 16). Retrieved May 3, 2022, from https://www.hsph.harvard.edu/health-happiness/mental-health-continuum-short-form/ 
