@@ -7,6 +7,7 @@ editor_options:
   chunk_output_type: console
 ---
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
@@ -75,6 +76,9 @@ athletes <-
 >>>>>>> 162c4cc18082cc8c44bdff6a5dd06a1a4a1b644a
 >>>>>>> a2793a80979aa49ee84e4f3470b85fc0e323cd19
 ```{r}
+=======
+```{r setup, include=FALSE}
+>>>>>>> d3437852f23db65dbc0a64b6b205716ccef9448e
 knitr::opts_chunk$set(echo = TRUE, 
                       warning = FALSE, 
                       message = FALSE)
@@ -163,15 +167,6 @@ negative_resilience <- athletes[, resilience_negative] %>% map_df(., as.numeric)
 negative_alpha <-  psych::alpha(negative_resilience %>% as.matrix())
 negative_alpha
 
-# 2 factor CFA
-resilience_2factor <-'positive = ~bounce + strs_rcvr + difficult
-                      negative = ~strs_evnt + snap_back + setbacks'
-
-resilience_2CFA = cfa(resilience_2factor, data = total_resilience,
-                   ordered = names(total_resilience),
-                   std.lv = TRUE)
-summary(resilience_2CFA, fit.measures = TRUE)
-
 # 1 factor CFA
 resilience_1factor <- 'resilience=~ bounce + strs_evnt + strs_rcvr + snap_back + difficult + setbacks'
 
@@ -192,25 +187,6 @@ wellbeing_alpha
 ```
 
 Chronbach's alpha is 0.91, with a 95 \% confidence interval of (0.90, 0.91).
-
-## Construct Reliability: Anxiety & Depression (measured by The hospital anxiety and depression scale 14 items)
-```{r}
-selected_AD <- athletes[, 42:55] %>% map_df(., as.numeric)
-ad_alpha <-  psych::alpha(selected_AD %>% as.matrix())
-ad_alpha
-```
-
-Chronbach's alpha is 0.88, with a 95 \% confidence interval of (0.86, 0.90).
-
-## Construct Reliability: Loneliness (measured by The Short Loneliness Scale 6 items)
-```{r}
-selected_lonelinss <- athletes[, 62:67] %>% map_df(., as.numeric)
-lonelinss_alpha <-  psych::alpha(selected_lonelinss %>% as.matrix())
-lonelinss_alpha
-```
-
-Chronbach's alpha is 0.68, with a 95 \% confidence interval of (0.63, 0.73).
-Drop miss_ppl to increase alpha to 0.76 (?)
 
 ## Latent Variables
 
@@ -250,30 +226,6 @@ SNAP_BACK: It is hard for me to snap back when something bad happens
 DIFFICULT: I usually come through difficult times with little trouble
 SETBACKS: I tend to take a long time to get over setbacks in my life
 
-## factor diagram
-```{r}
-fa.diagram(mod_5,digits = 2,simple = TRUE, rsize = 2)
-
-model_5 = "
-dedication_to_sport = ~CNSDR_ATH + SPRT_GOALS + FRNDS_ATH + SPRT_IMPT + THINK_SPRT + SPRT_LVL
-positive_outlook = ~ HAPPY + INT_LIFE + SATISFIED + CONT_SOC
-interaction_society = ~ BELONG + BET_SOC + PEOPLE_GOOD + SENSE_SOC 
-maturity = ~ LIKE_PER + RESPONSIBLE + WARM_REL +  CHAL_EXP + EXP_IDEA + MEANING
-resilience = ~ BOUNCE + STRS_EVNT + STRS_RCVR + SNAP_BACK + DIFFICULT + SETBACKS
-"
-```
-
-## CFA
-```{r}
-library(lavaan)
-mod_5_cfa = cfa(model_5, data =features1,
-                #ordered = names(features1),
-                estimator = "WLSMV",
-                std.lv=TRUE)
-
-summary(mod_5_cfa, fit.measure= TRUE)
-```
-
 ```{r}
  athlete_sem2 <- '
   # measurement model
@@ -300,22 +252,80 @@ summary(mod_5_cfa, fit.measure= TRUE)
 '
 
 athlete_sem_fit2 <- sem(athlete_sem2, 
-                       data = dataset, 
+                       data = athletes, 
                        sample.cov = TRUE, 
                        missing = "ML")
 summary(athlete_sem_fit2)
 
 semPaths(athlete_sem_fit2,
-         what = "std",
+         what = "paths",
          whatLabels = "std", 
          reorder = FALSE,
          layout = "tree2",
+         rotation = 2,
          intercepts = FALSE)
 ```
 
+## Boxplot of MHC_SF between athlete and non-athlete
+```{r}
+library(tidyverse)
 
+knitr::opts_chunk$set(
+  fig.width = 6,
+  fig.asp = .6,
+  out.width = "90%"
+)
 
+theme_set(theme_classic() + theme(legend.position = "bottom"))
 
+options(
+  ggplot2.continuous.colour = "brewer",
+  ggplot2.continuous.fill = "brewer"
+)
 
+scale_colour_discrete = scale_colour_viridis_d
+scale_fill_discrete = scale_fill_viridis_d
 
+MHC_SF <- c("mhc_sf", "athlete_yn")
+
+MHC_SF_numeric <- dataset[,MHC_SF] %>% mutate(
+  mhc_sf= as.numeric(mhc_sf),
+  athlete_yn = as.factor( athlete_yn))
+
+ggplot(data =MHC_SF_numeric, aes(y = mhc_sf, x = athlete_yn), group = athlete_yn) + geom_boxplot(aes(color = athlete_yn)) +
+  labs(title = "MHC_SF of Athletes and Non-athletes",
+       y = "Total MHC Score",
+       x = " ") +
+  scale_x_discrete(
+    labels = c("Athletes", "Non-athletes")
+  )  + theme_bw() + 
+  theme(legend.position = "bottom")
+
+```
+
+# Boxplot of Healthy Lifestyle
+```{r}
+healthy_lifestyle <- c("athlete_yn","hr_sleep", "smoking", "fruit_veg")
+
+healthy_life_numeric <- dataset[,healthy_lifestyle] %>% mutate(
+  hr_sleep = as.numeric(hr_sleep),
+  athlete_yn = as.factor(athlete_yn),
+  smoking = as.numeric(smoking)
+)
+
+ggplot(data = healthy_life_numeric, aes(y = hr_sleep, x = athlete_yn), group = athlete_yn) + geom_boxplot(aes(color = athlete_yn))+
+  labs(title = "Hours of Sleep for Athletes and Non-athletes",
+       y = "Hour of Sleep",
+       x = " ") +
+  scale_x_discrete(
+    labels = c("Athletes", "Non-athletes")
+  )  + theme_bw()+ 
+  theme(legend.position = "bottom")
+
+ggplot(data = healthy_life_numeric, aes(x = smoking, fill = athlete_yn)) +
+  geom_histogram(binwidth=1, color = "black",alpha=0.5) + 
+  labs(title = "Frequency of Smoking Status",
+       y = "Count",
+       x = "Smoking Status")
+```
 
