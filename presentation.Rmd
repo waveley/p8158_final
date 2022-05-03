@@ -28,11 +28,12 @@ library(gtsummary)
 
 ## Resilience, Healthy Lifestyle, and Mental Health
 
-- Resilience and health lifestyle are both characteristics that are associated with mental well-being (both of which increase positive indicators of mental health and decrease negative indicators of mental health)
+- Resilience and healthy lifestyle are both characteristics that are associated with mental well-being (both of which increase positive indicators of mental health and decrease negative indicators of mental health)
 
-- 
+- We hypothesize that the effect that being a devoted athlete has on mental well-being would be mediated through these two characteristics, and will investigate the relationships between these variables as well.
 
 ## Methodology
+
 1. Conduct EFA and CFA to determine which observed variables underlie our latent variables of interest.
 2. Evaluate reliability of the determined latent structures with Chronbach's alpha.
 2. Construct SEM(s) to quantify the relationship between our constructed latent variables and mental health score.
@@ -82,32 +83,54 @@ Since Chronbach's alpha would improve significantly if `frnds_ath` is removed, w
 \centering
 ![](images/athletic_identity_cfa.png)
 
-Both the first- and second- order latent variables report significant loadings. As fit statistics are also adequate (CFA > 0.99, RMSEA < 0.05, $\chi^2$ = 0.514), we will proceed with this structure in our SEM.
+Fit statistics: CFI > 0.99, RMSEA < 0.05, $\chi^2$ = 0.514
+<!--Both the first- and second- order latent variables report significant loadings. As fit statistics are also adequate (CFA > 0.99, RMSEA < 0.05, $\chi^2$ = 0.514), we will proceed with this structure in our SEM. -->
 
 ## Latent Variable 2: Resilience
 
 \centering
 ![The Brief Resilience Scale](images/resilience_annotated.jpg)
 
-## Latent Variable 2 (Resilience): PCA 
+## Latent Variable 2 (Resilience): EFA
 
 Parallel component analysis recommended 1 component.
 
-After running EFA on 1- and 2- factor models, we propose a one-factor model, as follows:
-- `
+After running EFA on 1- and 2- factor models, we find that the one-factor model, containing all variables from the scale fits the best.
 
+## Latent Variable 2 (Resilience): Reliability
+
+\centering
+![](images/resilience_reliability.png)
+
+<!--No items can be dropped to improve this measure, so we will keep all of them in this latent variable.-->
+
+## Latent Variable 2 (Resilience): CFA
+
+\centering
+![](images/resilience_cfa.png)
+
+Fit statistics: CFI > 0.98, RMSEA < 0.08, $\chi^2$ = 0.017
+<!--Loadings are all significant. As fit statistics are adequate (CFI > 0.98, RMSEA < 0.08, though $\chi^2$ = 0.017), we will proceed with this structure in our SEM.-->
 
 ## Latent Variable 3: Healthy Lifestyle
 
-- Indicators of healthy lifestyle
+We hypothesized that we could create a latent variable representing a healthy lifestyle using the following variables:
 
->1. Five Fruit and Vegetables: Yes/No
+- `fruit_veg`: Five Fruit and Vegetables (Yes/No)
 
->2. Smoking Status: 7-point Likert scale
+- `smoking`: Smoking Status (7-point Likert scale)
 
->3. Hour Sleep: numerical variable
+- `hr_sleep`: Hour Sleep (numeric variable)
 
-- Higher sum score indicates healthier lifestyle
+
+## Latent Variable 3 (Healthy Lifestyle): Reliability
+
+![](images/health_alpha.png)
+
+Chronbach's alpha is very low for these variables, indicating that the variables `hr_sleep`, `smoking`, `fruit_veg` do not reliably measure the latent variable. 
+
+Since `healthy_lifestyle` is thus not reliably measured with these variables, we made the decision to exclude this latent variable from SEM analysis -- treating this latent variable as a formative (rather than a reflective) construct might more accurately reflect its nature.
+
 
 ## Exploratory Analysis
 
@@ -140,10 +163,11 @@ The side-by-side boxplot of resilience score between athletes and non-athletes s
 
 ## Resources 
 1. Hu, T., Zhang, D., &amp; Wang, J. (2014, December 13). A meta-analysis of the Trait Resilience and Mental Health. Personality and Individual Differences. https://www.sciencedirect.com/science/article/pii/S0191886914006710 
+
 2. Dale, H., Brassington, L., &amp; King, K. (2014, March 5). The impact of healthy lifestyle interventions on Mental Health and Wellbeing: A systematic review. Mental Health Review Journal. https://www.emerald.com/insight/content/doi/10.1108/MHRJ-05-2013-0016/full/html 
 
-2.https://www.tandfonline.com/doi/full/10.1080/10413200802415048
-2.https://measure.whatworkswellbeing.org/measures-bank/brief-resilience-scale/
-3.https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7068432/#B17-ijerph-17-01265
-4.https://www.hsph.harvard.edu/health-happiness/mental-health-continuum-short-form/
-5.https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7147210/
+3. .https://www.tandfonline.com/doi/full/10.1080/10413200802415048
+4. https://measure.whatworkswellbeing.org/measures-bank/brief-resilience-scale/
+5. https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7068432/#B17-ijerph-17-01265
+6. https://www.hsph.harvard.edu/health-happiness/mental-health-continuum-short-form/
+7. https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7147210/
