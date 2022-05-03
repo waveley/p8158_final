@@ -186,12 +186,58 @@ semPaths(athlete_sem_fit2,
          intercepts = FALSE)
 ```
 
-## regression of resilienceand athlete identity
+## Boxplot of MHC_SF between athlete and non-athlete
 ```{r}
-x = sum(athletes$bounce, athletes$strs_evnt, athletes$strs_rcvr, athletes$snap_back, athletes$difficult,athletes$setbacks)
+library(tidyverse)
+
+knitr::opts_chunk$set(
+  fig.width = 6,
+  fig.asp = .6,
+  out.width = "90%"
+)
+
+theme_set(theme_classic() + theme(legend.position = "bottom"))
+
+options(
+  ggplot2.continuous.colour = "brewer",
+  ggplot2.continuous.fill = "brewer"
+)
+
+scale_colour_discrete = scale_colour_viridis_d
+scale_fill_discrete = scale_fill_viridis_d
+
+MHC_SF <- c("mhc_sf", "athlete_yn")
+
+MHC_SF_numeric <- dataset[,MHC_SF] %>% mutate(
+  mhc_sf= as.numeric(mhc_sf),
+  athlete_yn = as.factor( athlete_yn))
+
+ggplot(data =MHC_SF_numeric, aes(y = mhc_sf, x = athlete_yn), group = athlete_yn) + geom_boxplot(aes(color = athlete_yn)) +
+  labs(title = "MHC_SF of Athletes and Non-athletes",
+       y = "Total MHC Score",
+       x = " ") +
+  scale_x_discrete(
+    labels = c("Athletes", "Non-athletes")
+  ) +   theme_bw()
+
 ```
 
+# Boxplot of Healthy Lifestyle
+```{r}
+MHC_SF <- c("mhc_sf", "athlete_yn")
 
+MHC_SF_numeric <- dataset[,MHC_SF] %>% mutate(
+  mhc_sf= as.numeric(mhc_sf),
+  athlete_yn = as.factor( athlete_yn))
 
+ggplot(data =MHC_SF_numeric, aes(y = mhc_sf, x = athlete_yn), group = athlete_yn) + geom_boxplot(aes(color = athlete_yn)) +
+  labs(title = "MHC_SF of Athletes and Non-athletes",
+       y = "Total MHC Score",
+       x = " ") +
+  scale_x_discrete(
+    labels = c("Athletes", "Non-athletes")
+  ) +   theme_classic() 
+
+```
 
 
