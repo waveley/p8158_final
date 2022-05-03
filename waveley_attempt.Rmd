@@ -280,7 +280,8 @@ basic_athlete_sem_fit <- sem(basic_athlete_sem,
                        data = athletes,
                        sample.cov = TRUE, 
                        missing = "ML")
-summary(basic_athlete_sem_fit)
+
+summary(basic_athlete_sem_fit, standardized=TRUE)
 
 # graph looks cleaner
 semPaths(basic_athlete_sem_fit,

@@ -77,16 +77,6 @@ However, for `external_identity`:
 
 Since Chronbach's alpha would improve significantly if `frnds_ath` is removed, we decided to remove this variable from the `athlete_identity` latent structure.
 
-<!--
-## AIMS (Continued)
-
-- Result of the confirmatory factor analysis of AMIS with athletes in data
-
-- (insert CFA graph)
-
-- Chronbach's alpha is 0.74, with a 95 \% confidence interval of (0.70, 0.78).
--->
-
 ## Latent Variable 1 (Athletic Identity): CFA
 
 \centering
@@ -103,12 +93,9 @@ Both the first- and second- order latent variables report significant loadings. 
 
 Parallel component analysis recommended 1 component.
 
-After running EFA on 1- and 2- factor models, we propose 
-<!-- 1-factor CFA
--CFI 0.999
--P value = 0.110
-- test statistics = 14.376
-- RMSEA 0.043 -->
+After running EFA on 1- and 2- factor models, we propose a one-factor model, as follows:
+-
+
 
 ## Latent Variable 3: Healthy Lifestyle
 
