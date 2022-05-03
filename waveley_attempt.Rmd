@@ -16,7 +16,7 @@ library(semPlot)
 source("shared_code/data_prep_and_setup.R")
 ```
 
-Was there a difference in emotional well being between an athlete and non-athlete during the COVID-19 lockdown?
+How does an athlete's measure of athletic identity affect MHC-SF, as mediated through resilience and a healthy lifestyle?
 
 # Latent Variable Construction
 
@@ -27,7 +27,7 @@ First, let's select the variables we are interested in.
 ```{r}
 athletic_identity <- c("cnsdr_ath", "sprt_goals", "frnds_ath", "sprt_impt", "think_sprt", "bad_sprt", "dprs_sprt")
 
-athletic_identity_numeric <- dataset[,athletic_identity] %>% map_df(., as.numeric)
+athletic_identity_numeric <- athletes[,athletic_identity] %>% map_df(., as.numeric)
 
 athletic_identity_matrix <- athletic_identity_numeric %>% as.matrix()
 ```
@@ -77,7 +77,7 @@ LV 1: External Identity
 ```{r}
 external_identity <- c("cnsdr_ath", "sprt_goals", "frnds_ath")
 
-external_identity_numeric <- dataset[,external_identity] %>% map_df(., as.numeric)
+external_identity_numeric <- athletes[,external_identity] %>% map_df(., as.numeric)
 
 external_identity_matrix <- external_identity_numeric %>% as.matrix()
 psych::alpha(external_identity_matrix)
@@ -130,7 +130,7 @@ summary(athlete_CFA, fit.measures = TRUE)
 ```{r}
 healthy_lifestyle <- c("hr_sleep", "smoking", "fruit_veg")
 
-healthy_life_numeric <- dataset[,healthy_lifestyle] %>% map_df(., as.numeric)
+healthy_life_numeric <- athletes[,healthy_lifestyle] %>% map_df(., as.numeric)
 
 healthy_life_matrix <- healthy_life_numeric %>% as.matrix()
 ```
@@ -153,7 +153,7 @@ Finally, we will look at resilience.
 ```{r}
 resilience <- c("bounce", "strs_evnt", "strs_rcvr", "snap_back", "difficult", "setbacks")
 
-resilience_numeric <- dataset[,resilience] %>% map_df(., as.numeric)
+resilience_numeric <- athletes[,resilience] %>% map_df(., as.numeric)
 
 resilience_matrix <- resilience_numeric %>% as.matrix()
 ```
@@ -174,7 +174,7 @@ First, we can do a 1-factor EFA model:
 ```{r}
 resilience_efa1 <- fa(r = resilience_matrix, nfactors = 1, cor = "poly")
 fa.diagram(resilience_efa1, digits = 2, simple = TRUE)
-summary(resilience_efa1, fitmeasures(resilience_efa))
+summary(resilience_efa1)
 ```
 
 Now, we can try a 2-factor EFA model:
@@ -217,7 +217,7 @@ final_model <-
  
  resilience =~ bounce + strs_evnt + strs_rcvr + snap_back + difficult + setbacks
 '
-fin_df <- dataset %>% map_df(., as.numeric)
+fin_df <- athletes %>% map_df(., as.numeric)
 
 final_cfa = cfa(final_model, 
                 data = fin_df,
@@ -250,6 +250,7 @@ athlete_sem <- '
   # structural model - direct effects
     mhc_sf ~ a*athlete_identity + b*healthy_lifestyle + c*resilience
     resilience ~ d*athlete_identity
+    healthy_lifestyle ~ e*athlete_identity
 
   # indirect
     indirect_athlete_identity := d*c
@@ -259,7 +260,7 @@ athlete_sem <- '
 '
 
 athlete_sem_fit <- sem(athlete_sem, 
-                       data = dataset, 
+                       data = athletes, 
                        sample.cov = TRUE, 
                        missing = "ML")
 summary(athlete_sem_fit)
@@ -279,6 +280,51 @@ semPaths(athlete_sem_fit,
 ```
 
 Double headed arrow between healthy lifestyle and athlete identity means that they may share a common cause and their direct causal relationship is unspecified. We hypothesize that athlete identity causes healthy lifestyle. We can change the double headed arrow to direct causal arrow.
+
+
+```{r}
+
+
+athlete_sem <- '
+  # measurement model
+    external_identity =~ sprt_goals + cnsdr_ath + frnds_ath
+    internal_value =~ sprt_impt + think_sprt
+    negative_events =~ dprs_sprt + bad_sprt
+    
+    athlete_identity =~ external_identity + internal_value + negative_events
+    
+    resilience =~ bounce + strs_evnt + strs_rcvr + snap_back + difficult + setbacks
+    
+  # structural model - direct effects
+    mhc_sf ~ a*athlete_identity + c*resilience
+    resilience ~ d*athlete_identity
+
+  # indirect
+    indirect_athlete_identity := d*c
+
+  # total
+    total_athlete_identity:= d*c + a
+'
+
+athlete_sem_fit <- sem(athlete_sem, 
+                       data = athletes, 
+                       sample.cov = TRUE, 
+                       missing = "ML")
+summary(athlete_sem_fit)
+semPaths(athlete_sem_fit,
+         whatLabels = "std", 
+         reorder = FALSE,
+         layout = "tree2")
+
+# graph looks cleaner
+semPaths(athlete_sem_fit,
+         what = "paths",
+         whatLabels = "std", 
+         reorder = FALSE,
+         layout = "tree2",
+         rotation = 1,
+         intercepts = FALSE)
+```
 
 ## Interpretation
 
