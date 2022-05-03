@@ -167,6 +167,12 @@ The side-by-side boxplot of resilience score between athletes and non-athletes s
 
 
 ## Discussion 
+- Basic SEM, relating Athlete Identity to MHC-SF
+
+![](images/SEM_1.png)
+- Stronger athletic identity decreases overall well-being
+- P value is 0.232, so **No** significant relationships between athletic identity and overall well-being
+
 
 
 ## Resources 
