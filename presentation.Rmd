@@ -23,6 +23,39 @@ library(gtsummary)
 ## Goal
 
 ## Data 
+- Athlete Mental Healthy Survey collected in the UK after the first COVID-19 lockdown using non-athletes as comparison
+- Focus on athletic identity, resilience, wellbeing, and healthy lifestyle
+- Athletic Identity Scale, The Brief Resilience Scale, The Mental Health Continuum Short Form
+- 753 Observations (363 athletes, 390 non-athletes) 
+
+## Athletic Identity Scale (AIMS)
+- Abbreviated 7-item AIMS$^1$
+
+![](data/AIMS.png)
+
+- First-order factors (Social Identity, Exclusivity, Negative Affectivity) are subordinated to a higher-order Athletic Identity Factor
+
+## AIMS (Continued)
+- Result of the confirmatory factor analysis of AMIS with athletes in data
+- (insert CFA graph)
+- Chronbach's alpha is 0.74, with a 95 \% confidence interval of (0.70, 0.78).
+
+## The Brief Resilience Scale
+- Assess the ability to bounce back or recover from stress$^2$
+![](data/resilience scale.png)
+
+## The Brief Resilience Scale (Continued)
+- Positive Polarity Factor: BRS1, BRS3, BRS5$^3$
+- Chronbach's alpha is 0.74, with a 95 \% confidence interval of (0.71, 0.80)
+- Negative Polarity Factor: BRS2, BRS4, BRS6$^3$
+- Chronbach's alpha is 0.86, with a 95 \% confidence interval of (0.84, 0.88)
+- (CFA? pick either positive or negative?)
+
+## The Mental Health Continuum Short Form (MHC-SF)
+- Assess three components of well-being: emotional, social, and psychological$^4$
+- Total score ranging from 0 to 70
+- Higher scores indicate greater levels of positive well-being
+- Total sum score of MHC-SF is negatively correlated to mental illness and negative effect
 
 ## Selected Variables
 
@@ -30,3 +63,7 @@ library(gtsummary)
 
 
 ## Resources 
+1.https://www.tandfonline.com/doi/full/10.1080/10413200802415048
+2.https://measure.whatworkswellbeing.org/measures-bank/brief-resilience-scale/
+3.https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7068432/#B17-ijerph-17-01265
+4.https://www.hsph.harvard.edu/health-happiness/mental-health-continuum-short-form/

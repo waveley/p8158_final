@@ -82,7 +82,7 @@ athlete_alpha <- psych::alpha(selected_features %>% as.matrix())
 athlete_alpha
 
 ```
-Chronbach's alpha is 74, with a 95 \% confidence interval of (0.70, 0.78).
+Chronbach's alpha is 0.74, with a 95 \% confidence interval of (0.70, 0.78).
 
 # EFA & CFA of athlete identity scale
 ```{r}
@@ -110,7 +110,8 @@ summary(athlete_2CFA, fit.measures = TRUE)
 # 3 factor CFA
 athlete_3model <- 'social_identity =~ sprt_goals + cnsdr_ath + frnds_ath 
                    exclusive = ~ sprt_impt + think_sprt
-                   negative_affectivity =~ dprs_sprt + bad_sprt'
+                   negative_affectivity =~ dprs_sprt + bad_sprt
+                   athletic_identity =~social_identity + exclusive + negative_affectivity '
 
 athlete_3CFA = cfa(athlete_3model, data = selected_features,
                    ordered = names(selected_features),
@@ -126,10 +127,17 @@ Reject the 2 factor model and 3 factor model fits the data well.
 
 ## Construct Reliability: Resilience
 ```{r}
-resilience <- c("bounce", "strs_evnt", "strs_rcvr", "snap_back","difficult","setbacks")
-selected_resilience <- athletes[, resilience] %>% map_df(., as.numeric)
-resilience_alpha <-  psych::alpha(selected_resilience %>% as.matrix())
-resilience_alpha
+#resilience <- c("bounce", "strs_evnt", "strs_rcvr", "snap_back","difficult","setbacks")
+resilience_positive <- c("bounce", "strs_rcvr","difficult")
+
+positive_resilience <- athletes[, resilience_positive] %>% map_df(., as.numeric)
+positive_alpha <-  psych::alpha(positive_resilience %>% as.matrix())
+positive_alpha
+
+resilience_negative <- c("strs_evnt", "snap_back","setbacks")
+negative_resilience <- athletes[, resilience_negative] %>% map_df(., as.numeric)
+negative_alpha <-  psych::alpha(negative_resilience %>% as.matrix())
+negative_alpha
 ```
 
 Chronbach's alpha is 0.89, with a 95 \% confidence interval of (0.87, 0.90).
