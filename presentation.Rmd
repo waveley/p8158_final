@@ -110,7 +110,7 @@ The construct we are interested in is reflected in these three latent variables.
 The side-by-side boxplot of MHC-SF score between athletes and non-athletes shows that these two groups have approximately the same median/mean and distribution of MHC-SF score. Both distributions are left-skewed, with a couple of outliers in the negative direction.
 
 - Smoking Status
-Smoking status is measured on a likert-scale of 1-7, with larger number representing a higher smoking frequency. The histogram shows that non-athletes generally have 
+Smoking status is measured on a likert-scale of 1-7, with larger number representing a higher smoking frequency. The histogram shows that non-athletes generally have higher frequencies of smoking than athletes across the entire range of smoking status.
 
 
 
