@@ -218,26 +218,34 @@ ggplot(data =MHC_SF_numeric, aes(y = mhc_sf, x = athlete_yn), group = athlete_yn
        x = " ") +
   scale_x_discrete(
     labels = c("Athletes", "Non-athletes")
-  ) +   theme_bw()
+  )  + theme_bw() + 
+  theme(legend.position = "bottom")
 
 ```
 
 # Boxplot of Healthy Lifestyle
 ```{r}
-MHC_SF <- c("mhc_sf", "athlete_yn")
+healthy_lifestyle <- c("athlete_yn","hr_sleep", "smoking", "fruit_veg")
 
-MHC_SF_numeric <- dataset[,MHC_SF] %>% mutate(
-  mhc_sf= as.numeric(mhc_sf),
-  athlete_yn = as.factor( athlete_yn))
+healthy_life_numeric <- dataset[,healthy_lifestyle] %>% mutate(
+  hr_sleep = as.numeric(hr_sleep),
+  athlete_yn = as.factor(athlete_yn),
+  smoking = as.numeric(smoking)
+)
 
-ggplot(data =MHC_SF_numeric, aes(y = mhc_sf, x = athlete_yn), group = athlete_yn) + geom_boxplot(aes(color = athlete_yn)) +
-  labs(title = "MHC_SF of Athletes and Non-athletes",
-       y = "Total MHC Score",
+ggplot(data = healthy_life_numeric, aes(y = hr_sleep, x = athlete_yn), group = athlete_yn) + geom_boxplot(aes(color = athlete_yn))+
+  labs(title = "Hours of Sleep for Athletes and Non-athletes",
+       y = "Hour of Sleep",
        x = " ") +
   scale_x_discrete(
     labels = c("Athletes", "Non-athletes")
-  ) +   theme_classic() 
+  )  + theme_bw()+ 
+  theme(legend.position = "bottom")
 
+ggplot(data = healthy_life_numeric, aes(x = smoking, fill = athlete_yn)) +
+  geom_histogram(binwidth=1, color = "black",alpha=0.5) + 
+  labs(title = "Frequency of Smoking Status",
+       y = "Count",
+       x = "Smoking Status")
 ```
-
 
