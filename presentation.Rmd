@@ -156,27 +156,35 @@ The side-by-side boxplot of resilience score between athletes and non-athletes s
 ## Outcome Variable: Mental Health Continuum Short Form (MHC-SF)
 
 \centering
-![](images/mhc_sf.jpg)
+![Mental Health Continuum Short Form (MHC-SF)](images/mhc_sf.jpg)
 
 ## Outcome Variable: MHC-SF
 
 Three components of well-being are assessed:
-> Emotional
-> Social
-> Psychological
+
+- Emotional
+- Social
+- Psychological
 
 We will use the MHC-SF composite score (sum of all responses) as our outcome variable. Higher scores indicate greater levels of positive well-being.
 
-## Discussion 
-- Basic SEM, relating Athlete Identity to MHC-SF
+## SEM 1: Athletic Identity and MHC-SF 
 
+First, we constructed a SEM relating athletic identity to MHC-SF, without any mediating variable.
+
+\centering
 ![](images/SEM_1.png)
-- Stronger athletic identity decreases overall well-being
-- P value is 0.232, so **No** significant relationships between athletic identity and overall well-being
+
+## SEM 1 (Athletic Identity and MHC-SF): Conclusion
+
+We found that though the estimated effect between athletic identity and MHC-SF is negative, indicating that a stronger athletic identity decreases overall well-being, the p-value associated with this value is 0.232.
+
+Therefore, we conclude that there is **no** significant relationships between athletic identity and overall well-being
 
 
 
 ## Resources 
+
 1. Hu, T., Zhang, D., &amp; Wang, J. (2014, December 13). A meta-analysis of the Trait Resilience and Mental Health. Personality and Individual Differences. https://www.sciencedirect.com/science/article/pii/S0191886914006710 
 
 2. Dale, H., Brassington, L., &amp; King, K. (2014, March 5). The impact of healthy lifestyle interventions on Mental Health and Wellbeing: A systematic review. Mental Health Review Journal. https://www.emerald.com/insight/content/doi/10.1108/MHRJ-05-2013-0016/full/html 
@@ -184,6 +192,8 @@ We will use the MHC-SF composite score (sum of all responses) as our outcome var
 3. A cross-cultural psychometric evaluation of the Athletic Identity Measurement Scale. Taylor &amp; Francis. (n.d.). https://www.tandfonline.com/doi/full/10.1080/10413200802415048
 
 4. The brief resilience scale. Evaluating wellbeing. (2021, March 15). https://measure.whatworkswellbeing.org/measures-bank/brief-resilience-scale/ 
+
+## Resources
 
 5. Fung S. F. (2020). Validity of the Brief Resilience Scale and Brief Resilient Coping Scale in a Chinese Sample. International journal of environmental research and public health, 17(4), 1265. https://doi.org/10.3390/ijerph17041265
 
