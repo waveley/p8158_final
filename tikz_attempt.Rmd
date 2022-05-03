@@ -1,0 +1,43 @@
+---
+title: "tikz_attempt"
+author: "Waveley Qiu (wq2162)"
+date: "5/3/2022"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{tikz, echo = FALSE}
+\tikzstyle{block} = [rectangle, draw, text width=5em, text centered, rounded corners, minimum height=3em]
+\tikzstyle{line} = [draw, -latex]
+  \begin{tikzpicture}[auto]
+      % Place nodes
+      \node [block, xshift = -10cm] (ai) {Athletic Identity};
+      \node [block, above left of = ai] (ex) {External Identity};
+      \node [block, above left of = ex] (sg) {Sport Goals};
+      \node [block, below of = sg] (cn) {Consider Athlete};
+      \node [block, below of = cn] (fr) {Friends Athletes};
+      \node [block, below of = ex] (int) {Internal Value};
+      \node [block, above left of = int] (impt) {Sport Important};
+      \node [block, below left of = int] (ts) {Think Sport};
+      \node [block, below of = int] (neg) {Negative Events};
+      \node [block, above left of = neg] (dp) {Injured Depressed};
+      \node [block, below left of = neg] (bd) {Feel Bad};
+      \node [block, right of = ai] (mh) {MHC-SF};
+      % Draw edges
+      \path [line] (ai) -- (ex);
+      \path [line] (ai) -- (int);
+      \path [line] (ai) -- (neg);
+      \path [line] (ex) -- (sg);
+      \path [line] (ex) -- (cn);
+      \path [line] (ex) -- (fr);
+      \path [line] (int) -- (impt);
+      \path [line] (int) -- (ts);
+      \path [line] (neg) -- (dp);
+      \path [line] (neg) -- (bd);
+      \path [line] (ai) -- (mh);
+  \end{tikzpicture}
+```
