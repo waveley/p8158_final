@@ -182,7 +182,18 @@ We found that though the estimated effect between athletic identity and MHC-SF i
 
 Therefore, we conclude that there is **no** significant relationships between athletic identity and overall well-being
 
+## SEM 2: Resilience, Athletic Identity, and MHC-SF
 
+We constructed another SEM to investigate the mediation effect of Resilience on causal relationship between athletic identity and MHC-SF.
+
+![SEM_2](images/SEM_2.png)
+
+We found that estimated effect between athletic identity and resilience is negative, indicating that stronger athletic identity increases resilience. Such effect is not significant. 
+
+The estimated effect between resilience and MHC-SF is positive, indicating that stronger resilience increases overall well-being. Such effect is significant at 0.05 significant level.
+
+- The indirect effect of athletic identity on MHC-SF through its effect on resilience is 0.14*0.39 = 0.0546. 
+- Increasing resilience by 0.39 leads to a 0.0546 increase in MHC-SF.
 
 ## Resources 
 
