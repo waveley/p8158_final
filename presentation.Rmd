@@ -38,9 +38,13 @@ library(gtsummary)
 ## Data: Athlete Mental Healthy Survey
 - Collected in the UK after their first COVID-19 lockdown
 - Several surveys administered including:
--- Athletic Identity Scale (AIMS)
--- The Brief Resilience Scale
--- Mental Health Continuum Short Form (MHC-SF)
+
+>- Athletic Identity Scale (AIMS)
+
+>- The Brief Resilience Scale
+
+>- Mental Health Continuum Short Form (MHC-SF)
+
 - In total, 753 individuals were interviewed (363 athletes and 390 non-athletes) 
 
 ## Latent Variable 1: Athletic Identity
@@ -76,6 +80,11 @@ The construct we are interested in is reflected in these three latent variables.
 
 - Chronbach's alpha is 0.74, with a 95 \% confidence interval of (0.70, 0.78).
 -->
+
+## Latent Variable 1: CFA
+
+![](images/athletic_identity_cfa.png)
+
 
 ## Latent Variable 2: Resilience
 

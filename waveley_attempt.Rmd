@@ -70,6 +70,19 @@ fa.diagram(athletic_efa1, digits = 2, simple = TRUE)
 
 The 3-factor model seems to fit the data the best, as it has the smallest BIC. We will proceed by using the 3-factor model for athletic_identity.
 
+```{r}
+athletic_efa1 %>% summary()
+athletic_efa2
+athletic_efa3
+
+tibble(
+  model  = c("1", "2","3"),
+  bic = c(201.72, 119.31, -8.36),
+  cfi = c()
+)
+```
+
+
 ### Reliability
 
 LV 1: External Identity
@@ -118,7 +131,9 @@ athlete_identity = external_identity + internal_value + negative_events
 athlete_model <- 
 'external_identity =~ sprt_goals + cnsdr_ath + frnds_ath
  internal_value =~ sprt_impt + think_sprt
- negative_events =~ dprs_sprt + bad_sprt'
+ negative_events =~ dprs_sprt + bad_sprt
+ athlete_identity =~ external_identity + internal_value + negative_events
+'
 
 athlete_CFA = cfa(athlete_model, data = athletic_identity_matrix,
                    ordered = names(athletic_identity_matrix),
