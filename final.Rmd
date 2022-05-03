@@ -308,7 +308,7 @@ ggplot(data = ath_resilience_numeric, aes(x = athlete_yn, y = total_resilience_s
     labels = c("Athletes", "Non-athletes"))  + theme_bw() + 
   theme(legend.position = "bottom")
 
-gtsummary::tbl_summary(ath_resilience_numeric %>% select(athlete_yn, total_resilience_score), by = athlete_yn)
+gtsummary::tbl_summary(ath_resilience_numeric %>% select(athlete_yn, total_resilience_score), by = athlete_yn) %>% add_p()
 ```
 
 
