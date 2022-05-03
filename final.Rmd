@@ -3,6 +3,8 @@ title: "P8158 Final"
 author: "Waveley Qiu (wq2162)"
 date: "2022-04-14"
 output: pdf_document
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r setup, include=FALSE}
@@ -12,145 +14,165 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r}
 library(tidyverse)
 library(haven)
+library(lavaan)
 library(psych)
 library(GPArotation)
 library(naniar)
 library(gtsummary)
 ```
 
-
 ```{r}
 dataset <- readxl::read_excel("data/Athlete_Non-Athlete MH Survey - ALL DATA.xlsx", 
                               sheet = "athlete_fin") %>% 
   slice(-1) %>%   
-  replace_with_na_all(condition = ~.x == "999") 
+  replace_with_na_all(condition = ~.x == "999") %>%
+  janitor::clean_names()
 
 dataset_no_na <- dataset %>% 
-  select(-c("SHIELD_DTS", "DATE")) %>% 
+  select(-c("shield_dts", "date")) %>% 
   na.omit()
 
-athletes <- dataset %>% filter(ATHLETE_YN == "1") %>% select(-c("SHIELD_DTS", "DATE"))
+athletes <- dataset %>% filter(athlete_yn == "1") %>% select(-c("shield_dts", "date"))
 athletes %>% colnames()
 
 athletes_no_na <- athletes %>% na.omit()
 
-non_athletes <- dataset %>% filter(ATHLETE_YN == "2")
+non_athletes <- dataset %>% filter(athlete_yn == "2")
 ```
 
-## Construct Reliability
+## Adding COVID-19 Quarantine Weeks & Sport Hours Measures
+
+0 to 7 weeks in quarantine ("s)
 
 ```{r}
-features <- athletes[,15:67] %>% map_df(., as.numeric) %>% select(!ends_with("_HRS")) %>% select(-c("SPRT"))
-athlete_alpha <- psych::alpha(features, na.rm = TRUE)
+table(athletes$bub_size %>% as.numeric())
+hist(athletes$play_hrs %>% as.numeric())
+
+athletes <-
+  athletes %>% 
+  mutate(
+    weeks_cat = weeks_sd %>% as.factor(),
+    bubble_cat = bub_size %>% as.numeric(),
+    play_hrs = play_hrs %>% as.numeric(),
+    play_hrs_cat = case_when(
+      play_hrs < 5 ~ "less than 5 hrs",
+      5 <= play_hrs & play_hrs < 10 ~ "between 5 and 10 hrs",
+      10 <= play_hrs & play_hrs < 15 ~ "between 10 and 15 hrs",
+      15 <= play_hrs & play_hrs < 20 ~ "between 15 and 20 hrs",
+      20 <= play_hrs & play_hrs < 25 ~ "between 20 and 25 hrs",
+      25 <= play_hrs & play_hrs < 30 ~ "between 25 and 30 hrs",
+      30 <= play_hrs ~ "30 or more hours"
+    )
+)
 ```
 
-Chronbach's alpha is 0.67, with a 95 \% confidence interval of (0.63, 0.72).
+## Interested Variables
 
 ```{r}
-alpha_drop_names <- athlete_alpha$alpha.drop %>%
-  as_tibble() %>%
-  mutate(names = athlete_alpha$alpha.drop %>% rownames()) %>%
-  arrange(raw_alpha) %>% 
-  filter(raw_alpha > 0.67) %>%
-  select(names, raw_alpha)
-
-features1 <- features %>% select(-alpha_drop_names$names)
-athlete_alpha2 <- psych::alpha(features1)
+features <- c("weeks_cat", "bubble_cat", "play_hrs_cat", "cnsdr_ath", "sprt_goals", "frnds_ath", "think_sprt", "sprt_lvl")
+athletes[,features]
 ```
 
-## EFA
+## Construct Reliability: Dedication to Sport/ athlete identity
 
 ```{r}
-athlete_parallel <- fa.parallel(features1, cor = "poly", fa = "pc")
+dedication_to_sport <- c("cnsdr_ath", "sprt_goals", "frnds_ath","sprt_impt", "think_sprt","bad_sprt","dprs_sprt")
 
-athlete_eigen <- athlete_parallel$pc.values
+table(athletes$happy)
+selected_features <- athletes[,dedication_to_sport] %>% map_df(., as.numeric)
 
-# count_levels <- function(col){
-#  count <- unique(col) %>% length()
-#  return(count)
-#}
+athlete_alpha <- psych::alpha(selected_features %>% as.matrix())
+athlete_alpha
 
-# apply(features, 2, FUN = count_levels)
-# apply(features, count_levels)
 ```
+Chronbach's alpha is 0.74, with a 95 \% confidence interval of (0.70, 0.78).
 
-The following describes the amount of variability captured by the first $n$ factors.
-
+# EFA & CFA of athlete identity scale
 ```{r}
-dim <- c(1:7)
-var <- rep(0, 7)
+#parallel analysis
+athlete_parallel = fa.parallel(selected_features, cor = "poly", fa = "pc")
+athlete_parallel$pc.values
 
-for (i in dim) {
-  var[i] <- (athlete_eigen[1:i] %>% sum() ) / ncol(features1)
-}
+# 2 factor
+athlete_2factor = fa(r=selected_features, nfactors = 2, cor = "poly")
+fa.diagram(athlete_2factor, digits = 2, simple = TRUE)
 
-dim_var <-
-  tibble(
-    dimensions = dim,
-    variability_captured = var %>% round(4),
-    variability_captured_pct = paste((var * 100) %>% round(2), "%")
-  )
+# 3 factor
+athlete_3factor = fa(r=selected_features, nfactors = 3, cor = "poly")
+fa.diagram(athlete_3factor, digits = 2, simple = TRUE)
 
-dim_var %>% knitr::kable( col.names = c("First $n$ Dimension",
-                           "Total Variability Captured",
-                           "Total Variability Captured (percentage)"))
+# 2 factor CFA
+athlete_2model <- 'A =~ sprt_goals + cnsdr_ath + frnds_ath + sprt_impt + think_sprt
+                  B =~ dprs_sprt + bad_sprt'
+
+athlete_2CFA = cfa(athlete_2model, data = selected_features,
+                   ordered = names(selected_features),
+                   std.lv = TRUE)
+summary(athlete_2CFA, fit.measures = TRUE)
+
+# 3 factor CFA
+athlete_3model <- 'social_identity =~ sprt_goals + cnsdr_ath + frnds_ath 
+                   exclusive = ~ sprt_impt + think_sprt
+                   negative_affectivity =~ dprs_sprt + bad_sprt
+                   athletic_identity =~social_identity + exclusive + negative_affectivity '
+
+athlete_3CFA = cfa(athlete_3model, data = selected_features,
+                   ordered = names(selected_features),
+                   std.lv = TRUE)
+summary(athlete_3CFA, fit.measures = TRUE)
+
+# chi-squared test
+teststatistic = 140.145 - 21.197
+df = 13-11
+1-pchisq(q = teststatistic, df)
+```
+Reject the 2 factor model and 3 factor model fits the data well.
+
+## Construct Reliability: Resilience
+```{r}
+#resilience <- c("bounce", "strs_evnt", "strs_rcvr", "snap_back","difficult","setbacks")
+resilience_positive <- c("bounce", "strs_rcvr","difficult")
+
+positive_resilience <- athletes[, resilience_positive] %>% map_df(., as.numeric)
+positive_alpha <-  psych::alpha(positive_resilience %>% as.matrix())
+positive_alpha
+
+resilience_negative <- c("strs_evnt", "snap_back","setbacks")
+negative_resilience <- athletes[, resilience_negative] %>% map_df(., as.numeric)
+negative_alpha <-  psych::alpha(negative_resilience %>% as.matrix())
+negative_alpha
 ```
 
-Let's try a 4-factor model.
+Chronbach's alpha is 0.89, with a 95 \% confidence interval of (0.87, 0.90).
 
-```{r, warning=FALSE, message=FALSE}
-mod_4 <- fa(features1, 4, cor = 'poly', fm = 'wls')
-print.psych(mod_4, cut = 0, sort = FALSE)
+## Construct Reliability: wellbeing (measured by The Adult Mental Health Continuum 14 items)
+```{r}
+#wellbeing <- c("happy", "strs_evnt", "strs_rcvr", "snap_back","difficult","setbacks")
+selected_wellbeing <- athletes[, 28:41] %>% map_df(., as.numeric)
+wellbeing_alpha <-  psych::alpha(selected_wellbeing %>% as.matrix())
+wellbeing_alpha
 ```
 
-The loadings for the 4-factor model are:
+Chronbach's alpha is 0.91, with a 95 \% confidence interval of (0.90, 0.91).
 
-```{r, warning=FALSE, message=FALSE}
-mod_4$loadings
+## Construct Reliability: Anxiety & Depression (measured by The hospital anxiety and depression scale 14 items)
+```{r}
+selected_AD <- athletes[, 42:55] %>% map_df(., as.numeric)
+ad_alpha <-  psych::alpha(selected_AD %>% as.matrix())
+ad_alpha
 ```
 
-Let's try to fit a 5-factor model.
+Chronbach's alpha is 0.88, with a 95 \% confidence interval of (0.86, 0.90).
 
-```{r, warning=FALSE, message=FALSE}
-mod_5 <- fa(features1, 5, cor = 'poly', fm = 'wls')
-print.psych(mod_5, cut = 0, sort = FALSE)
+## Construct Reliability: Loneliness (measured by The Short Loneliness Scale 6 items)
+```{r}
+selected_lonelinss <- athletes[, 62:67] %>% map_df(., as.numeric)
+lonelinss_alpha <-  psych::alpha(selected_lonelinss %>% as.matrix())
+lonelinss_alpha
 ```
 
-The loadings for the 5-factor model are:
-
-```{r, warning=FALSE, message=FALSE}
-mod_5$loadings
-```
-
-There is no correlation between factors for a one-factor model.
-
-Now, let's try a 6-factor model.
-
-```{r, warning=FALSE, message=FALSE}
-mod_6 <- fa(features1, 6, cor = 'poly', fm = 'wls')
-print.psych(mod_6, cut = 0, sort = FALSE)
-```
-
-The loadings for the 6-factor model are:
-
-```{r, warning=FALSE, message=FALSE}
-mod_6$loadings
-```
-
-Now, let's try a 7-factor model.
-
-```{r, warning=FALSE, message=FALSE}
-mod_7 <- fa(features1, 7, cor = 'poly', fm = 'wls')
-print.psych(mod_7, cut = 0, sort = FALSE)
-```
-
-The loadings for the 7-factor model are:
-
-```{r, warning=FALSE, message=FALSE}
-mod_7$loadings
-```
-
-We think the 5-factor model is best.
+Chronbach's alpha is 0.68, with a 95 \% confidence interval of (0.63, 0.73).
+Drop miss_ppl to increase alpha to 0.76 (?)
 
 ## Latent Variables
 
@@ -183,12 +205,12 @@ EXP_IDEA: Confident to think or express your own ideas and opinions
 MEANING: That your life has a sense of direction or meaning to it
 
 LV5: resilience
-BOUNCE: I tend to bounce back quickly after hard times
+BOUNCE: I ten-d to bounce back quickly after hard times
 STRS_EVNT: I have a hard time making it through stressful events
 STRS_RCVR: It does not take me long to recover from a stressful event
 SNAP_BACK: It is hard for me to snap back when something bad happens
 DIFFICULT: I usually come through difficult times with little trouble
-SETBACKS: I tend to take a long time to get obver setbacks in my life
+SETBACKS: I tend to take a long time to get over setbacks in my life
 
 ## factor diagram
 ```{r}
@@ -214,9 +236,43 @@ mod_5_cfa = cfa(model_5, data =features1,
 summary(mod_5_cfa, fit.measure= TRUE)
 ```
 
-## Modificaition Indice (???)
 ```{r}
-modindices(mod_5_cfa, power = TRUE, sort = TRUE, minimum.value = 10) 
+ athlete_sem2 <- '
+  # measurement model
+    external_identity =~ sprt_goals + cnsdr_ath + frnds_ath
+    internal_value =~ sprt_impt + think_sprt
+    negative_events =~ dprs_sprt + bad_sprt
+    
+    athlete_identity =~ external_identity + internal_value + negative_events
+    
+    healthy_lifestyle =~ hr_sleep + smoking + fruit_veg
+    
+    resilience =~ bounce + strs_evnt + strs_rcvr + snap_back + difficult + setbacks
+    
+  # structural model - direct effects
+    mhc_sf ~ a*athlete_identity + b*healthy_lifestyle + c*resilience
+    resilience ~ d*athlete_identity
+    healthy_lifestyle ~ e*athlete_identity
+
+  # indirect
+    indirect_athlete_identity := d*c + e*b
+
+  # total
+    total_athlete_identity:= d*c + a + e*b
+'
+
+athlete_sem_fit2 <- sem(athlete_sem2, 
+                       data = dataset, 
+                       sample.cov = TRUE, 
+                       missing = "ML")
+summary(athlete_sem_fit2)
+
+semPaths(athlete_sem_fit2,
+         what = "std",
+         whatLabels = "std", 
+         reorder = FALSE,
+         layout = "tree2",
+         intercepts = FALSE)
 ```
 
 

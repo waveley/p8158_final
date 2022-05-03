@@ -1,0 +1,306 @@
+---
+title: "waveley_attempt"
+author: "Waveley Qiu (wq2162)"
+date: "2022-04-30"
+output: pdf_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, 
+                      warning = FALSE, 
+                      message = FALSE)
+library(sem)
+library(semPlot)
+source("shared_code/data_prep_and_setup.R")
+```
+
+Was there a difference in emotional well being between an athlete and non-athlete during the COVID-19 lockdown?
+
+# Latent Variable Construction
+
+## Latent Variable 1: Athletic Identity
+
+First, let's select the variables we are interested in.
+
+```{r}
+athletic_identity <- c("cnsdr_ath", "sprt_goals", "frnds_ath", "sprt_impt", "think_sprt", "bad_sprt", "dprs_sprt")
+
+athletic_identity_numeric <- dataset[,athletic_identity] %>% map_df(., as.numeric)
+
+athletic_identity_matrix <- athletic_identity_numeric %>% as.matrix()
+```
+
+### Polychoric Correlations
+
+Now, let us determine the number of factors that might underlie these variables.
+
+```{r}
+athlete_parallel <- fa.parallel(athletic_identity_matrix, cor = "poly", fa = "pc")
+athlete_parallel$pc.values
+```
+
+PCA indicates that two factors underlie these variables.
+
+### EFA
+
+We now want to examine which variables might load on which factors. To do so, we will perform EFA on a 2-factor model, and also on 1- and 3- factor models.
+
+First, the 2-factor model:
+
+```{r}
+athletic_efa2 <- fa(r = athletic_identity_matrix, nfactors = 2, cor = "poly")
+fa.diagram(athletic_efa2, digits = 2, simple = TRUE)
+```
+
+Now, the 3-factor model:
+
+```{r}
+athletic_efa3 <- fa(r = athletic_identity_matrix, nfactors = 3, cor = "poly")
+fa.diagram(athletic_efa3, digits = 2, simple = TRUE)
+```
+
+Now, the 1-factor model:
+
+```{r}
+athletic_efa1 <- fa(r = athletic_identity_matrix, nfactors = 1, cor = "poly")
+fa.diagram(athletic_efa1, digits = 2, simple = TRUE)
+```
+
+The 3-factor model seems to fit the data the best, as it has the smallest BIC. We will proceed by using the 3-factor model for athletic_identity.
+
+### Reliability
+
+LV 1: External Identity
+
+```{r}
+external_identity <- c("cnsdr_ath", "sprt_goals", "frnds_ath")
+
+external_identity_numeric <- dataset[,external_identity] %>% map_df(., as.numeric)
+
+external_identity_matrix <- external_identity_numeric %>% as.matrix()
+psych::alpha(external_identity_matrix)
+```
+
+LV 2: Internal Value
+
+```{r}
+internal_value <- c("sprt_impt", "think_sprt")
+
+internal_value_numeric <- athletes[,internal_value] %>% map_df(., as.numeric)
+
+internal_value_matrix <- internal_value_numeric %>% as.matrix()
+psych::alpha(internal_value_matrix)
+```
+
+LV 3: Negative Events
+
+```{r}
+negative_events <- c("dprs_sprt", "bad_sprt")
+
+negative_events_numeric <- athletes[,negative_events] %>% map_df(., as.numeric)
+
+negative_events_matrix <- negative_events_numeric %>% as.matrix()
+psych::alpha(negative_events_matrix)
+```
+
+Our final model for athlete_identity is as follows:
+
+external_identity = sprt_goals + cnsdr_ath + frnds_ath
+internal_value = sprt_impt + think_sprt
+negative_events = dprs_sprt + bad_sprt
+
+### CFA
+
+```{r}
+athlete_model <- 
+'external_identity =~ sprt_goals + cnsdr_ath + frnds_ath
+ internal_value =~ sprt_impt + think_sprt
+ negative_events =~ dprs_sprt + bad_sprt'
+
+athlete_CFA = cfa(athlete_model, data = athletic_identity_matrix,
+                   ordered = names(athletic_identity_matrix),
+                   std.lv = TRUE)
+summary(athlete_CFA, fit.measures = TRUE)
+```
+
+## Latent Variable 2: Healthy Lifestyle
+
+```{r}
+healthy_lifestyle <- c("hr_sleep", "smoking", "fruit_veg")
+
+healthy_life_numeric <- dataset[,healthy_lifestyle] %>% map_df(., as.numeric)
+
+healthy_life_matrix <- healthy_life_numeric %>% as.matrix()
+```
+
+### Polychoric Correlations
+
+Now, let us determine the number of factors that might underlie these variables.
+
+```{r}
+health_parallel <- fa.parallel(healthy_life_matrix, fa = "pc")
+health_parallel$pc.values
+```
+
+1 latent factor appears to underlie these variables. *** need to check if this is the correct way to assess formative LV's ***
+
+## Latent Variable 3: Resilience
+
+Finally, we will look at resilience. 
+
+```{r}
+resilience <- c("bounce", "strs_evnt", "strs_rcvr", "snap_back", "difficult", "setbacks")
+
+resilience_numeric <- dataset[,resilience] %>% map_df(., as.numeric)
+
+resilience_matrix <- resilience_numeric %>% as.matrix()
+```
+
+### Polychoric Correlations
+
+```{r}
+resilience_parallel <- fa.parallel(resilience_matrix, fa = "pc")
+resilience_parallel$pc.values
+```
+
+It appears that a 1-factor model will sufficiently explain the variability across these variables.
+
+### EFA
+
+First, we can do a 1-factor EFA model:
+
+```{r}
+resilience_efa1 <- fa(r = resilience_matrix, nfactors = 1, cor = "poly")
+fa.diagram(resilience_efa1, digits = 2, simple = TRUE)
+summary(resilience_efa1)
+```
+
+Now, we can try a 2-factor EFA model:
+
+```{r}
+resilience_efa2 <- fa(r = resilience_matrix, nfactors = 2, cor = "poly")
+fa.diagram(resilience_efa2, digits = 2, simple = TRUE)
+summary(resilience_efa2)
+```
+
+Since a 1-factor model is sufficient, we will just proceed with the 1-factor model.
+
+### Reliability
+
+```{r}
+psych::alpha(resilience_matrix)
+```
+
+Chronbach's alpha is 0.89 (0.88, 0.91). No items can be dropped to improve this measure, so we will keep all of them in this latent variable.
+
+
+# Final CFA
+
+```{r}
+final_model <- 
+'external_identity =~ sprt_goals + cnsdr_ath + frnds_ath
+ internal_value =~ sprt_impt + think_sprt
+ negative_events =~ dprs_sprt + bad_sprt
+ 
+ athlete_identity =~ external_identity + internal_value + negative_events
+ 
+ healthy_lifestyle =~ hr_sleep + smoking + fruit_veg
+ 
+ resilience =~ bounce + strs_evnt + strs_rcvr + snap_back + difficult + setbacks
+'
+fin_df <- dataset %>% map_df(., as.numeric)
+
+final_cfa = cfa(final_model, 
+                data = fin_df,
+                std.lv = TRUE)
+summary(final_cfa, fit.measures = TRUE)
+```
+
+## Modification Indices
+
+```{r}
+modindices(final_cfa, power = TRUE, sort = TRUE, minimum.value = 10) 
+```
+
+# Structural Equation Modeling
+
+```{r}
+
+athlete_sem <- '
+  # measurement model
+    external_identity =~ sprt_goals + cnsdr_ath + frnds_ath
+    internal_value =~ sprt_impt + think_sprt
+    negative_events =~ dprs_sprt + bad_sprt
+    
+    athlete_identity =~ external_identity + internal_value + negative_events
+    
+    healthy_lifestyle =~ hr_sleep + smoking + fruit_veg
+    
+    resilience =~ bounce + strs_evnt + strs_rcvr + snap_back + difficult + setbacks
+    
+  # structural model - direct effects
+    mhc_sf ~ a*athlete_identity + b*healthy_lifestyle + c*resilience
+    resilience ~ d*athlete_identity
+
+  # indirect
+    indirect_athlete_identity := d*c
+
+  # total
+    total_athlete_identity:= d*c + a
+'
+
+athlete_sem_fit <- sem(athlete_sem, 
+                       data = dataset, 
+                       sample.cov = TRUE, 
+                       missing = "ML")
+summary(athlete_sem_fit)
+semPaths(athlete_sem_fit,
+         whatLabels = "std", 
+         reorder = FALSE,
+         layout = "tree2")
+
+# graph looks cleaner
+semPaths(athlete_sem_fit,
+         what = "paths",
+         whatLabels = "std", 
+         reorder = FALSE,
+         layout = "tree2",
+         rotation = 3,
+         intercepts = FALSE)
+```
+
+Double headed arrow between healthy lifestyle and athlete identity means that they may share a common cause and their direct causal relationship is unspecified. We hypothesize that athlete identity causes healthy lifestyle. We can change the double headed arrow to direct causal arrow.
+
+## Interpretation
+
+From our SEM, we observe that athlete identity *negatively* affects emotional well being, as defined by the MHC-SF scale. Resilience is associated with a positive effect on MHC-SF. Healthy lifestyle habits are also associated with a positive effect on MHC-SF. 
+
+Athletic identity is positively associated with resilience. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
