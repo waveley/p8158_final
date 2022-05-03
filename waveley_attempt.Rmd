@@ -174,7 +174,7 @@ First, we can do a 1-factor EFA model:
 ```{r}
 resilience_efa1 <- fa(r = resilience_matrix, nfactors = 1, cor = "poly")
 fa.diagram(resilience_efa1, digits = 2, simple = TRUE)
-summary(resilience_efa1)
+summary(resilience_efa1, fitmeasures(resilience_efa))
 ```
 
 Now, we can try a 2-factor EFA model:
@@ -182,10 +182,17 @@ Now, we can try a 2-factor EFA model:
 ```{r}
 resilience_efa2 <- fa(r = resilience_matrix, nfactors = 2, cor = "poly")
 fa.diagram(resilience_efa2, digits = 2, simple = TRUE)
-summary(resilience_efa2)
+resilience_efa2
 ```
 
-Since a 1-factor model is sufficient, we will just proceed with the 1-factor model.
+Finally, we can try a 3-factor EFA model:
+
+```{r}
+resilience_efa3 <- fa(r = resilience_matrix, nfactors = 3, cor = "poly")
+fa.diagram(resilience_efa3, digits = 2, simple = TRUE)
+summary(resilience_efa3)
+```
+
 
 ### Reliability
 
