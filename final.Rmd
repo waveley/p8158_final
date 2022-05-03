@@ -70,6 +70,22 @@ athletes <-
 )
 ```
 
+<<<<<<< HEAD
+=======
+## Interested Variables
+
+```{r}
+=======
+```{r setup, include=FALSE}
+>>>>>>> d3437852f23db65dbc0a64b6b205716ccef9448e
+knitr::opts_chunk$set(echo = TRUE, 
+                      warning = FALSE, 
+                      message = FALSE)
+library(sem)
+library(semPlot)
+source("shared_code/data_prep_and_setup.R")
+```
+>>>>>>> 2c66653fdc9b5cbb785f31e2c6d13f31b147498d
 
 ## Construct Reliability: Dedication to Sport/ athlete identity
 

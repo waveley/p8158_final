@@ -38,9 +38,13 @@ library(gtsummary)
 ## Data: Athlete Mental Healthy Survey
 - Collected in the UK after their first COVID-19 lockdown
 - Several surveys administered including:
--- Athletic Identity Scale (AIMS)
--- The Brief Resilience Scale
--- Mental Health Continuum Short Form (MHC-SF)
+
+>- Athletic Identity Scale (AIMS)
+
+>- The Brief Resilience Scale
+
+>- Mental Health Continuum Short Form (MHC-SF)
+
 - In total, 753 individuals were interviewed (363 athletes and 390 non-athletes) 
 
 ## Latent Variable 1: Athletic Identity
@@ -77,6 +81,11 @@ The construct we are interested in is reflected in these three latent variables.
 - Chronbach's alpha is 0.74, with a 95 \% confidence interval of (0.70, 0.78).
 -->
 
+## Latent Variable 1: CFA
+
+![](images/athletic_identity_cfa.png)
+
+
 ## Latent Variable 2: Resilience
 
 - The Brief Resilience Scale
@@ -104,6 +113,18 @@ The construct we are interested in is reflected in these three latent variables.
 
 - Higher sum score indicates healthier lifestyle
 
+## Exploratory Analysis
+
+- MHC-SF:
+The side-by-side boxplot of MHC-SF score between athletes and non-athletes shows that these two groups have approximately the same median/mean and distribution of MHC-SF score. Both distributions are left-skewed, with a couple of outliers in the negative direction.
+
+- Smoking Status
+Smoking status is measured on a likert-scale of 1-7, with larger number representing a higher smoking frequency. The histogram shows that non-athletes generally have higher frequencies of smoking than athletes across the entire range of smoking status.
+
+
+
+## Selected Variables
+=======
 
 ## Outcome Variable: Well-Being Composite Score
 
@@ -115,6 +136,7 @@ The construct we are interested in is reflected in these three latent variables.
 -- Psychological
 
 - Higher scores indicate greater levels of positive well-being (scores range from 0 to 70)
+
 
 ## Discussion 
 
