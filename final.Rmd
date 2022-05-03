@@ -87,15 +87,6 @@ negative_resilience <- athletes[, resilience_negative] %>% map_df(., as.numeric)
 negative_alpha <-  psych::alpha(negative_resilience %>% as.matrix())
 negative_alpha
 
-# 2 factor CFA
-resilience_2factor <-'positive = ~bounce + strs_rcvr + difficult
-                      negative = ~strs_evnt + snap_back + setbacks'
-
-resilience_2CFA = cfa(resilience_2factor, data = total_resilience,
-                   ordered = names(total_resilience),
-                   std.lv = TRUE)
-summary(resilience_2CFA, fit.measures = TRUE)
-
 # 1 factor CFA
 resilience_1factor <- 'resilience=~ bounce + strs_evnt + strs_rcvr + snap_back + difficult + setbacks'
 
@@ -116,25 +107,6 @@ wellbeing_alpha
 ```
 
 Chronbach's alpha is 0.91, with a 95 \% confidence interval of (0.90, 0.91).
-
-## Construct Reliability: Anxiety & Depression (measured by The hospital anxiety and depression scale 14 items)
-```{r}
-selected_AD <- athletes[, 42:55] %>% map_df(., as.numeric)
-ad_alpha <-  psych::alpha(selected_AD %>% as.matrix())
-ad_alpha
-```
-
-Chronbach's alpha is 0.88, with a 95 \% confidence interval of (0.86, 0.90).
-
-## Construct Reliability: Loneliness (measured by The Short Loneliness Scale 6 items)
-```{r}
-selected_lonelinss <- athletes[, 62:67] %>% map_df(., as.numeric)
-lonelinss_alpha <-  psych::alpha(selected_lonelinss %>% as.matrix())
-lonelinss_alpha
-```
-
-Chronbach's alpha is 0.68, with a 95 \% confidence interval of (0.63, 0.73).
-Drop miss_ppl to increase alpha to 0.76 (?)
 
 ## Latent Variables
 
@@ -174,30 +146,6 @@ SNAP_BACK: It is hard for me to snap back when something bad happens
 DIFFICULT: I usually come through difficult times with little trouble
 SETBACKS: I tend to take a long time to get over setbacks in my life
 
-## factor diagram
-```{r}
-fa.diagram(mod_5,digits = 2,simple = TRUE, rsize = 2)
-
-model_5 = "
-dedication_to_sport = ~CNSDR_ATH + SPRT_GOALS + FRNDS_ATH + SPRT_IMPT + THINK_SPRT + SPRT_LVL
-positive_outlook = ~ HAPPY + INT_LIFE + SATISFIED + CONT_SOC
-interaction_society = ~ BELONG + BET_SOC + PEOPLE_GOOD + SENSE_SOC 
-maturity = ~ LIKE_PER + RESPONSIBLE + WARM_REL +  CHAL_EXP + EXP_IDEA + MEANING
-resilience = ~ BOUNCE + STRS_EVNT + STRS_RCVR + SNAP_BACK + DIFFICULT + SETBACKS
-"
-```
-
-## CFA
-```{r}
-library(lavaan)
-mod_5_cfa = cfa(model_5, data =features1,
-                #ordered = names(features1),
-                estimator = "WLSMV",
-                std.lv=TRUE)
-
-summary(mod_5_cfa, fit.measure= TRUE)
-```
-
 ```{r}
  athlete_sem2 <- '
   # measurement model
@@ -224,19 +172,19 @@ summary(mod_5_cfa, fit.measure= TRUE)
 '
 
 athlete_sem_fit2 <- sem(athlete_sem2, 
-                       data = dataset, 
+                       data = athletes, 
                        sample.cov = TRUE, 
                        missing = "ML")
 summary(athlete_sem_fit2)
 
 semPaths(athlete_sem_fit2,
-         what = "std",
+         what = "paths",
          whatLabels = "std", 
          reorder = FALSE,
          layout = "tree2",
+         rotation = 2,
          intercepts = FALSE)
 ```
-
 
 
 
