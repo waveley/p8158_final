@@ -15,8 +15,13 @@ library(gtsummary)
 dataset <- readxl::read_excel("data/Athlete_Non-Athlete MH Survey - ALL DATA.xlsx", 
                               sheet = "athlete_fin") %>% 
   slice(-1) %>%   
-  replace_with_na_all(condition = ~.x == "999") %>%
-  janitor::clean_names()
+  replace_with_na_all(condition = ~.x == "999")%>% 
+  janitor::clean_names() %>%   mutate(
+    fruit_veg = case_when(
+      fruit_veg == 1 ~ 1,
+      fruit_veg == 2 ~ 0
+    )
+  )
 
 dataset_no_na <- dataset %>% 
   select(-c("shield_dts", "date")) %>% 

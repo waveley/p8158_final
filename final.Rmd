@@ -6,79 +6,25 @@ output: pdf_document
 editor_options: 
   chunk_output_type: console
 ---
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-library(tidyverse)
-library(haven)
-library(lavaan)
-library(psych)
-library(GPArotation)
-library(naniar)
-library(gtsummary)
-```
-
 ```{r}
-dataset <- readxl::read_excel("data/Athlete_Non-Athlete MH Survey - ALL DATA.xlsx", 
-                              sheet = "athlete_fin") %>% 
-  slice(-1) %>%   
-  replace_with_na_all(condition = ~.x == "999") %>%
-  janitor::clean_names()
-
-dataset_no_na <- dataset %>% 
-  select(-c("shield_dts", "date")) %>% 
-  na.omit()
-
-athletes <- dataset %>% filter(athlete_yn == "1") %>% select(-c("shield_dts", "date"))
-athletes %>% colnames()
-
-athletes_no_na <- athletes %>% na.omit()
-
-non_athletes <- dataset %>% filter(athlete_yn == "2")
-```
-
-## Adding COVID-19 Quarantine Weeks & Sport Hours Measures
-
-0 to 7 weeks in quarantine ("s)
-
-```{r}
-table(athletes$bub_size %>% as.numeric())
-hist(athletes$play_hrs %>% as.numeric())
-
-athletes <-
-  athletes %>% 
-  mutate(
-    weeks_cat = weeks_sd %>% as.factor(),
-    bubble_cat = bub_size %>% as.numeric(),
-    play_hrs = play_hrs %>% as.numeric(),
-    play_hrs_cat = case_when(
-      play_hrs < 5 ~ "less than 5 hrs",
-      5 <= play_hrs & play_hrs < 10 ~ "between 5 and 10 hrs",
-      10 <= play_hrs & play_hrs < 15 ~ "between 10 and 15 hrs",
-      15 <= play_hrs & play_hrs < 20 ~ "between 15 and 20 hrs",
-      20 <= play_hrs & play_hrs < 25 ~ "between 20 and 25 hrs",
-      25 <= play_hrs & play_hrs < 30 ~ "between 25 and 30 hrs",
-      30 <= play_hrs ~ "30 or more hours"
-    )
-)
-```
-
-## Interested Variables
-
-```{r}
-features <- c("weeks_cat", "bubble_cat", "play_hrs_cat", "cnsdr_ath", "sprt_goals", "frnds_ath", "think_sprt", "sprt_lvl")
-athletes[,features]
+knitr::opts_chunk$set(echo = TRUE, 
+                      warning = FALSE, 
+                      message = FALSE)
+library(sem)
+library(semPlot)
+source("shared_code/data_prep_and_setup.R")
 ```
 
 ## Construct Reliability: Dedication to Sport/ athlete identity
 
 ```{r}
-dedication_to_sport <- c("cnsdr_ath", "sprt_goals", "frnds_ath","sprt_impt", "think_sprt","bad_sprt","dprs_sprt")
+athletic_identity <- c("cnsdr_ath", "sprt_goals", "frnds_ath", "sprt_impt", "think_sprt", "bad_sprt", "dprs_sprt")
 
-table(athletes$happy)
-selected_features <- athletes[,dedication_to_sport] %>% map_df(., as.numeric)
+athletic_identity_numeric <- athletes[,athletic_identity] %>% map_df(., as.numeric)
 
-athlete_alpha <- psych::alpha(selected_features %>% as.matrix())
+athletic_identity_matrix <- athletic_identity_numeric %>% as.matrix()
+
+athlete_alpha <- psych::alpha(athletic_identity_matrix)
 athlete_alpha
 
 ```
@@ -113,21 +59,23 @@ athlete_3model <- 'social_identity =~ sprt_goals + cnsdr_ath + frnds_ath
                    negative_affectivity =~ dprs_sprt + bad_sprt
                    athletic_identity =~social_identity + exclusive + negative_affectivity '
 
-athlete_3CFA = cfa(athlete_3model, data = selected_features,
-                   ordered = names(selected_features),
+athlete_3CFA = cfa(athlete_3model, data = athletic_identity_matrix,
+                   ordered = names(athletic_identity_matrix),
                    std.lv = TRUE)
 summary(athlete_3CFA, fit.measures = TRUE)
 
-# chi-squared test
-teststatistic = 140.145 - 21.197
-df = 13-11
-1-pchisq(q = teststatistic, df)
+
 ```
 Reject the 2 factor model and 3 factor model fits the data well.
 
 ## Construct Reliability: Resilience
 ```{r}
-#resilience <- c("bounce", "strs_evnt", "strs_rcvr", "snap_back","difficult","setbacks")
+resilience <- c("bounce", "strs_evnt", "strs_rcvr", "snap_back","difficult","setbacks")
+
+total_resilience <- athletes[, resilience] %>% map_df(., as.numeric)
+total_alpha <-  psych::alpha(positive_resilience %>% as.matrix())
+positive_alpha
+
 resilience_positive <- c("bounce", "strs_rcvr","difficult")
 
 positive_resilience <- athletes[, resilience_positive] %>% map_df(., as.numeric)
@@ -138,6 +86,23 @@ resilience_negative <- c("strs_evnt", "snap_back","setbacks")
 negative_resilience <- athletes[, resilience_negative] %>% map_df(., as.numeric)
 negative_alpha <-  psych::alpha(negative_resilience %>% as.matrix())
 negative_alpha
+
+# 2 factor CFA
+resilience_2factor <-'positive = ~bounce + strs_rcvr + difficult
+                      negative = ~strs_evnt + snap_back + setbacks'
+
+resilience_2CFA = cfa(resilience_2factor, data = total_resilience,
+                   ordered = names(total_resilience),
+                   std.lv = TRUE)
+summary(resilience_2CFA, fit.measures = TRUE)
+
+# 1 factor CFA
+resilience_1factor <- 'resilience=~ bounce + strs_evnt + strs_rcvr + snap_back + difficult + setbacks'
+
+resilience_1CFA = cfa(resilience_1factor, data = total_resilience,
+                   ordered = names(total_resilience),
+                   std.lv = TRUE)
+summary(resilience_1CFA, fit.measures = TRUE)
 ```
 
 Chronbach's alpha is 0.89, with a 95 \% confidence interval of (0.87, 0.90).
