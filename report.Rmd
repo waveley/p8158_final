@@ -1,10 +1,64 @@
 ---
-title: "report"
-author: "Waveley Qiu (wq2162)"
-date: "2022-04-30"
-output: pdf_document
+title: |
+  | P8160 - The Chicken or the Egg:
+  | Bootstrapping in the Setting of Propensity Score Matching
+author: |
+  | Group 4
+  |
+  | Amy Pitts, Hun Lee, Jimmy Kelliher,
+  | Tucker Morgan, Waveley Qiu
+date: "2022-02-25"
+output:
+  pdf_document: default
+  
+header-includes:
+  - \usepackage{amsmath,amssymb,amsthm,amsfonts,bbm,graphics,enumitem}
+  - \usepackage{geometry,mathrsfs}
+  - \usepackage{tikz}
+  - \usepackage{pgfplots}
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
+## Introduction
+
+|   The onset of COVID-19 affected almost every sphere of work and leisure. We are interested in investigating the impact one's athletic identity may have on a person's overall well-being, particularly as the context of a global pandemic may have dramatically impacted one's experience of playing a sport/being an athlete.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
