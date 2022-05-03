@@ -72,6 +72,11 @@ library(gtsummary)
 
 - Higher sum score indicates healthier lifestyle
 
+## Exploratory Analysis
+
+- MHC-SF:
+The side-by-side boxplot of MHC-SF score between athletes and non-athletes shows that these two groups have approximately the same median/mean and distribution of MHC-SF score. Both distributions are left-skewed, with a couple of outliers in the negative direction.
+
 ## Selected Variables
 
 ## Discussion 
