@@ -46,19 +46,31 @@ library(gtsummary)
 ## The Brief Resilience Scale
 - Assess the ability to bounce back or recover from stress$^2$
 ![](data/resilience scale.png)
+- Higher the sum score of responses indicates higher level of resilience
 
 ## The Brief Resilience Scale (Continued)
-- Positive Polarity Factor: BRS1, BRS3, BRS5$^3$
-- Chronbach's alpha is 0.74, with a 95 \% confidence interval of (0.71, 0.80)
-- Negative Polarity Factor: BRS2, BRS4, BRS6$^3$
-- Chronbach's alpha is 0.86, with a 95 \% confidence interval of (0.84, 0.88)
-- (CFA? pick either positive or negative?)
+1-factor CFA
+-CFI 0.999
+-P value = 0.110
+- test statistics = 14.376
+- RMSEA 0.043
 
 ## The Mental Health Continuum Short Form (MHC-SF)
 - Assess three components of well-being: emotional, social, and psychological$^4$
 - Total score ranging from 0 to 70
 - Higher scores indicate greater levels of positive well-being
-- Total sum score of MHC-SF is negatively correlated to mental illness and negative effect
+
+## Healthy Lifestyle
+- Formative Measurement: a composite of observed variables
+- Indicators of healthy lifestyle
+
+1. Five Fruit and Vegetables: Yes/No
+
+2. Smoking Status: 7-point Likert scale
+
+3. Hour Sleep: numerical variable
+
+- Higher sum score indicates healthier lifestyle
 
 ## Selected Variables
 
