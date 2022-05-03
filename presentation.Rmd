@@ -19,49 +19,81 @@ library(gtsummary)
 ```
 
 ## Motivation
-- The sudden outbreak of COVID-19 was unexpected to everyone. According to an article written by Healeem et al. in 2020, the COVID-19 has rapidly affected our day to day life, businesses, disrupted the world trade and movements. As informed biostatistics students, we are specifically interested to investigate people's mental health conditions or wellbeing under the COVID-19 lockdown period and whether there are any potential factors that may affect them.
+- The onset of COVID-19 affected almost every sphere of work and leisure.
+- We are interested in investigating the impact one's athletic identity may have on mental well-being, particularly as the context of a global pandemic may have dramatically impacted one's experience of playing a sport/being an athlete.
 
+<!-- The sudden outbreak of COVID-19 was unexpected to everyone. According to an article written by Healeem et al. in 2020, the COVID-19 has rapidly affected our day to day life, businesses, disrupted the world trade and movements. As informed biostatistics students, we are specifically interested to investigate people's mental health conditions or wellbeing under the COVID-19 lockdown period and whether there are any potential factors that may affect them. -->
 
-## Goal
-- We decide to focus on a particular group people -- athletes. Our hypothesis is that during the COVID-19 lockdown period, there is a negative correlation between athlete identity and wellbeing, and this effect might also be mediated by their resilience and healthy lifestyle.
+## Resilience, Healthy Lifestyle, and Mental Health
 
-## Data 
-- Athlete Mental Healthy Survey collected in the UK after the first COVID-19 lockdown using non-athletes as comparison
-- Focus on athletic identity, resilience, wellbeing, and healthy lifestyle
-- Athletic Identity Scale, The Brief Resilience Scale, The Mental Health Continuum Short Form
-- 753 Observations (363 athletes, 390 non-athletes) 
+- 
 
-## Athletic Identity Scale (AIMS)
-- Abbreviated 7-item AIMS$^1$
+## Methodology
+1. Conduct EFA and CFA to determine which observed variables underlie our latent variables of interest.
+2. Evaluate reliability with Chronbach's alpha.
+2. Create a SEM to quantify the relationship between our constructed latent variables and mental health score.
 
-![](data/AIMS.png)
+<!-- We decide to focus on a particular group people -- athletes. Our hypothesis is that during the COVID-19 lockdown period, there is a negative correlation between athlete identity and wellbeing, and this effect might also be mediated by their resilience and healthy lifestyle. -->
 
-- First-order factors (Social Identity, Exclusivity, Negative Affectivity) are subordinated to a higher-order Athletic Identity Factor
+## Data: Athlete Mental Healthy Survey
+- Collected in the UK after their first COVID-19 lockdown
+- Several surveys administered including:
+-- Athletic Identity Scale (AIMS)
+-- The Brief Resilience Scale
+-- Mental Health Continuum Short Form (MHC-SF)
+- In total, 753 individuals were interviewed (363 athletes and 390 non-athletes) 
 
+## Latent Variable 1: Athletic Identity
+
+- Athletic Identity Scale (AIMS)
+
+![](images/aims_annotated.jpg)
+
+## Latent Variable 1 (Athletic Identity): EFA
+
+- Parallel component analysis recommends 2 components.
+
+- EFA suggests the following latent variable structure:
+
+![](images/athletic_identity_efa.png)
+
+## Latent Variable 1 (Athletic Identity): EFA
+
+The three latent variables underlying the AIMS variables are as follows:
+
+- `external_identity` (comprised of `sprt_goals`, `cnsdr_ath`, `frnds_ath`)
+- `internal_value` (comprised of `sprt_impt`, `think_sprt`)
+- `negative_events` (comprised of `dprs_sprt`, `bad_sprt`)
+
+The construct we are interested in is reflected in these three latent variables.
+
+<!--
 ## AIMS (Continued)
+
 - Result of the confirmatory factor analysis of AMIS with athletes in data
+
 - (insert CFA graph)
+
 - Chronbach's alpha is 0.74, with a 95 \% confidence interval of (0.70, 0.78).
+-->
 
-## The Brief Resilience Scale
-- Assess the ability to bounce back or recover from stress$^2$
-![](data/resilience scale.png)
-- Higher the sum score of responses indicates higher level of resilience
+## Latent Variable 2: Resilience
 
-## The Brief Resilience Scale (Continued)
-1-factor CFA
+- The Brief Resilience Scale
+
+![](images/resilience_annotated.jpg)
+
+## Latent Variable 2 (Resilience): PCA 
+- Parallel component analysis recommended 1 component.
+
+<!-- 1-factor CFA
 -CFI 0.999
 -P value = 0.110
 - test statistics = 14.376
-- RMSEA 0.043
+- RMSEA 0.043 -->
 
-## The Mental Health Continuum Short Form (MHC-SF)
-- Assess three components of well-being: emotional, social, and psychological$^4$
-- Total score ranging from 0 to 70
-- Higher scores indicate greater levels of positive well-being
+## Latent Variable 3: Healthy Lifestyle
 
-## Healthy Lifestyle
-- Formative Measurement: a composite of observed variables
 - Indicators of healthy lifestyle
 
 1. Five Fruit and Vegetables: Yes/No
@@ -77,13 +109,34 @@ library(gtsummary)
 - MHC-SF:
 The side-by-side boxplot of MHC-SF score between athletes and non-athletes shows that these two groups have approximately the same median/mean and distribution of MHC-SF score. Both distributions are left-skewed, with a couple of outliers in the negative direction.
 
+- Smoking Status
+Smoking status is measured on a likert-scale of 1-7, with larger number representing a higher smoking frequency. The histogram shows that non-athletes generally have 
+
+
+
 ## Selected Variables
+=======
+
+## Outcome Variable: Well-Being Composite Score
+
+- The Mental Health Continuum Short Form (MHC-SF)
+
+- Assess three components of well-being
+-- Emotional
+-- Social
+-- Psychological
+
+- Higher scores indicate greater levels of positive well-being (scores range from 0 to 70)
+
 
 ## Discussion 
 
 
 ## Resources 
-1.https://www.tandfonline.com/doi/full/10.1080/10413200802415048
+1. Hu, T., Zhang, D., &amp; Wang, J. (2014, December 13). A meta-analysis of the Trait Resilience and Mental Health. Personality and Individual Differences. https://www.sciencedirect.com/science/article/pii/S0191886914006710 
+2. Dale, H., Brassington, L., &amp; King, K. (2014, March 5). The impact of healthy lifestyle interventions on Mental Health and Wellbeing: A systematic review. Mental Health Review Journal. https://www.emerald.com/insight/content/doi/10.1108/MHRJ-05-2013-0016/full/html 
+
+2.https://www.tandfonline.com/doi/full/10.1080/10413200802415048
 2.https://measure.whatworkswellbeing.org/measures-bank/brief-resilience-scale/
 3.https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7068432/#B17-ijerph-17-01265
 4.https://www.hsph.harvard.edu/health-happiness/mental-health-continuum-short-form/
