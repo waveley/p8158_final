@@ -16,7 +16,7 @@ library(semPlot)
 source("shared_code/data_prep_and_setup.R")
 ```
 
-How does an athlete's measure of athletic identity affect MHC-SF, as mediated through resilience and a healthy lifestyle?
+How does an athlete's measure of athletic identity affect MHC-SF, as mediated through resilience?
 
 # Latent Variable Construction
 
@@ -47,6 +47,13 @@ PCA indicates that two factors underlie these variables.
 
 We now want to examine which variables might load on which factors. To do so, we will perform EFA on a 2-factor model, and also on 1- and 3- factor models.
 
+Now, the 1-factor model:
+
+```{r}
+athletic_efa1 <- fa(r = athletic_identity_matrix, nfactors = 1, cor = "poly")
+fa.diagram(athletic_efa1, digits = 2, simple = TRUE)
+```
+
 First, the 2-factor model:
 
 ```{r}
@@ -61,19 +68,13 @@ athletic_efa3 <- fa(r = athletic_identity_matrix, nfactors = 3, cor = "poly")
 fa.diagram(athletic_efa3, digits = 2, simple = TRUE)
 ```
 
-Now, the 1-factor model:
-
-```{r}
-athletic_efa1 <- fa(r = athletic_identity_matrix, nfactors = 1, cor = "poly")
-fa.diagram(athletic_efa1, digits = 2, simple = TRUE)
-```
-
 The 3-factor model seems to fit the data the best, as it has the smallest BIC. We will proceed by using the 3-factor model for athletic_identity.
 
 ```{r}
 athletic_efa1 %>% summary()
 athletic_efa2
 athletic_efa3
+
 
 tibble(
   model  = c("1", "2","3"),
@@ -85,6 +86,8 @@ tibble(
 
 ### Reliability
 
+We now want to assess the reliability of each of these constructs.
+
 LV 1: External Identity
 
 ```{r}
@@ -95,6 +98,8 @@ external_identity_numeric <- athletes[,external_identity] %>% map_df(., as.numer
 external_identity_matrix <- external_identity_numeric %>% as.matrix()
 psych::alpha(external_identity_matrix)
 ```
+
+Since the remove-one Chronbach's alpha indicates that reliability would improve quite a bit if `frnds_ath` is dropped, we will remove this variable from the latent variable structure for `external_identity`.
 
 LV 2: Internal Value
 
@@ -120,7 +125,7 @@ psych::alpha(negative_events_matrix)
 
 Our final model for athlete_identity is as follows:
 
-external_identity = sprt_goals + cnsdr_ath + frnds_ath
+external_identity = sprt_goals + cnsdr_ath
 internal_value = sprt_impt + think_sprt
 negative_events = dprs_sprt + bad_sprt
 athlete_identity = external_identity + internal_value + negative_events
@@ -129,7 +134,7 @@ athlete_identity = external_identity + internal_value + negative_events
 
 ```{r}
 athlete_model <- 
-'external_identity =~ sprt_goals + cnsdr_ath + frnds_ath
+'external_identity =~ sprt_goals + cnsdr_ath
  internal_value =~ sprt_impt + think_sprt
  negative_events =~ dprs_sprt + bad_sprt
  athlete_identity =~ external_identity + internal_value + negative_events
@@ -160,7 +165,16 @@ health_parallel <- fa.parallel(healthy_life_matrix, fa = "pc")
 health_parallel$pc.values
 ```
 
-1 latent factor appears to underlie these variables. *** need to check if this is the correct way to assess formative LV's ***
+It appears that 1 component should underlie these three variables.
+
+
+### Reliability
+
+```{r}
+psych::alpha(healthy_life_matrix)
+```
+
+Healthy lifestyle does not seem to be a reliable scale, so we will not use it in our model.
 
 ## Latent Variable 3: Resilience
 
@@ -229,8 +243,6 @@ final_model <-
  
  athlete_identity =~ external_identity + internal_value + negative_events
  
- healthy_lifestyle =~ hr_sleep + smoking + fruit_veg
- 
  resilience =~ bounce + strs_evnt + strs_rcvr + snap_back + difficult + setbacks
 '
 fin_df <- athletes %>% map_df(., as.numeric)
@@ -254,7 +266,7 @@ Let's first start with a basic SEM, relating athletic identity to MHC-SF.
 ```{r}
 basic_athlete_sem <- '
   # measurement model
-    external_identity =~ sprt_goals + cnsdr_ath + frnds_ath
+    external_identity =~ sprt_goals + cnsdr_ath
     internal_value =~ sprt_impt + think_sprt
     negative_events =~ dprs_sprt + bad_sprt
     
@@ -268,7 +280,8 @@ basic_athlete_sem_fit <- sem(basic_athlete_sem,
                        data = athletes,
                        sample.cov = TRUE, 
                        missing = "ML")
-summary(basic_athlete_sem_fit)
+
+summary(basic_athlete_sem_fit, standardized=TRUE)
 
 # graph looks cleaner
 semPaths(basic_athlete_sem_fit,
@@ -283,20 +296,17 @@ semPaths(basic_athlete_sem_fit,
 ```{r}
 athlete_sem <- '
   # measurement model
-    external_identity =~ sprt_goals + cnsdr_ath + frnds_ath
+    external_identity =~ sprt_goals + cnsdr_ath
     internal_value =~ sprt_impt + think_sprt
     negative_events =~ dprs_sprt + bad_sprt
     
     athlete_identity =~ external_identity + internal_value + negative_events
     
-    healthy_lifestyle =~ hr_sleep + smoking + fruit_veg
-    
     resilience =~ bounce + strs_evnt + strs_rcvr + snap_back + difficult + setbacks
     
   # structural model - direct effects
-    mhc_sf ~ a*athlete_identity + b*healthy_lifestyle + c*resilience
+    mhc_sf ~ a*athlete_identity + c*resilience
     resilience ~ d*athlete_identity
-    healthy_lifestyle ~ e*athlete_identity
 
   # indirect
     indirect_athlete_identity := d*c
@@ -309,7 +319,12 @@ athlete_sem_fit <- sem(athlete_sem,
                        data = athletes,
                        sample.cov = TRUE, 
                        missing = "ML")
+# standardized
+summary(athlete_sem_fit, standardized = TRUE)
+
+# unstandardized
 summary(athlete_sem_fit)
+
 
 # graph looks cleaner
 semPaths(athlete_sem_fit,
@@ -324,20 +339,17 @@ semPaths(athlete_sem_fit,
 ```{r}
 non_athlete_sem <- '
   # measurement model
-    external_identity =~ sprt_goals + cnsdr_ath + frnds_ath
+    external_identity =~ sprt_goals + cnsdr_ath
     internal_value =~ sprt_impt + think_sprt
     negative_events =~ dprs_sprt + bad_sprt
     
     athlete_identity =~ external_identity + internal_value + negative_events
     
-    healthy_lifestyle =~ hr_sleep + smoking + fruit_veg
-    
     resilience =~ bounce + strs_evnt + strs_rcvr + snap_back + difficult + setbacks
     
   # structural model - direct effects
-    mhc_sf ~ a*athlete_identity + b*healthy_lifestyle + c*resilience
+    mhc_sf ~ a*athlete_identity + c*resilience
     resilience ~ d*athlete_identity
-    healthy_lifestyle ~ e*athlete_identity
 
   # indirect
     indirect_athlete_identity := d*c
@@ -350,12 +362,14 @@ non_athlete_sem_fit <- sem(non_athlete_sem,
                        data = non_athletes, 
                        sample.cov = TRUE, 
                        missing = "ML")
+
+# unstandardized
 summary(non_athlete_sem_fit)
 
 # graph looks cleaner
 semPaths(non_athlete_sem_fit,
          what = "paths",
-         whatLabels = "std", 
+         whatLabels = "est", 
          reorder = FALSE,
          layout = "tree2",
          rotation = 1,
@@ -364,9 +378,7 @@ semPaths(non_athlete_sem_fit,
 
 ## Interpretation
 
-From our SEM, we observe that athlete identity *negatively* affects emotional well being, as defined by the MHC-SF scale. Resilience is associated with a positive effect on MHC-SF. Healthy lifestyle habits are also associated with a positive effect on MHC-SF. 
-
-Athletic identity is positively associated with resilience. 
+From our SEM, we observe that athlete identity *negatively* affects emotional well being, as defined by the MHC-SF scale. Resilience is associated with a positive effect on MHC-SF. 
 
 
 
