@@ -72,9 +72,6 @@ athletes <-
 
 ## Interested Variables
 
-=======
->>>>>>> 162c4cc18082cc8c44bdff6a5dd06a1a4a1b644a
->>>>>>> a2793a80979aa49ee84e4f3470b85fc0e323cd19
 ```{r}
 =======
 ```{r setup, include=FALSE}
