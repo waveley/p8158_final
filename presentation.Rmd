@@ -168,6 +168,12 @@ Three components of well-being are assessed:
 We will use the MHC-SF composite score (sum of all responses) as our outcome variable. Higher scores indicate greater levels of positive well-being.
 
 ## Discussion 
+- Basic SEM, relating Athlete Identity to MHC-SF
+
+![](images/SEM_1.png)
+- Stronger athletic identity decreases overall well-being
+- P value is 0.232, so **No** significant relationships between athletic identity and overall well-being
+
 
 
 ## Resources 
