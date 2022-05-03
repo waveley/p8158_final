@@ -273,6 +273,26 @@ semPaths(athlete_sem_fit,
 
 Double headed arrow between healthy lifestyle and athlete identity means that they may share a common cause and their direct causal relationship is unspecified. We hypothesize that athlete identity causes healthy lifestyle. We can change the double headed arrow to direct causal arrow.
 
+## Interpretation
+
+From our SEM, we observe that athlete identity *negatively* affects emotional well being, as defined by the MHC-SF scale. Resilience is associated with a positive effect on MHC-SF. Healthy lifestyle habits are also associated with a positive effect on MHC-SF. 
+
+Athletic identity is positively associated with resilience. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

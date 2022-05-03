@@ -1,0 +1,32 @@
+---
+title: |
+  | P8158 - Final Project
+  | Effects of Athletic Identity, Resilience, and Healthy Lifestyle on Emotional Well-being during COVID-19
+author: |
+  | Waveley Qiu, Yihan Qiu, Yuanyuan Zeng
+date: "2022-05-04"
+output:
+  beamer_presentation:
+    colortheme: "dolphin"
+header-includes:
+- \usepackage{caption}
+- \captionsetup[figure]{labelformat=empty}
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(gtsummary)
+```
+
+## Motivation
+
+## Goal
+
+## Data 
+
+## Selected Variables
+
+## Discussion 
+
+
+## Resources 
