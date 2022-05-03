@@ -122,6 +122,19 @@ After running EFA on 1- and 2- factor models, we propose
 
 - Higher sum score indicates healthier lifestyle
 
+## Exploratory Analysis
+
+- MHC-SF:
+The side-by-side boxplot of MHC-SF score between athletes and non-athletes shows that these two groups have approximately the same median/mean and distribution of MHC-SF score. Both distributions are left-skewed, with a couple of outliers in the negative direction.
+
+- Resilience
+The side-by-side boxplot of resilience score between athletes and non-athletes shows that athletes have a slightly larger median/mean resilience score than non-athletes. Both distributions are left-skewed, with a couple of outliers in the negative direction.
+
+
+
+
+## Selected Variables
+=======
 
 ## Outcome Variable: Well-Being Composite Score
 
@@ -133,6 +146,7 @@ After running EFA on 1- and 2- factor models, we propose
 -- Psychological
 
 - Higher scores indicate greater levels of positive well-being (scores range from 0 to 70)
+
 
 ## Discussion 
 
