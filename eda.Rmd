@@ -1,0 +1,20 @@
+---
+title: "eda"
+author: "Waveley Qiu (wq2162)"
+date: "5/3/2022"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, 
+                      warning = FALSE, 
+                      message = FALSE)
+source("shared_code/data_prep_and_setup.R")
+```
+
+## EDA
+
+```{r}
+gtsummary::tbl_summary(dataset, by = athlete_yn)
+```
+
