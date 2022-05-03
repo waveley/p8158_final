@@ -94,7 +94,7 @@ Both the first- and second- order latent variables report significant loadings. 
 Parallel component analysis recommended 1 component.
 
 After running EFA on 1- and 2- factor models, we propose a one-factor model, as follows:
--
+- `
 
 
 ## Latent Variable 3: Healthy Lifestyle

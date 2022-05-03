@@ -266,7 +266,7 @@ Let's first start with a basic SEM, relating athletic identity to MHC-SF.
 ```{r}
 basic_athlete_sem <- '
   # measurement model
-    external_identity =~ sprt_goals + cnsdr_ath + frnds_ath
+    external_identity =~ sprt_goals + cnsdr_ath
     internal_value =~ sprt_impt + think_sprt
     negative_events =~ dprs_sprt + bad_sprt
     
@@ -296,7 +296,7 @@ semPaths(basic_athlete_sem_fit,
 ```{r}
 athlete_sem <- '
   # measurement model
-    external_identity =~ sprt_goals + cnsdr_ath + frnds_ath
+    external_identity =~ sprt_goals + cnsdr_ath
     internal_value =~ sprt_impt + think_sprt
     negative_events =~ dprs_sprt + bad_sprt
     
@@ -319,7 +319,12 @@ athlete_sem_fit <- sem(athlete_sem,
                        data = athletes,
                        sample.cov = TRUE, 
                        missing = "ML")
+# standardized
 summary(athlete_sem_fit, standardized = TRUE)
+
+# unstandardized
+summary(athlete_sem_fit)
+
 
 # graph looks cleaner
 semPaths(athlete_sem_fit,
@@ -334,7 +339,7 @@ semPaths(athlete_sem_fit,
 ```{r}
 non_athlete_sem <- '
   # measurement model
-    external_identity =~ sprt_goals + cnsdr_ath + frnds_ath
+    external_identity =~ sprt_goals + cnsdr_ath
     internal_value =~ sprt_impt + think_sprt
     negative_events =~ dprs_sprt + bad_sprt
     
@@ -357,6 +362,8 @@ non_athlete_sem_fit <- sem(non_athlete_sem,
                        data = non_athletes, 
                        sample.cov = TRUE, 
                        missing = "ML")
+
+# unstandardized
 summary(non_athlete_sem_fit)
 
 # graph looks cleaner
