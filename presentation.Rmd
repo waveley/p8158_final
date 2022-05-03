@@ -19,8 +19,11 @@ library(gtsummary)
 ```
 
 ## Motivation
+- The sudden outbreak of COVID-19 was unexpected to everyone. According to an article written by Healeem et al. in 2020, the COVID-19 has rapidly affected our day to day life, businesses, disrupted the world trade and movements. As informed biostatistics students, we are specifically interested to investigate people's mental health conditions or wellbeing under the COVID-19 lockdown period and whether there are any potential factors that may affect them.
+
 
 ## Goal
+- We decide to focus on a particular group people -- athletes. Our hypothesis is that during the COVID-19 lockdown period, there is a negative correlation between athlete identity and wellbeing, and this effect might also be mediated by their resilience and healthy lifestyle.
 
 ## Data 
 - Athlete Mental Healthy Survey collected in the UK after the first COVID-19 lockdown using non-athletes as comparison
@@ -67,3 +70,4 @@ library(gtsummary)
 2.https://measure.whatworkswellbeing.org/measures-bank/brief-resilience-scale/
 3.https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7068432/#B17-ijerph-17-01265
 4.https://www.hsph.harvard.edu/health-happiness/mental-health-continuum-short-form/
+5.https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7147210/
