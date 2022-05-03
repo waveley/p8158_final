@@ -70,43 +70,11 @@ athletes <-
 )
 ```
 
-## Interested Variables
-
-=======
->>>>>>> 162c4cc18082cc8c44bdff6a5dd06a1a4a1b644a
->>>>>>> a2793a80979aa49ee84e4f3470b85fc0e323cd19
-```{r}
-=======
-```{r setup, include=FALSE}
->>>>>>> d3437852f23db65dbc0a64b6b205716ccef9448e
-knitr::opts_chunk$set(echo = TRUE, 
-                      warning = FALSE, 
-                      message = FALSE)
-library(sem)
-library(semPlot)
-source("shared_code/data_prep_and_setup.R")
-```
 
 ## Construct Reliability: Dedication to Sport/ athlete identity
 
 ```{r}
 athletic_identity <- c("cnsdr_ath", "sprt_goals", "frnds_ath", "sprt_impt", "think_sprt", "bad_sprt", "dprs_sprt")
-<<<<<<< HEAD
-
-athletic_identity_numeric <- athletes[,athletic_identity] %>% map_df(., as.numeric)
-
-athletic_identity_matrix <- athletic_identity_numeric %>% as.matrix()
-
-=======
-
-athletic_identity_numeric <- athletes[,athletic_identity] %>% map_df(., as.numeric)
-
-athletic_identity_matrix <- athletic_identity_numeric %>% as.matrix()
-
->>>>>>> a2793a80979aa49ee84e4f3470b85fc0e323cd19
-athlete_alpha <- psych::alpha(athletic_identity_matrix)
-athlete_alpha
-
 ```
 Chronbach's alpha is 0.74, with a 95 \% confidence interval of (0.70, 0.78).
 
@@ -286,6 +254,7 @@ options(
 scale_colour_discrete = scale_colour_viridis_d
 scale_fill_discrete = scale_fill_viridis_d
 
+# MHC_SF
 MHC_SF <- c("mhc_sf", "athlete_yn")
 
 MHC_SF_numeric <- dataset[,MHC_SF] %>% mutate(
@@ -301,31 +270,29 @@ ggplot(data =MHC_SF_numeric, aes(y = mhc_sf, x = athlete_yn), group = athlete_yn
   )  + theme_bw() + 
   theme(legend.position = "bottom")
 
-```
 
-# Boxplot of Healthy Lifestyle
-```{r}
-healthy_lifestyle <- c("athlete_yn","hr_sleep", "smoking", "fruit_veg")
+# Resilience
+resilience <- c( "athlete_yn","bounce", "strs_evnt", "strs_rcvr", "snap_back", "difficult", "setbacks")
 
-healthy_life_numeric <- dataset[,healthy_lifestyle] %>% mutate(
-  hr_sleep = as.numeric(hr_sleep),
-  athlete_yn = as.factor(athlete_yn),
-  smoking = as.numeric(smoking)
+resilience_numeric <- dataset[,resilience] %>% map_df(., as.numeric)
+
+resilience_matrix <- resilience_numeric %>% as.matrix()
+
+ath_resilience_numeric = resilience_numeric %>% mutate(
+  total_resilience_score = bounce + strs_evnt + strs_rcvr + snap_back + difficult + setbacks,
+  athlete_yn= as.factor(athlete_yn)
 )
 
-ggplot(data = healthy_life_numeric, aes(y = hr_sleep, x = athlete_yn), group = athlete_yn) + geom_boxplot(aes(color = athlete_yn))+
-  labs(title = "Hours of Sleep for Athletes and Non-athletes",
-       y = "Hour of Sleep",
-       x = " ") +
+ggplot(data = ath_resilience_numeric, aes(x = athlete_yn, y = total_resilience_score) )+
+  geom_boxplot(aes(color = athlete_yn))+
+  labs(title = "Total Resilience Score of Athletes and Non-athletes",
+      y = "Total Resilience Score",
+      x = " ") +
   scale_x_discrete(
-    labels = c("Athletes", "Non-athletes")
-  )  + theme_bw()+ 
+    labels = c("Athletes", "Non-athletes"))  + theme_bw() + 
   theme(legend.position = "bottom")
 
-ggplot(data = healthy_life_numeric, aes(x = smoking, fill = athlete_yn)) +
-  geom_histogram(binwidth=1, color = "black",alpha=0.5) + 
-  labs(title = "Frequency of Smoking Status",
-       y = "Count",
-       x = "Smoking Status")
+gtsummary::tbl_summary(ath_resilience_numeric %>% select(athlete_yn, total_resilience_score), by = athlete_yn)
 ```
+
 
