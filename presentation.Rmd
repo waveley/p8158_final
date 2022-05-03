@@ -138,6 +138,8 @@ Since `healthy_lifestyle` is thus not reliably measured with these variables, we
 
 ![](images/MHC_boxplot.png)
 
+## Exploratory Analysis
+
 The side-by-side boxplot of MHC-SF score between athletes and non-athletes shows that these two groups have approximately the same median/mean and distribution of MHC-SF score. Both distributions are left-skewed, with a couple of outliers in the negative direction.
 
 ## Exploratory Analysis
@@ -146,13 +148,11 @@ The side-by-side boxplot of MHC-SF score between athletes and non-athletes shows
 
 ![](images/Resilience_boxplot.png)
 
+## Exploratory Analysis
+
 The side-by-side boxplot of resilience score between athletes and non-athletes shows that athletes have a slightly larger median/mean resilience score than non-athletes. Both distributions are left-skewed, with a couple of outliers in the negative direction.
 
 
-
-
-## Selected Variables
-=======
 
 ## Outcome Variable: Well-Being Composite Score
 
