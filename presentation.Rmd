@@ -195,6 +195,7 @@ We found that estimated effect between athletic identity and resilience is negat
 
 The estimated effect between resilience and MHC-SF is positive, indicating that stronger resilience increases overall well-being. Such effect is significant at 0.05 significant level.
 
+\centering
 ![](images/standardized_direct_indirect.png)
 
 - Both direct and indirect effects are not significant
