@@ -22,15 +22,7 @@ source("shared_code/data_prep_and_setup.R")
 
 - The onset of COVID-19 affected almost every sphere of work and leisure.
 
-- We are interested in investigating the impact athletic identity may have on athletes' overall well-being, particularly as the context of a global pandemic may have dramatically impacted one's experience of playing a sport/being an athlete.
-
-<!--## Resilience, Healthy Lifestyle, and Mental Health
-
-- Resilience and healthy lifestyle are both characteristics that are associated with improved mental health. 
-
-- These are also characteristics that are usually associated with professional athletes.
-
-- We hypothesize that the effect that being a devoted athlete has on overall well-being would be mediated through these two characteristics, and will endeavor to investigate the relationships between these variables as well. -->
+- We are interested in investigating the impact athletic identity may have had on athletes' overall well-being, particularly as the context of a global pandemic may have dramatically impacted one's experience of playing a sport/being an athlete.
 
 ## Methodology
 
@@ -52,15 +44,21 @@ These surveys include:
 
 - Mental Health Continuum Short Form (MHC-SF)
 
-In total, 753 individuals were interviewed -- we will focus our analysis on the 363 athletes represented in this study. 
+In total, 753 individuals were interviewed -- we will focus our analysis on the 363 athletes represented in this study (reserving the 390 non-athletes for a comparison analysis). 
 
-## Latent Variables Proposed
+## Variables of Interest
+
+Latent:
 
 - Athletic Identity
 
 - Resilience (potential mediator)
 
 - Healthy Lifestyle (potential mediator)
+
+Observed Outcome:
+
+- MHC-SF Sum Score
 
 ## Latent Variable 1: Athletic Identity
 
@@ -234,7 +232,7 @@ Given the context of this survey, a lack of access to one's sport is a possible 
 
 The differences in direct effects between athletic identity and overall well-being between athletes and non-athletes is difficult to account for
 
-- Perhaps one possible explanation for the well-being of non-athletes being affected far more than the well-being of athletes is that though COVID-19 made playing a sport different/difficult, athletes may have had more resources at their disposal (i.e., support from coaches, other athletic professionals, etc.)
+- Perhaps one possible explanation for the well-being of non-athletes being affected far more than the well-being of athletes by one's reported athletic identity is that though COVID-19 made playing a sport different/difficult universally, athletes may have had more resources at their disposal (i.e., support from coaches, other athletic professionals, etc.)
 
 Our findings for resilience as a trait that is positively associated with mental health and overall well-being agrees with previous research. 
 
@@ -245,6 +243,8 @@ The results of this study should be applied with caution -- while making efforts
 More variables may exist between the causal pathways we have defined (between athletic identity and overall well-being and perhaps even between athletic identity and resilience). 
 
 Treating the `healthy_lifestyle` latent variable as a formative (rather than a reflective) construct might more accurately reflect its nature and allow this construct to be used in SEM. 
+
+Demographic characteristics, such as sex, age group, and type of sport, are recommended to be included in future analysis.
 
 ## Thank you!
 
