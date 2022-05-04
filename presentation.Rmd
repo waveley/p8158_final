@@ -53,18 +53,6 @@ These surveys include:
 
 In total, 753 individuals were interviewed -- we will focus our analysis on the 363 athletes represented in this study. 
 
-## Exploratory Analysis
-
-```{r}
-aims <- c("sprt_goals", "cnsdr_ath", "frnds_ath", "sprt_impt", "think_sprt", "dprs_sprt", "bad_sprt", "athlete_yn")
-
-num_ath <- dataset[,aims] %>% map_df(., as.numeric)
-```
-
-```{r}
-gtsummary::tbl_summary(num_ath, by = "athlete_yn")
-```
-
 ## Latent Variable 1: Athletic Identity
 
 ![Athletic Identity Scale (AIMS)](images/aims_annotated.jpg)
@@ -135,7 +123,10 @@ We hypothesized that we could create a latent variable representing a healthy li
 
 ## Latent Variable 3 (Healthy Lifestyle): Reliability
 
+\centering
 ![](images/health_alpha.png)
+
+## Latent Variable 3: Healthy Lifestyle
 
 Chronbach's alpha is very low for these variables, indicating that the variables `hr_sleep`, `smoking`, `fruit_veg` do not reliably measure the latent variable. 
 
@@ -167,11 +158,7 @@ We will use the MHC-SF composite score (sum of all responses) as our outcome var
 
 We found that though the estimated effect between athletic identity and MHC-SF score is negative, indicating that a stronger athletic identity decreases overall well-being, the p-value associated with this value is 0.232.
 
-<<<<<<< HEAD
 Therefore, we conclude that there is **no** significant relationships between athletic identity and overall well-being.
-=======
-Therefore, we conclude that there is **no** significant relationship between athletic identity and overall well-being.
->>>>>>> 3414997802c77f3960df8f639758ca212e07449c
 
 ## SEM 2: Resilience, Athletic Identity, and MHC-SF
 
@@ -180,25 +167,17 @@ Therefore, we conclude that there is **no** significant relationship between ath
 \centering
 ![](images/SEM_2.png)
 
-<<<<<<< HEAD
 ## SEM 2: Direct Effects
-=======
->>>>>>> 3414997802c77f3960df8f639758ca212e07449c
 
 The estimated direct effect between resilience and MHC-SF is positive and statistically significant (p-value > 0.05), indicating that greater resilience increases overall well-being.
 
-<<<<<<< HEAD
 We found that estimated direct effect between athletic identity and resilience is negative, indicating that stronger athletic identity decreases resilience. However, this effect was again indicated to **not** be significant. 
-=======
-We found that estimated effect between athletic identity and resilience is negative, indicating that stronger athletic identity decreases resilience. Such effect is not significant. 
->>>>>>> 3414997802c77f3960df8f639758ca212e07449c
 
 ## SEM 2: Indirect Effect
 
 \centering
 ![](images/standardized_direct_indirect.png)
 
-<<<<<<< HEAD
 <!--The indirect effect of athletic identity on MHC-SF through its effect on resilience is -0.056. This indicates that a 0.39 unit increase in resilience leads to a 0.056 unit decrease in MHC-SF.
 
 As the p-values are both > 0.05, both the total and indirect effect of athletic identity are not significant -->
@@ -206,18 +185,11 @@ As the p-values are both > 0.05, both the total and indirect effect of athletic 
 ## SEM 3: Comparison of Athletes and Non-Athletes
 
 We were interested in seeing if there are differences in the effects of athletic identity, resilience, and MCH-SF score between athletes and non-athletes. 
-=======
-- Both direct and indirect effects are not significant.
->>>>>>> 3414997802c77f3960df8f639758ca212e07449c
 
 To do so, we will construct two SEMs, with unstandardized coefficients, to compare these two groups.
 
 
-<<<<<<< HEAD
 ## SEM 3: Comparison of Athletes and Non-Athletes
-=======
-- We are interested in comparing mediation effects of resilience on relationship between athletic identity and MCH-SF within athlete group and non-athlete group.
->>>>>>> 3414997802c77f3960df8f639758ca212e07449c
 
 \centering
 ![](images/SEM_3.png)
@@ -238,35 +210,38 @@ We found that there is a significant estimated effect between athletic identity 
 
 Athletic identity was not found to be significantly associated with overall well-being for athletes in either model.
 
-Resilience appeared to be significantly related to overall well-being for both athletes and non-athletes.
+Resilience was significantly related to overall well-being for both athletes and non-athletes.
+
 - This characteristic had a higher impact on overall well-being in non-athletes than it did in athletes.
+
 - Also had a greater effect on overall well-being than athletic identity, in general.
 
 Athletic identity had a significant negative direct effect on overall well-being for non-athletes, about 2.5 times the magnitude of the corresponding effect for athletes.
 
 ## Discussion
 
-Given the context of this survey, a lack of access to one's sport is a possible explanation for the negative effect athletic identity seems to have produced on overall well-being.
+Given the context of this survey, a lack of access to one's sport is a possible explanation for the negative effect athletic identity seems to have produced on overall well-being. 
+
+The differences in direct effects between athletic identity and overall well-being between athletes and non-athletes is difficult to account for
+
+- Perhaps one possible explanation for the well-being of non-athletes being affected far more than the well-being of athletes is that though COVID-19 made playing a sport different/difficult, athletes may have had more resources at their disposal (i.e., support from coaches, other athletic professionals, etc.)
 
 Our findings for resilience as a trait that is positively associated with mental health and overall well-being agrees with previous research. 
 
 ## Limitations and Recommendations for Future Study
 
-We were unable to use healthy lifestyle as a reflective latent variable. 
+The results of this study should be applied with caution -- while making efforts to bolster one's resilience may be something to consider, some exercises to do so may be dangerous. 
+
+We were unable to represent healthy lifestyle as a reflective latent variable using the observed variables we had available. Future research could:
+
 - Consider constructing formative latent variable
-- Collect more data measuring this variable 
 
-
-
+- Collect more data measuring this variable to be used in the model
 
 ## Thank you!
 
 Thank you!
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 3414997802c77f3960df8f639758ca212e07449c
 ## Resources 
 
 1. Hu, T., Zhang, D., &amp; Wang, J. (2014, December 13). A meta-analysis of the Trait Resilience and Mental Health. Personality and Individual Differences. https://www.sciencedirect.com/science/article/pii/S0191886914006710 
