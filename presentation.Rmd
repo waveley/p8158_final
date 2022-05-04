@@ -40,9 +40,11 @@ library(gtsummary)
 
 <!-- We decide to focus on a particular group people -- athletes. Our hypothesis is that during the COVID-19 lockdown period, there is a negative correlation between athlete identity and wellbeing, and this effect might also be mediated by their resilience and healthy lifestyle. -->
 
-## Data: Athlete Mental Healthy Survey
+## Data: Athlete Mental Health Survey
 
-The dataset we selected is from a study in which several surveys administered in the UK, after their first COVID-19 lockdown, including:
+The dataset we selected contains responses for several surveys administered in the UK to assess athlete (and non-athlete) mental health and well-being after the country's first COVID-19 lockdown.
+
+These surveys include:
 
 - Athletic Identity Scale (AIMS)
 
@@ -58,14 +60,11 @@ In total, 753 individuals were interviewed -- we will focus our analysis on the 
 
 ## Latent Variable 1 (Athletic Identity): EFA
 
-Parallel component analysis recommends 2 components.
-
-From the EFA, we first propose that there are three latent variables underlying the AIMS variables, structured as follows:
+After conducting EFA, we first propose that there are three latent variables underlying the AIMS variables, structured as follows:
 
 - `external_identity` (comprised of `sprt_goals`, `cnsdr_ath`, `frnds_ath`)
 - `internal_value` (comprised of `sprt_impt`, `think_sprt`)
 - `negative_events` (comprised of `dprs_sprt`, `bad_sprt`)
-
 
 ## Latent Variable 1 (Athletic Identity): Reliability
 
@@ -76,9 +75,11 @@ However, for `external_identity`:
 \centering
 ![](images/athletic_identity_alpha.png)
 
-Since Chronbach's alpha would improve significantly if `frnds_ath` is removed, we decided to remove this variable from the `athlete_identity` latent structure.
+Since Chronbach's alpha for `external_identity` would improve significantly if `frnds_ath` is removed, we decided to remove this variable from the latent structure.
 
 ## Latent Variable 1 (Athletic Identity): CFA
+
+We hypothesized that there exists a second-order latent variable, `athletic_identity`, underlying the latent variables `external_identity`, `internal_value`, and `negative_events`. Conducting a CFA allows us to evaluate this hypothesis:
 
 \centering
 ![](images/athletic_identity_cfa.png)
@@ -93,9 +94,7 @@ Fit statistics: CFI > 0.99, RMSEA < 0.05, $\chi^2$ = 0.514
 
 ## Latent Variable 2 (Resilience): EFA
 
-Parallel component analysis recommended 1 component.
-
-After running EFA on 1- and 2- factor models, we find that the one-factor model, containing all variables from the scale fits the best.
+After running EFA on 1- and 2- factor models, we find that the 1-factor model, containing all variables from the scale fits the best.
 
 ## Latent Variable 2 (Resilience): Reliability
 
@@ -176,7 +175,7 @@ First, we constructed a SEM relating athletic identity to MHC-SF, without any me
 \centering
 ![](images/SEM_1.png)
 
-## SEM 1 (Athletic Identity and MHC-SF): Conclusion
+## SEM 1: Athletic Identity and MHC-SF
 
 We found that though the estimated effect between athletic identity and MHC-SF is negative, indicating that a stronger athletic identity decreases overall well-being, the p-value associated with this value is 0.232.
 
@@ -188,12 +187,13 @@ We constructed another SEM to investigate the mediation effect of Resilience on 
 
 ![SEM_2](images/SEM_2.png)
 
+## SEM2: Resilience, Athletic Identity, and MHC-SF
+
 We found that estimated effect between athletic identity and resilience is negative, indicating that stronger athletic identity increases resilience. Such effect is not significant. 
 
 The estimated effect between resilience and MHC-SF is positive, indicating that stronger resilience increases overall well-being. Such effect is significant at 0.05 significant level.
 
-- The indirect effect of athletic identity on MHC-SF through its effect on resilience is 0.14*0.39 = 0.0546. 
-- Increasing resilience by 0.39 leads to a 0.0546 increase in MHC-SF.
+The indirect effect of athletic identity on MHC-SF through its effect on resilience is 0.14*0.39 = 0.0546. This indicates that increasing resilience by 0.39 leads to a 0.0546 increase in MHC-SF.
 
 ## Resources 
 

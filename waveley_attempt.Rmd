@@ -299,6 +299,70 @@ semPaths(basic_athlete_sem_fit,
          intercepts = FALSE)
 ```
 
+
+```{r}
+basic_athlete_sem <- '
+  # measurement model
+    external_identity =~ sprt_goals + cnsdr_ath
+    internal_value =~ sprt_impt + think_sprt
+    negative_events =~ dprs_sprt + bad_sprt
+    
+  # structural model - direct effects
+    mhc_sf ~ a*external_identity + b*internal_value + c*negative_events
+'
+
+basic_athlete_sem_fit <- sem(basic_athlete_sem, 
+                       data = athletes,
+                       sample.cov = TRUE, 
+                       missing = "ML")
+
+summary(basic_athlete_sem_fit, standardized=TRUE)
+
+# graph looks cleaner
+semPaths(basic_athlete_sem_fit,
+         what = "paths",
+         whatLabels = "std", 
+         reorder = FALSE,
+         layout = "tree3",
+         rotation = 4,
+         intercepts = FALSE)
+```
+
+
+```{r}
+basic_athlete_sem <- '
+  # measurement model
+    external_identity =~ sprt_goals + cnsdr_ath
+    internal_value =~ sprt_impt + think_sprt
+    negative_events =~ dprs_sprt + bad_sprt
+    
+    resilience =~ bounce + strs_evnt + strs_rcvr + snap_back + difficult + setbacks
+    
+  # structural model - direct effects
+    mhc_sf ~ a*external_identity + b*internal_value + c*negative_events
+    resilience ~ d*external_identity
+    resilience ~ e*internal_value
+    resilience ~ f*negative_events
+'
+
+basic_athlete_sem_fit <- sem(basic_athlete_sem, 
+                       data = athletes,
+                       sample.cov = TRUE, 
+                       missing = "ML")
+
+summary(basic_athlete_sem_fit, standardized=TRUE)
+
+# graph looks cleaner
+semPaths(basic_athlete_sem_fit,
+         what = "paths",
+         whatLabels = "std", 
+         reorder = FALSE,
+         layout = "tree3",
+         rotation = 4,
+         intercepts = FALSE)
+```
+
+
 ```{r}
 athlete_sem <- '
   # measurement model
