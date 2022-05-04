@@ -194,6 +194,22 @@ The estimated effect between resilience and MHC-SF is positive, indicating that 
 - The indirect effect of athletic identity on MHC-SF through its effect on resilience is 0.14*0.39 = 0.0546. 
 - Increasing resilience by 0.39 leads to a 0.0546 increase in MHC-SF.
 
+## Comparison of Athletes and Non-athletes
+
+- We are interested in comparing mediation effects of resilience on relationship between athletic identity and MCH-SF within athlete group and non-athlete group
+
+![SEM_3](images/SEM_3.png)
+
+## Comparsion of SEM within Athletes and Non-athletes: Conclusion
+- We found that the estimated effect between athletic identity and MHC-SF is stronger among non-athletes compared to athletes. Such effect is significant.
+
+- Direct/Indirect effect of athletic identity among athletes
+![indirect_effect](images/athlete_unstandardized_direct_indirect.png)
+- Direct/Indirect effect of athletic identity among non-athletes
+![indirect_effect](images/non_athlete_unstandardized_direct_indirect.png)
+
+
+
 ## Resources 
 
 1. Hu, T., Zhang, D., &amp; Wang, J. (2014, December 13). A meta-analysis of the Trait Resilience and Mental Health. Personality and Individual Differences. https://www.sciencedirect.com/science/article/pii/S0191886914006710 
