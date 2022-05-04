@@ -25,13 +25,13 @@ source("shared_code/data_prep_and_setup.R")
 
 - We are interested in investigating the impact athletic identity may have on athletes' overall well-being, particularly as the context of a global pandemic may have dramatically impacted one's experience of playing a sport/being an athlete.
 
-## Resilience, Healthy Lifestyle, and Mental Health
+<!--## Resilience, Healthy Lifestyle, and Mental Health
 
 - Resilience and healthy lifestyle are both characteristics that are associated with improved mental health. 
 
 - These are also characteristics that are usually associated with professional athletes.
 
-- We hypothesize that the effect that being a devoted athlete has on overall well-being would be mediated through these two characteristics, and will endeavor to investigate the relationships between these variables as well.
+- We hypothesize that the effect that being a devoted athlete has on overall well-being would be mediated through these two characteristics, and will endeavor to investigate the relationships between these variables as well. -->
 
 ## Methodology
 
@@ -52,6 +52,14 @@ These surveys include:
 - Mental Health Continuum Short Form (MHC-SF)
 
 In total, 753 individuals were interviewed -- we will focus our analysis on the 363 athletes represented in this study. 
+
+## Latent Variables Proposed
+
+- Athletic Identity
+
+- Resilience
+
+- Healthy Lifestyle
 
 ## Latent Variable 1: Athletic Identity
 
@@ -130,7 +138,7 @@ We hypothesized that we could create a latent variable representing a healthy li
 
 Chronbach's alpha is very low for these variables, indicating that the variables `hr_sleep`, `smoking`, `fruit_veg` do not reliably measure the latent variable. 
 
-Since `healthy_lifestyle` is thus not reliably measured with these variables, we made the decision to exclude this latent variable from SEM analysis -- treating this latent variable as a formative (rather than a reflective) construct might more accurately reflect its nature.
+Since `healthy_lifestyle` is thus not reliably measured with these variables, we made the decision to exclude this latent variable from SEM analysis.
 
 ## Outcome Variable: Mental Health Continuum Short Form (MHC-SF)
 
@@ -196,14 +204,15 @@ To do so, we will construct two SEMs, with unstandardized coefficients, to compa
 
 Note: diagrams simplified for readability.
 
-## SEM 3: Results
-
 We found that there is a significant estimated effect between athletic identity and MHC-SF in non-athletes.
 
-- Direct/Indirect effect of athletic identity among athletes
+
+## SEM 3: Indirect & Total Effect
+
+- Indirect/Total effect of athletic identity among athletes
 ![indirect_effect](images/athlete_unstandardized_direct_indirect.png)
 
-- Direct/Indirect effect of athletic identity among non-athletes
+- Indirect/Total effect of athletic identity among non-athletes
 ![indirect_effect](images/non_athlete_unstandardized_direct_indirect.png)
 
 ## SEM: Conclusion
@@ -232,11 +241,7 @@ Our findings for resilience as a trait that is positively associated with mental
 
 The results of this study should be applied with caution -- while making efforts to bolster one's resilience may be something to consider, some exercises to do so may be dangerous. 
 
-We were unable to represent healthy lifestyle as a reflective latent variable using the observed variables we had available. Future research could:
-
-- Consider constructing formative latent variable
-
-- Collect more data measuring this variable to be used in the model
+Treating the `healthy_lifestyle` latent variable as a formative (rather than a reflective) construct might more accurately reflect its nature. 
 
 ## Thank you!
 
