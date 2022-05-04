@@ -167,7 +167,11 @@ We will use the MHC-SF composite score (sum of all responses) as our outcome var
 
 We found that though the estimated effect between athletic identity and MHC-SF score is negative, indicating that a stronger athletic identity decreases overall well-being, the p-value associated with this value is 0.232.
 
+<<<<<<< HEAD
 Therefore, we conclude that there is **no** significant relationships between athletic identity and overall well-being.
+=======
+Therefore, we conclude that there is **no** significant relationship between athletic identity and overall well-being.
+>>>>>>> 3414997802c77f3960df8f639758ca212e07449c
 
 ## SEM 2: Resilience, Athletic Identity, and MHC-SF
 
@@ -176,17 +180,25 @@ Therefore, we conclude that there is **no** significant relationships between at
 \centering
 ![](images/SEM_2.png)
 
+<<<<<<< HEAD
 ## SEM 2: Direct Effects
+=======
+>>>>>>> 3414997802c77f3960df8f639758ca212e07449c
 
 The estimated direct effect between resilience and MHC-SF is positive and statistically significant (p-value > 0.05), indicating that greater resilience increases overall well-being.
 
+<<<<<<< HEAD
 We found that estimated direct effect between athletic identity and resilience is negative, indicating that stronger athletic identity decreases resilience. However, this effect was again indicated to **not** be significant. 
+=======
+We found that estimated effect between athletic identity and resilience is negative, indicating that stronger athletic identity decreases resilience. Such effect is not significant. 
+>>>>>>> 3414997802c77f3960df8f639758ca212e07449c
 
 ## SEM 2: Indirect Effect
 
 \centering
 ![](images/standardized_direct_indirect.png)
 
+<<<<<<< HEAD
 <!--The indirect effect of athletic identity on MHC-SF through its effect on resilience is -0.056. This indicates that a 0.39 unit increase in resilience leads to a 0.056 unit decrease in MHC-SF.
 
 As the p-values are both > 0.05, both the total and indirect effect of athletic identity are not significant -->
@@ -194,11 +206,18 @@ As the p-values are both > 0.05, both the total and indirect effect of athletic 
 ## SEM 3: Comparison of Athletes and Non-Athletes
 
 We were interested in seeing if there are differences in the effects of athletic identity, resilience, and MCH-SF score between athletes and non-athletes. 
+=======
+- Both direct and indirect effects are not significant.
+>>>>>>> 3414997802c77f3960df8f639758ca212e07449c
 
 To do so, we will construct two SEMs, with unstandardized coefficients, to compare these two groups.
 
 
+<<<<<<< HEAD
 ## SEM 3: Comparison of Athletes and Non-Athletes
+=======
+- We are interested in comparing mediation effects of resilience on relationship between athletic identity and MCH-SF within athlete group and non-athlete group.
+>>>>>>> 3414997802c77f3960df8f639758ca212e07449c
 
 \centering
 ![](images/SEM_3.png)
@@ -244,7 +263,10 @@ We were unable to use healthy lifestyle as a reflective latent variable.
 
 Thank you!
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 3414997802c77f3960df8f639758ca212e07449c
 ## Resources 
 
 1. Hu, T., Zhang, D., &amp; Wang, J. (2014, December 13). A meta-analysis of the Trait Resilience and Mental Health. Personality and Individual Differences. https://www.sciencedirect.com/science/article/pii/S0191886914006710 
