@@ -1,7 +1,6 @@
 ---
 title: |
-  | P8158 - Effects of Athletic Identity and Resilience
-  | on Well-Being during COVID-19
+  | P8158 - Investigating the Effect of Athletic Identity on Overall Well-Being during COVID-19
 author: |
   | Waveley Qiu, Yihan Qiu, Yuanyuan Zeng
 date: "2022-05-04"
@@ -35,8 +34,10 @@ source("shared_code/data_prep_and_setup.R")
 
 ## Methodology
 
-1. Conduct EFA and CFA to determine which observed variables underlie our latent variables of interest.
-2. Evaluate reliability of the determined latent structures with Chronbach's alpha.
+1. Conduct PCA to estimate number of components ($n$) underlying observed variables.
+2. Run EFA models on $n$ and $n \pm$ 1 components, compare  fit statistics and interpretability to select structure to move forward with.
+3. Perform CFA to evaluate fit of latent structure.
+2. Evaluate reliability of the determined latent variables with Chronbach's alpha.
 2. Construct SEM(s) to quantify the relationship between our constructed latent variables and mental health score.
 
 ## Data: Athlete Mental Health Survey
@@ -47,7 +48,7 @@ These surveys include:
 
 - Athletic Identity Scale (AIMS)
 
-- The Brief Resilience Scale
+- The Brief Resilience Scale (BRS)
 
 - Mental Health Continuum Short Form (MHC-SF)
 
@@ -57,9 +58,9 @@ In total, 753 individuals were interviewed -- we will focus our analysis on the 
 
 - Athletic Identity
 
-- Resilience
+- Resilience (potential mediator)
 
-- Healthy Lifestyle
+- Healthy Lifestyle (potential mediator)
 
 ## Latent Variable 1: Athletic Identity
 
@@ -204,7 +205,7 @@ To do so, we will construct two SEMs, with unstandardized coefficients, to compa
 
 Note: diagrams simplified for readability.
 
-We found that there is a significant estimated effect between athletic identity and MHC-SF in non-athletes.
+<!--We found that there is a significant estimated effect between athletic identity and MHC-SF in non-athletes.-->
 
 
 ## SEM 3: Indirect & Total Effect
@@ -241,7 +242,9 @@ Our findings for resilience as a trait that is positively associated with mental
 
 The results of this study should be applied with caution -- while making efforts to bolster one's resilience may be something to consider, some exercises to do so may be dangerous. 
 
-Treating the `healthy_lifestyle` latent variable as a formative (rather than a reflective) construct might more accurately reflect its nature. 
+More variables may exist between the causal pathways we have defined (between athletic identity and overall well-being and perhaps even between athletic identity and resilience). 
+
+Treating the `healthy_lifestyle` latent variable as a formative (rather than a reflective) construct might more accurately reflect its nature and allow this construct to be used in SEM. 
 
 ## Thank you!
 
