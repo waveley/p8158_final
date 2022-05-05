@@ -70,6 +70,17 @@ The scree plot indicates that one underlying factor is sufficient to explain the
 
 Figure xx shows that the Chronbach’s alpha is very low (-0.26), indicating that the variables hr_sleep, smoking, fruit_veg might not reliably measure the latent variable healthy_lifestyle, so we made the decision to exclude it from the structural equation modeling analysis.
 
+## Effect of Athletic Identity and Overall Well-being
+
+|   The regression path diagram was constructed to explore correlation between athletic identity and overall well-being (Figure ?). The result revealed that the correlation between aspect of athletic identity and overall well-being is negative (z = -1.20, std.error = 1.66, p = 0.23).
+
+## Mediation Effect of Resilience on Correlation between Athletic Identity and Overall Well-being
+
+|   Path analysis of mediation of resilience was shown in Figure(?). The correlation between athletic identity and overall well-being was -0.028 (z = -0.44, std.error = 1.53, p = 0.658). There was a negative correlation between athletic identity and resilience (z = -1.93, std.error = 0.094, p = 0.054). Resilience had significant correlation with overall well-being. Resilience had significant relationship with overall well-being, which indicated that stronger resilience leaded to better overall well-being (z = 6.69, std.error = 1.14, p<0.05). The standardized indirect effect from athletic identity to overall well-being was -0.056 (z = -1.88, std.error = 0.73, p = 0.061), which was not significant at 0.05 significant level. The estimated direct effect from athletic identity to overall well-being was -0.084 (z = -1.23, std.error = 1.67, p = 0.218). The result showed that the resilience did not mediate the effect of athletic identity on overall well-being. But the correlation between resilience and overall well-being was significant at 0.05 significant level.
+
+## Comparison of Mediation Effect of Resilience in Athletes and Non-Athletes
+
+|   A series of regressions was conducted to test if there are differences in the effects of athletic identity, resilience, and overall well-being between athletes and non-athletes. The correlation between athletic identity and overall well-being was stronger among non-athletes and athletes. The coefficient between athletic identity and overall well-being was -1.657 (z = -2.12, std.error = 0.780, p = 0.034), which indicated stronger athletic identity leaded to worse overall well-being. Resilience had significant correlation with overall well-being for both athletes and non-athletes (z = 1.68, std.error=1.05, p <0.05). The estimated indirect and direct effect of athletic identity on overall well-being are not significant for both athletes and non-athletes. The result indicated that mediation effect of resilience in both groups are not significant at 0.05 significant level.
 
 
 ## Conclusion

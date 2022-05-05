@@ -6,86 +6,18 @@ output: pdf_document
 editor_options: 
   chunk_output_type: console
 ---
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
-```{r}
-library(tidyverse)
-library(haven)
-library(lavaan)
-library(psych)
-library(GPArotation)
-library(naniar)
-library(gtsummary)
-```
-
-```{r}
-dataset <- readxl::read_excel("data/Athlete_Non-Athlete MH Survey - ALL DATA.xlsx", 
-                              sheet = "athlete_fin") %>% 
-  slice(-1) %>%   
-  replace_with_na_all(condition = ~.x == "999") %>%
-  janitor::clean_names()
-
-dataset_no_na <- dataset %>% 
-  select(-c("shield_dts", "date")) %>% 
-  na.omit()
-
-athletes <- dataset %>% filter(athlete_yn == "1") %>% select(-c("shield_dts", "date"))
-athletes %>% colnames()
-
-athletes_no_na <- athletes %>% na.omit()
-
-non_athletes <- dataset %>% filter(athlete_yn == "2")
-```
-
-## Adding COVID-19 Quarantine Weeks & Sport Hours Measures
-
-0 to 7 weeks in quarantine ("s)
-
-```{r}
-table(athletes$bub_size %>% as.numeric())
-hist(athletes$play_hrs %>% as.numeric())
-
-athletes <-
-  athletes %>% 
-  mutate(
-    weeks_cat = weeks_sd %>% as.factor(),
-    bubble_cat = bub_size %>% as.numeric(),
-    play_hrs = play_hrs %>% as.numeric(),
-    play_hrs_cat = case_when(
-      play_hrs < 5 ~ "less than 5 hrs",
-      5 <= play_hrs & play_hrs < 10 ~ "between 5 and 10 hrs",
-      10 <= play_hrs & play_hrs < 15 ~ "between 10 and 15 hrs",
-      15 <= play_hrs & play_hrs < 20 ~ "between 15 and 20 hrs",
-      20 <= play_hrs & play_hrs < 25 ~ "between 20 and 25 hrs",
-      25 <= play_hrs & play_hrs < 30 ~ "between 25 and 30 hrs",
-      30 <= play_hrs ~ "30 or more hours"
-    )
-)
-```
-
-<<<<<<< HEAD
-=======
 ## Interested Variables
 
-```{r}
-=======
 ```{r setup, include=FALSE}
->>>>>>> d3437852f23db65dbc0a64b6b205716ccef9448e
+
 knitr::opts_chunk$set(echo = TRUE, 
                       warning = FALSE, 
                       message = FALSE)
 library(sem)
 library(semPlot)
+library(psych)
 source("shared_code/data_prep_and_setup.R")
 ```
->>>>>>> 2c66653fdc9b5cbb785f31e2c6d13f31b147498d
 
 ## Construct Reliability: Dedication to Sport/ athlete identity
 
@@ -93,82 +25,6 @@ source("shared_code/data_prep_and_setup.R")
 athletic_identity <- c("cnsdr_ath", "sprt_goals", "frnds_ath", "sprt_impt", "think_sprt", "bad_sprt", "dprs_sprt")
 ```
 Chronbach's alpha is 0.74, with a 95 \% confidence interval of (0.70, 0.78).
-
-# EFA & CFA of athlete identity scale
-```{r}
-#parallel analysis
-athlete_parallel = fa.parallel(selected_features, cor = "poly", fa = "pc")
-athlete_parallel$pc.values
-
-# 2 factor
-athlete_2factor = fa(r=selected_features, nfactors = 2, cor = "poly")
-fa.diagram(athlete_2factor, digits = 2, simple = TRUE)
-
-# 3 factor
-athlete_3factor = fa(r=selected_features, nfactors = 3, cor = "poly")
-fa.diagram(athlete_3factor, digits = 2, simple = TRUE)
-
-# 2 factor CFA
-athlete_2model <- 'A =~ sprt_goals + cnsdr_ath + frnds_ath + sprt_impt + think_sprt
-                  B =~ dprs_sprt + bad_sprt'
-
-athlete_2CFA = cfa(athlete_2model, data = selected_features,
-                   ordered = names(selected_features),
-                   std.lv = TRUE)
-summary(athlete_2CFA, fit.measures = TRUE)
-
-# 3 factor CFA
-athlete_3model <- 'social_identity =~ sprt_goals + cnsdr_ath + frnds_ath 
-                   exclusive = ~ sprt_impt + think_sprt
-                   negative_affectivity =~ dprs_sprt + bad_sprt
-                   athletic_identity =~social_identity + exclusive + negative_affectivity '
-
-athlete_3CFA = cfa(athlete_3model, data = athletic_identity_matrix,
-                   ordered = names(athletic_identity_matrix),
-                   std.lv = TRUE)
-summary(athlete_3CFA, fit.measures = TRUE)
-
-
-```
-Reject the 2 factor model and 3 factor model fits the data well.
-
-## Construct Reliability: Resilience
-```{r}
-resilience <- c("bounce", "strs_evnt", "strs_rcvr", "snap_back","difficult","setbacks")
-
-total_resilience <- athletes[, resilience] %>% map_df(., as.numeric)
-total_alpha <-  psych::alpha(positive_resilience %>% as.matrix())
-positive_alpha
-
-resilience_positive <- c("bounce", "strs_rcvr","difficult")
-
-positive_resilience <- athletes[, resilience_positive] %>% map_df(., as.numeric)
-positive_alpha <-  psych::alpha(positive_resilience %>% as.matrix())
-positive_alpha
-
-resilience_negative <- c("strs_evnt", "snap_back","setbacks")
-negative_resilience <- athletes[, resilience_negative] %>% map_df(., as.numeric)
-negative_alpha <-  psych::alpha(negative_resilience %>% as.matrix())
-negative_alpha
-
-# 1 factor CFA
-resilience_1factor <- 'resilience=~ bounce + strs_evnt + strs_rcvr + snap_back + difficult + setbacks'
-
-resilience_1CFA = cfa(resilience_1factor, data = total_resilience,
-                   ordered = names(total_resilience),
-                   std.lv = TRUE)
-summary(resilience_1CFA, fit.measures = TRUE)
-```
-
-Chronbach's alpha is 0.89, with a 95 \% confidence interval of (0.87, 0.90).
-
-## Construct Reliability: wellbeing (measured by The Adult Mental Health Continuum 14 items)
-```{r}
-#wellbeing <- c("happy", "strs_evnt", "strs_rcvr", "snap_back","difficult","setbacks")
-selected_wellbeing <- athletes[, 28:41] %>% map_df(., as.numeric)
-wellbeing_alpha <-  psych::alpha(selected_wellbeing %>% as.matrix())
-wellbeing_alpha
-```
 
 Chronbach's alpha is 0.91, with a 95 \% confidence interval of (0.90, 0.91).
 
@@ -275,22 +131,22 @@ MHC_SF <- c("mhc_sf", "athlete_yn")
 
 MHC_SF_numeric <- dataset[,MHC_SF] %>% mutate(
   mhc_sf= as.numeric(mhc_sf),
-  athlete_yn = as.factor( athlete_yn))
-
-ggplot(data =MHC_SF_numeric, aes(y = mhc_sf, x = athlete_yn), group = athlete_yn) + geom_boxplot(aes(color = athlete_yn)) +
-  labs(title = "MHC_SF of Athletes and Non-athletes",
-       y = "Total MHC Score",
-       x = " ") +
-  scale_x_discrete(
-    labels = c("Athletes", "Non-athletes")
-  )  + theme_bw() + 
-  theme(legend.position = "bottom")
-
+  athlete_yn = as.factor( athlete_yn)) %>% mutate(
+  athlete_yn = case_when(
+    athlete_yn == "1" ~ "Athlete",
+    athlete_yn == "2" ~ "Non-athlete"
+  )
+)
 
 # Resilience
 resilience <- c( "athlete_yn","bounce", "strs_evnt", "strs_rcvr", "snap_back", "difficult", "setbacks")
 
-resilience_numeric <- dataset[,resilience] %>% map_df(., as.numeric)
+resilience_numeric <- dataset[,resilience] %>% map_df(., as.numeric) %>% mutate(
+  athlete_yn = case_when(
+    athlete_yn == "1" ~ "Athlete",
+    athlete_yn == "2" ~ "Non-athlete"
+  )
+)
 
 resilience_matrix <- resilience_numeric %>% as.matrix()
 
@@ -299,16 +155,32 @@ ath_resilience_numeric = resilience_numeric %>% mutate(
   athlete_yn= as.factor(athlete_yn)
 )
 
-ggplot(data = ath_resilience_numeric, aes(x = athlete_yn, y = total_resilience_score) )+
-  geom_boxplot(aes(color = athlete_yn))+
-  labs(title = "Total Resilience Score of Athletes and Non-athletes",
-      y = "Total Resilience Score",
-      x = " ") +
-  scale_x_discrete(
-    labels = c("Athletes", "Non-athletes"))  + theme_bw() + 
-  theme(legend.position = "bottom")
 
-gtsummary::tbl_summary(ath_resilience_numeric %>% select(athlete_yn, total_resilience_score), by = athlete_yn) %>% add_p()
+athe_res = cbind(MHC_SF_numeric, ath_resilience_numeric[,8])
+colnames(athe_res) = c("Sum_Score_MHC",'athlete_yn','Total_Resilience_Score')
+gtsummary::tbl_summary(athe_res, by = athlete_yn) %>% add_p() %>% add_n()
+```
+
+# correlation
+
+```{r}
+
+external = dataset[,18:19] %>% map_df(., as.numeric) %>% mutate(external_score = (cnsdr_ath + sprt_goals)/2)
+
+internal = dataset[,21:22] %>% map_df(., as.numeric) %>% mutate(internal_score = (sprt_impt + think_sprt)/2)
+
+negative = dataset[,23:24]%>% map_df(., as.numeric) %>% mutate(negative_score = (dprs_sprt + bad_sprt)/2)
+
+cor_data = cbind(athe_res,external,internal, negative) %>%
+  mutate(
+  total_AIMS = (external_score + internal_score + negative_score)/3
+)
+
+cor_data_2 = cor_data %>% select(Sum_Score_MHC, athlete_yn, Total_Resilience_Score,external_score, internal_score, negative_score,total_AIMS) 
+
+library(corrplot)
+round(cor(cor_data_2[-2] %>% na.omit()),digits = 2) %>% knitr::kable()
+tbl_summary(cor_data_2, by = athlete_yn) %>% add_p()
 ```
 
 
