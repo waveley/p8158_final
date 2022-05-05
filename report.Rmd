@@ -51,6 +51,11 @@ Observed Outcome:
 The outcome variable is derived from the Mental Health Continuum Short Form (MHC-SF), which is basically a scale measuring the overall well-being. This form contains 14 items. The frequency of each item was measured and the response was coded from 0 to 5, with 0 representing never and 5 representing every day. Three components of well-being are assessed, emotional, social, and psychological well-being. For this study, we used the MHC-SF composite score, which is the sum of all responses, as our outcome variable, and its range is from 0 to 70. Higher scores indicate greater levels of positive well-being. 
 
 
+## Descriptive statistics
+
+
+
+
 ## Methdology
 
 | 1. Conduct PCA to estimate number of components ($n$) underlying observed variables.
