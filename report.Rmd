@@ -35,10 +35,11 @@ Latent:
 
 - Athletic Identity
 
+The Athletic Identity Scale (AIMS) was used to assess the potential latent variable athletic identity. It contains 7 items and each item is measured on a 7-point Likert scale, ranging from 1 (strongly disagree) to 7 (strongly agree). For coding convenience, we renamed each item in a brief yet informative way.
+
 - Resilience (potential mediator)
 
-The second latent variable we were interested in exploring is resilience and the scale we applied to measure it is the Brief Resilience Scale. It includes 6 items in total and each item is measured on a 5-point Likert scale, with 1 representing strongly disagree and 5 representing strongly agree. To ensure consistency, some of the items are reverse coded because they are negatively phrased, for example, brs2, 4, and 6. Also, we renamed each item just for coding convenience. 
-
+The second latent variable we were interested in exploring is resilience and the scale we applied to measure it is the Brief Resilience Scale. It includes 6 items in total and each item is measured on a 5-point Likert scale, with 1 representing strongly disagree and 5 representing strongly agree. To ensure consistency, some of the items are reverse coded because they are negatively phrased, for example, brs2, 4, and 6. Aagin, we renamed each item just for coding convenience. 
 
 - Healthy Lifestyle (potential mediator)
 
@@ -65,6 +66,11 @@ The outcome variable is derived from the Mental Health Continuum Short Form (MHC
 2. Construct SEM(s) to quantify the relationship between our constructed latent variables and mental health score.
 
 ## Results
+
+- Athletic Indentity
+
+After conducting EFA, we proposed that there are three latent variables underlying the AIMS variables: external_identity (comprised of sprt_goals, cnsdr_ath, frnds_ath), internal_value (comprised of sprt_impt, think_sprt), and negative_events (comprised of dprs_sprt, bad_sprt). The Cronbach's alphas for internal_value and negative_events are 0.81 and 0.63 respectively, indicating reasonable internal consistency, and the output suggests that no AIMS variable could be dropped to improve reliability for both latent variables. However, the situation is different for external_identity. Since the Cronbach's alpha would significantly improve from 0.65 to 0.75 if the variable frnds_ath is eliminated, we decided to remove this variable from our latent structure. In addition, based on our knowledge, we also hypothesized there might be a second-order latent factor underlying the latent variables external_identity, internal_value, and negative_events. 
+
 
 - Resilience
 
