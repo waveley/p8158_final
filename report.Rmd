@@ -49,7 +49,7 @@ Observed Outcome:
 
 - MHC-SF Sum Score
 
-The outcome variable is derived from the Mental Health Continuum Short Form (MHC-SF), which is basically a scale measuring the overall well-being. This form contains 14 items. The frequency of each item was measured and the response was coded from 0 to 5, with 0 representing never and 5 representing every day. Three components of well-being are assessed, emotional, social, and psychological well-being. For this study, we used the MHC-SF composite score, which is the sum of all responses, as our outcome variable, and its range is from 0 to 70. Higher scores indicate greater levels of positive well-being. 
+The outcome variable was derived from the Mental Health Continuum Short Form (MHC-SF), which is basically a scale measuring the overall well-being. This form contains 14 items. The frequency of each item was measured and the response was coded from 0 to 5, with 0 representing never and 5 representing every day. Three components of well-being are assessed, emotional, social, and psychological well-being. For this study, we used the MHC-SF composite score, which is the sum of all responses, as our outcome variable, and its range is from 0 to 70. Higher scores indicate greater levels of positive well-being. 
 
 
 ## Descriptive statistics
@@ -69,7 +69,7 @@ The outcome variable is derived from the Mental Health Continuum Short Form (MHC
 
 - Athletic Indentity
 
-After conducting EFA, we proposed that there are three latent variables underlying the AIMS variables: external_identity (comprised of sprt_goals, cnsdr_ath, frnds_ath), internal_value (comprised of sprt_impt, think_sprt), and negative_events (comprised of dprs_sprt, bad_sprt). The Cronbach's alphas for internal_value and negative_events are 0.81 and 0.63 respectively, indicating reasonable internal consistency, and the output suggests that no AIMS variable could be dropped to improve reliability for both latent variables. However, the situation is different for external_identity. Since the Cronbach's alpha would significantly improve from 0.65 to 0.75 if the variable frnds_ath is eliminated, we decided to remove this variable from our latent structure. In addition, based on our knowledge, we also hypothesized there might be a second-order latent factor underlying the latent variables external_identity, internal_value, and negative_events. 
+After conducting EFA, we proposed that there are three latent variables underlying the AIMS variables: external_identity (comprised of sprt_goals, cnsdr_ath, frnds_ath), internal_value (comprised of sprt_impt, think_sprt), and negative_events (comprised of dprs_sprt, bad_sprt). The Cronbach's alphas for internal_value and negative_events are 0.81 and 0.63 respectively, indicating reasonable internal consistency, and the output suggests that no AIMS variable could be dropped to improve reliability for both latent variables. However, the situation is different for external_identity. Since the Cronbach's alpha would significantly improve from 0.65 to 0.75 if the variable frnds_ath is eliminated, we decided to remove this variable from our latent structure. In addition, based on our knowledge, we also hypothesized there might be a second-order latent factor underlying the latent variables external_identity, internal_value, and negative_events and we conducted an confirmatory factor analysis to verify our hypothesis. The result shows that the model fits well (CFI > 0.99, RMSEA < 0.05, χ2 = 0.514).
 
 
 - Resilience
@@ -79,7 +79,7 @@ The scree plot indicates that one underlying factor is sufficient to explain the
 
 - Healthy Lifestyle (potential mediator)
 
-Figure xx shows that the Chronbach’s alpha is very low (-0.26), indicating that the variables hr_sleep, smoking, fruit_veg might not reliably measure the latent variable healthy_lifestyle, so we made the decision to exclude it from the structural equation modeling analysis.
+The Chronbach’s alpha is very low (-0.26), indicating that the variables hr_sleep, smoking, fruit_veg might not reliably measure the latent variable healthy_lifestyle, so we made the decision to exclude it from the structural equation modeling analysis.
 
 ## Effect of Athletic Identity and Overall Well-being
 
