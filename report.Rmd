@@ -18,6 +18,7 @@ header-includes:
 fontsize: 11pt
 ---
 
+
 ## Introduction
 
 The onset of COVID-19 has influenced almost every sphere of work and leisure. Residing in the intersection of those two realms, the athletic industry in particular has been affected by the pandemic in interesting ways. Many sports events, including the 2020 Olympics, had been cancelled or postponed in an effort to mitigate the transmission of COVID-19, and recent studies have shown that lockdowns have had profound impacts on the psychological well-being of athletes$^{[2]}$. In this study, we sought to quantify the impact that a person's athletic identity, and other potentially mediating characteristics, may have had on their overall well-being in the context of a global pandemic.
