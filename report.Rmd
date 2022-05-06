@@ -20,11 +20,7 @@ fontsize: 11pt
 
 ## Introduction
 
-<<<<<<< HEAD
-The onset of COVID-19 has influenced almost every sphere of work and leisure. The athletic industry in particular has been affected by the pandemic in interesting ways, as they exist at the intersection of work and leisure. Many sports events, including the 2020 Olympics, had been cancelled or postponed in an effort to mitigate the transmission of COVID-19, and a recent study has shown that lockdowns have had profound impacts on the psychological well-being of athletes$^{[1]}$. In this study, we sought to quantify the impact that a person's athletic identity, and other potentially mediating characteristics, may have had on his or her overall well-being in the context of a global pandemic.
-=======
-The onset of COVID-19 has influenced almost every sphere of work and leisure. Residing in the intersection of those two realms, the athletic industry in particular has been affected by the pandemic in interesting ways. Many sports events, including the 2020 Olympics, had been cancelled or postponed in an effort to mitigate the transmission of COVID-19, and recent studies have shown that lockdowns have had profound impacts on the psychological well-being of athletes$^{[2]}$. In this study, we sought to quantify the impact that a person's athletic identity, and other potentially mediating characteristics, may have had on their overall well-being in the context of a global pandemic.
->>>>>>> 5e839004847ad249656a6f5c6b2d1f31eb1a3cb4
+The onset of COVID-19 has influenced almost every sphere of work and leisure. Residing in the intersection of those two realms, the athletic industry in particular has been affected by the pandemic in interesting ways. Many sports events, including the 2020 Olympics, had been cancelled or postponed in an effort to mitigate the transmission of COVID-19, and recent studies have shown that lockdowns have had profound impacts on the psychological well-being of athletes$^{[1]}$. In this study, we sought to quantify the impact that a person's athletic identity, and other potentially mediating characteristics, may have had on their overall well-being in the context of a global pandemic.
 
 ## Dataset
 
@@ -36,21 +32,14 @@ The following scales and variables were considered over the course of our analys
 
 #### The Athletic Identity Measurement Scale (AIMS)
 
-<<<<<<< HEAD
-The Athletic Identity Scale$^{[3]}$ (Appendix 3) includes 6 items and is measured on a 7-point Likert scale from "strongly disagree" to "strongly agree". The participants indicated their agreements with each item. The latent variables that are within the observed variables in the scale itself were identified through factor analysis. The observed variables in this scale were hypothesized to be reflective of the latent construct athletic identity, which was the measure that we were primarily interested in.
-=======
-The Athletic Identity Scale$^{[5]}$ (Appendix 3) includes 6 items and respondents are asked to report their degree of agreement to the prompt on a 7-point Likert scale (responses ranging from "strongly disagree" to "strongly agree"). The variables in this scale were hypothesized to be reflective of the latent construct athletic identity, which was the measure that we were primarily interested in.
->>>>>>> 5e839004847ad249656a6f5c6b2d1f31eb1a3cb4
+The Athletic Identity Scale$^{[3]}$ (Appendix 3) includes 6 items and respondents are asked to report their degree of agreement to the prompt on a 7-point Likert scale (responses ranging from "strongly disagree" to "strongly agree"). The variables in this scale were hypothesized to be reflective of the latent construct athletic identity, which was the measure that we were primarily interested in.
+
 
 #### The Mental Health Continuum Short Form (MHC-SF)
 
 The outcome variable in this study is the sum score of responses from the Mental Health Continuum Short Form (MHC-SF)$^{[4]}$ (Appendix 4). This questionnaire measures emotional, social, and psychological well-being in its 14 items. Respondents were asked to indicate how often they experience the event asked in the prompt and their responses were coded from 0 to 5, based on the frequency of each event. Higher scores are associated with greater levels of positive well-being.
 
-<<<<<<< HEAD
-We elected to use the sum score of responses to the questionnaire rather than each individual measure of well-being for a few reasons. As athletic identity is a construct that should influence all dimensions of who an individual is, we wanted our measure of well-being to be a similarly comprehensive measure. Additionally, the nature of the total MHC-SF score being a observed, numeric value appealed to us. Though we considered using the three- or bi-factor latent variable structure that some researchers choose to use when employing the MHC-SF, the comparative ease of interpretability of having a measurable outcome variable seemed advantageous. Finally, we found that there is a precedent of use of the total MHC-SF score in previous research -- since this is a metric that has been used and found to be valid and consistent measure of overall well-being in a number of different studies$^{[5]}$, we felt comfortable with simply using the sum score as our outcome.
-=======
-We elected to use the sum score of responses to thus questionnaire rather than each individual measure of well-being for a few reasons. As athletic identity is a construct that is should influence all dimensions of who an individual is, we wanted our measure of well-being to be a similarly comprehensive measure. Additionally, the nature of the total MHC-SF score being a observed, numeric value appealed to us. Though we considered using the three- or bi-factor latent variable structure that some researchers choose to use when employing the MHC-SF, the comparative ease of interpretability of having a measurable outcome variable seemed advantageous. Finally, we found that there is a precedent of use of the total MHC-SF score in previous research. Since this is a metric that has been used and found to be valid and consistent measure of overall well-being in a number of different studies$^{[9]}$, we felt comfortable with simply using the sum score as our outcome.
->>>>>>> 5e839004847ad249656a6f5c6b2d1f31eb1a3cb4
+We elected to use the sum score of responses to thus questionnaire rather than each individual measure of well-being for a few reasons. As athletic identity is a construct that is should influence all dimensions of who an individual is, we wanted our measure of well-being to be a similarly comprehensive measure. Additionally, the nature of the total MHC-SF score being a observed, numeric value appealed to us. Though we considered using the three- or bi-factor latent variable structure that some researchers choose to use when employing the MHC-SF, the comparative ease of interpretability of having a measurable outcome variable seemed advantageous. Finally, we found that there is a precedent of use of the total MHC-SF score in previous research. Since this is a metric that has been used and found to be valid and consistent measure of overall well-being in a number of different studies$^{[5]}$, we felt comfortable with simply using the sum score as our outcome.
 
 #### The Brief Resilience Scale (BRS)
 
