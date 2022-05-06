@@ -70,6 +70,25 @@ fa.diagram(athletic_efa3, digits = 2, simple = TRUE)
 
 The 3-factor model seems to fit the data the best, as it has the smallest BIC. We will proceed by using the 3-factor model for athletic_identity.
 
+```{r}
+names <- c("1", "2", "3")
+rmsea <- c(0.231, 0.234, 0.076)
+bic <- c(201.72, 119.31, -8.36)
+chi_sq <- c("2.3e-52", "7.1e-32", "0.025")
+
+athletic_efa1 %>% summary()
+athletic_efa2 %>% summary()
+athletic_efa3 %>% summary()
+
+
+tibble(
+  factor = names,
+  rmsea = rmsea,
+  bic = bic,
+  chi_sq = chi_sq
+) %>% knitr::kable(col.names = c("Number of Factors", "RMSEA", "BIC", "$\\chi^2$ p-value"))
+```
+
 
 ### Reliability
 
@@ -130,7 +149,7 @@ athlete_model <-
 athlete_CFA = cfa(athlete_model, data = athletic_identity_matrix,
                    ordered = names(athletic_identity_matrix),
                    std.lv = TRUE)
-summary(athlete_CFA, fit.measures = TRUE)
+summary(athlete_CFA, fit.measures = TRUE, rsquare = TRUE)
 ```
 
 ## Latent Variable 2: Healthy Lifestyle
@@ -156,9 +175,12 @@ It appears that 1 component should underlie these three variables.
 
 ### EFA
 
-```{r}
-health_efa1 <- fa(r = healthy_life_matrix, nfactors = 1, cor = "poly")
-fa.diagram(athletic_efa3, digits = 2, simple = TRUE)
+```{r, eval=FALSE}
+health_efa1 <- fa(r = healthy_life_matrix, nfactors = 1)
+fa.diagram(health_efa1, digits = 2, simple = TRUE)
+
+health_efa2 <- fa(r = healthy_life_matrix, nfactors = 2)
+fa.diagram(health_efa2, digits = 2, simple = TRUE)
 ```
 
 ### Reliability
@@ -217,6 +239,26 @@ summary(resilience_efa3)
 ```
 
 
+```{r}
+names <- c("1", "2")
+rmsea <- c(0.09, 0.056)
+bic <- c(-17.41, -15.02)
+chi_sq <- c("4.6e-05", "0.073")
+
+athletic_efa1 %>% summary()
+athletic_efa2 %>% summary()
+athletic_efa3 %>% summary()
+
+
+tibble(
+  factor = names,
+  rmsea = rmsea,
+  bic = bic,
+  chi_sq = chi_sq
+) %>% knitr::kable(col.names = c("Number of Factors", "RMSEA", "BIC", "$\\chi^2$ p-value"))
+```
+
+
 ### Reliability
 
 ```{r}
@@ -235,7 +277,7 @@ resilience_model <-
 resilience_cfa = cfa(resilience_model, data = resilience_matrix,
                    ordered = names(resilience_matrix),
                    std.lv = TRUE)
-summary(resilience_cfa, fit.measures = TRUE)
+summary(resilience_cfa, fit.measures = TRUE, rsquare = TRUE)
 ```
 
 
@@ -256,7 +298,7 @@ fin_df <- athletes %>% map_df(., as.numeric)
 final_cfa = cfa(final_model, 
                 data = fin_df,
                 std.lv = TRUE)
-summary(final_cfa, fit.measures = TRUE)
+summary(final_cfa, fit.measures = TRUE, rsquare=TRUE)
 ```
 
 ## Modification Indices
@@ -375,15 +417,18 @@ athlete_sem <- '
     resilience =~ bounce + strs_evnt + strs_rcvr + snap_back + difficult + setbacks
     
   # structural model - direct effects
-    mhc_sf ~ a*athlete_identity + c*resilience
+    mhc_sf ~ a*athlete_identity + c*resilience + e*age_grp
     resilience ~ d*athlete_identity
+    age_grp ~ g*athlete_identity
 
   # indirect
-    indirect_athlete_identity := d*c
+    indirect_athlete_identity := d*c + g*e
 
   # total
     total_athlete_identity:= d*c + a
 '
+
+athletes <- athletes %>% map_df(., as.numeric())
 
 athlete_sem_fit <- sem(athlete_sem, 
                        data = athletes,
@@ -402,8 +447,10 @@ semPaths(athlete_sem_fit,
          whatLabels = "std", 
          reorder = FALSE,
          layout = "tree2",
-         rotation = 3,
+         rotation = 2,
          intercepts = FALSE)
+
+athletes$age_grp %>% as.numeric()
 ```
 
 ```{r}
