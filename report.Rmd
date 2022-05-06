@@ -61,7 +61,7 @@ The three latent variables were named as follows: external identity, internal va
 
 The Cronbach's alphas for internal value and negative events are 0.81 and 0.63 respectively, indicating that they possess reasonable internal consistency, and the output suggested that no observed variables could be dropped to improve reliability for these two factors. However, we observed that Chronbach's alpha would significantly improve for the external identity latent variable if the variable corresponding with the question "Are most of your friends athletes?" is removed its structure (Appendix 9), so this variable was dropped.
 
-We also hypothesized that there may exist a second-order latent factor underlying the three latent variables identified and we conducted a confirmatory factor analysis to verify our hypothesis (Appendix 10). Because the model fit measures were adequate for this latent structure (CFI > 0.99, RMSEA < 0.05, $\chi^2$ = 0.514), we concluded that there was enough evidence for the hypothesized structure to underlie the observed variables of interest, and decided to proceed by using the second-order latent in our SEM.
+We also hypothesized that there may exist a second-order latent factor underlying the three latent variables identified and we conducted a confirmatory factor analysis to verify our hypothesis (Appendix 10). Because the model fit measures were adequate for this latent structure (CFI > 0.99, RMSEA < 0.05, $\chi^2$ p-value = 0.514), we concluded that there was enough evidence for the hypothesized structure to underlie the observed variables of interest, and decided to proceed by using the second-order latent in our SEM.
 
 ### Latent Variable 2: Resilience
 

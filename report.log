@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.6) (preloaded format=pdflatex 2021.9.13)  6 MAY 2022 03:13
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.6) (preloaded format=pdflatex 2021.9.13)  6 MAY 2022 09:59
 entering extended mode
 **./report.tex
 (report.tex
@@ -1138,7 +1138,7 @@ d_direct_indirect.png>] (report.aux) )
 Here is how much of TeX's memory you used:
  33188 strings out of 478864
  764353 string characters out of 2848660
- 1224149 words of memory out of 3000000
+ 1224150 words of memory out of 3000000
  50296 multiletter control sequences out of 15000+600000
  440268 words of font info for 112 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1154,7 +1154,7 @@ ts/type1/public/lm/lmr10.pfb><C:/Users/14088/AppData/Local/Programs/MiKTeX/font
 s/type1/public/lm/lmr12.pfb><C:/Users/14088/AppData/Local/Programs/MiKTeX/fonts
 /type1/public/lm/lmr17.pfb><C:/Users/14088/AppData/Local/Programs/MiKTeX/fonts/
 type1/public/lm/lmr8.pfb>
-Output written on report.pdf (20 pages, 1526372 bytes).
+Output written on report.pdf (20 pages, 1526381 bytes).
 PDF statistics:
  423 PDF objects out of 1000 (max. 8388607)
  114 named destinations out of 1000 (max. 500000)
