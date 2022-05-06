@@ -18,10 +18,13 @@ header-includes:
 fontsize: 11pt
 ---
 
-
 ## Introduction
 
+<<<<<<< HEAD
 The onset of COVID-19 has influenced almost every sphere of work and leisure. The athletic industry in particular has been affected by the pandemic in interesting ways, as they exist at the intersection of work and leisure. Many sports events, including the 2020 Olympics, had been cancelled or postponed in an effort to mitigate the transmission of COVID-19, and a recent study has shown that lockdowns have had profound impacts on the psychological well-being of athletes$^{[1]}$. In this study, we sought to quantify the impact that a person's athletic identity, and other potentially mediating characteristics, may have had on his or her overall well-being in the context of a global pandemic.
+=======
+The onset of COVID-19 has influenced almost every sphere of work and leisure. Residing in the intersection of those two realms, the athletic industry in particular has been affected by the pandemic in interesting ways. Many sports events, including the 2020 Olympics, had been cancelled or postponed in an effort to mitigate the transmission of COVID-19, and recent studies have shown that lockdowns have had profound impacts on the psychological well-being of athletes$^{[2]}$. In this study, we sought to quantify the impact that a person's athletic identity, and other potentially mediating characteristics, may have had on their overall well-being in the context of a global pandemic.
+>>>>>>> 5e839004847ad249656a6f5c6b2d1f31eb1a3cb4
 
 ## Dataset
 
@@ -33,13 +36,21 @@ The following scales and variables were considered over the course of our analys
 
 #### The Athletic Identity Measurement Scale (AIMS)
 
+<<<<<<< HEAD
 The Athletic Identity Scale$^{[3]}$ (Appendix 3) includes 6 items and is measured on a 7-point Likert scale from "strongly disagree" to "strongly agree". The participants indicated their agreements with each item. The latent variables that are within the observed variables in the scale itself were identified through factor analysis. The observed variables in this scale were hypothesized to be reflective of the latent construct athletic identity, which was the measure that we were primarily interested in.
+=======
+The Athletic Identity Scale$^{[5]}$ (Appendix 3) includes 6 items and respondents are asked to report their degree of agreement to the prompt on a 7-point Likert scale (responses ranging from "strongly disagree" to "strongly agree"). The variables in this scale were hypothesized to be reflective of the latent construct athletic identity, which was the measure that we were primarily interested in.
+>>>>>>> 5e839004847ad249656a6f5c6b2d1f31eb1a3cb4
 
 #### The Mental Health Continuum Short Form (MHC-SF)
 
 The outcome variable in this study is the sum score of responses from the Mental Health Continuum Short Form (MHC-SF)$^{[4]}$ (Appendix 4). This questionnaire measures emotional, social, and psychological well-being in its 14 items. Respondents were asked to indicate how often they experience the event asked in the prompt and their responses were coded from 0 to 5, based on the frequency of each event. Higher scores are associated with greater levels of positive well-being.
 
+<<<<<<< HEAD
 We elected to use the sum score of responses to the questionnaire rather than each individual measure of well-being for a few reasons. As athletic identity is a construct that should influence all dimensions of who an individual is, we wanted our measure of well-being to be a similarly comprehensive measure. Additionally, the nature of the total MHC-SF score being a observed, numeric value appealed to us. Though we considered using the three- or bi-factor latent variable structure that some researchers choose to use when employing the MHC-SF, the comparative ease of interpretability of having a measurable outcome variable seemed advantageous. Finally, we found that there is a precedent of use of the total MHC-SF score in previous research -- since this is a metric that has been used and found to be valid and consistent measure of overall well-being in a number of different studies$^{[5]}$, we felt comfortable with simply using the sum score as our outcome.
+=======
+We elected to use the sum score of responses to thus questionnaire rather than each individual measure of well-being for a few reasons. As athletic identity is a construct that is should influence all dimensions of who an individual is, we wanted our measure of well-being to be a similarly comprehensive measure. Additionally, the nature of the total MHC-SF score being a observed, numeric value appealed to us. Though we considered using the three- or bi-factor latent variable structure that some researchers choose to use when employing the MHC-SF, the comparative ease of interpretability of having a measurable outcome variable seemed advantageous. Finally, we found that there is a precedent of use of the total MHC-SF score in previous research. Since this is a metric that has been used and found to be valid and consistent measure of overall well-being in a number of different studies$^{[9]}$, we felt comfortable with simply using the sum score as our outcome.
+>>>>>>> 5e839004847ad249656a6f5c6b2d1f31eb1a3cb4
 
 #### The Brief Resilience Scale (BRS)
 
@@ -61,7 +72,7 @@ The three latent variables were named as follows: external identity, internal va
 
 The Cronbach's alphas for internal value and negative events were 0.81 and 0.63 respectively, indicating that they possess reasonable internal consistency, and the output suggested that no observed variables could be dropped to improve reliability for these two factors. However, we observed that Chronbach's alpha would significantly improve for the external identity latent variable if the variable corresponding with the question "Are most of your friends athletes?" was removed its structure (Appendix 9), so this variable was dropped.
 
-We also hypothesized that there may exist a second-order latent factor underlying the three latent variables identified and we conducted a confirmatory factor analysis to verify our hypothesis (Appendix 10). Because the model fit measures were adequate for this latent structure (CFI > 0.99, RMSEA < 0.05, $\chi^2$ p-value = 0.514), we concluded that there was enough evidence for the hypothesized structure to underlie the observed variables of interest, and decided to proceed by using the second-order latent in our SEM.
+We hypothesized that the latent construct that we were interested in, athletic identity, exists as a second-order latent factor underlying the three latent variables identified. To verify this hypothesis, we conducted a confirmatory factor analysis (Appendix 10). Because the model fit measures were adequate for this latent structure (CFI > 0.99, RMSEA < 0.05, $\chi^2$ p-value = 0.514), we concluded that there was enough evidence for the hypothesized structure to underlie the observed variables of interest, and decided to proceed by using the second-order latent in our SEM.
 
 ### Latent Variable 2: Resilience
 
@@ -75,7 +86,7 @@ After this, we conducted a confirmatory factor analysis to evaluate the fit of t
 
 Finally, we endeavored to construct a latent variable that would reflect the "healthy lifestyle" measures that were collected in our dataset, as aforementioned. Similarly to the previous two latent constructs, we first conducted parallel component analysis (Appendix 15), in which a single component was recommended, though it would only explain 39.0% of the variability in the three items.
 
-Both one- and two- factor models were then fit to the three items in exploratory factor analysis, from which both produced very poorly fit models. Though this inclined us to reconsider using this latent structure, we decided to perform a reliability analysis on the one-factor model to examine its internal consistency (Appendix 16).
+Both one- and two- factor models were then fit to the three items in exploratory factor analysis, from which both produced very poorly fit models. Though this inclined us to reconsider using this latent structure, we still decided to perform a reliability analysis on the one-factor model to examine its internal consistency (Appendix 16).
 
 Unsurprisingly, the Cronbach's alpha for this model was very low (-0.26) (Appendix 17), indicating that these three variables were not reliable measures of this latent variable. Upon seeing these results, we made the decision to not move forward with using this latent structure and excluded it from being used as a mediator between athletic identity and overall well-being. 
 
@@ -120,8 +131,6 @@ Perhaps the biggest limitation of our analysis is that there likely exist more v
 Additionally, we would recommend that the latent variable measuring healthy lifestyles be revisited in future studies. We propose that it may be worthwhile to consider this latent variable to be a formative (rather than reflective) construct, as this may more accurately reflect its nature and allow this variable to be used in a SEM. 
 
 Finally, though this study is in agreement with research that has been conducted regarding the positive effect resilience has on one's overall well-being, the act of developing resilience implicitly requires undergoing some sort of adverse event. Often, resilience is a characteristic that is paired with the experience of trauma. Thus, while making efforts to bolster one's resilience may be something to consider, some exercises to do so may be more risky than they would be beneficial. 
-
-All of the code for this study can be found in [this](https://github.com/waveley/p8158_final) GitHub repository.
 
 \newpage
 
@@ -192,6 +201,8 @@ Appendix 21: Athlete and Non-Athlete Comparison SEM
 Appendix 22: Unstandardized Effects of Athletic Identity, Athletes
 
 Appendix 23: Unstandardized Effects of Athletic Identity, Non-Athletes
+
+Appendix 24: GitHub Repository
 
 \newpage
 
@@ -287,4 +298,8 @@ Appendix 23: Unstandardized Effects of Athletic Identity, Non-Athletes
 ### Appendix 23: Unstandardized Effects of Athletic Identity, Non-Athletes
 
 ![](images/non_athlete_unstandardized_direct_indirect.png)
+### Appendix 24: GitHub Repository
+
+All of the code for this study can be found in [this](https://github.com/waveley/p8158_final) GitHub repository.
+
 
