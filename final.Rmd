@@ -158,7 +158,8 @@ ath_resilience_numeric = resilience_numeric %>% mutate(
 
 athe_res = cbind(MHC_SF_numeric, ath_resilience_numeric[,8])
 colnames(athe_res) = c("Sum_Score_MHC",'athlete_yn','Total_Resilience_Score')
-gtsummary::tbl_summary(athe_res, by = athlete_yn) %>% add_p() %>% add_n()
+gtsummary::tbl_summary(athe_res, by = athlete_yn,
+                       missing = "no") %>% add_p() %>% add_n()
 ```
 
 # correlation
@@ -184,3 +185,53 @@ tbl_summary(cor_data_2, by = athlete_yn) %>% add_p()
 ```
 
 
+```{r}
+male_female = dataset %>% select(gender, athlete_yn,age_grp)%>% 
+  mutate(
+    gender = case_when(
+      gender == 1 ~ "Male",
+      gender == 2 ~ "Female"
+    ),
+    athlete_yn = case_when(
+      athlete_yn == 1 ~ "Athlete",
+      athlete_yn == 2 ~ "Non-athlete"
+    ),
+    age_grp = case_when(
+      age_grp == 1 ~ "18-20",
+      age_grp == 2 ~ "21-30",
+      age_grp == 3 ~ "31-40",
+      age_grp == 4 ~"41-50",
+      age_grp == 5 ~ "51-60",
+      age_grp == 6 ~ "61-70",
+      age_grp == 7 ~"71+"
+    ))
+
+gtsummary::tbl_summary(male_female, by = athlete_yn)
+
+sport = dataset %>%  select(athlete_yn, sprt) %>% filter(athlete_yn == 1) %>% 
+  mutate(
+  sprt = case_when(
+      sprt == 1 ~ "Ball sports",
+      sprt == 2 ~ "Track & Field",
+      sprt == 3 ~ "Dance, Gymnastics and Strength",
+      sprt == 4 ~"Rowing & Kayaking",
+      sprt == 5 ~ "Cycling",
+      sprt == 6 ~ "Swimming",
+      sprt == 7 ~"Combat Sports",
+      sprt == 8 ~"Equestrian",
+      sprt == 9 ~"Orienteering")) %>% 
+  group_by(athlete_yn, sprt) %>% na.omit() 
+
+#%>% count() %>% arrange(n)
+
+colnames(sport) = c("athlete_yn","sport")
+#,"count")
+
+gtsummary::tbl_summary(sport[,-1],
+                       sort = list(everything() ~ "frequency"))
+
+ggplot(sport, aes(x = sport, y = count)) +
+  geom_bar(fill = "#0073C2FF", stat = "identity")+
+  geom_text(aes(label = count), vjust = -0.3)
+
+```
