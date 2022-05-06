@@ -250,18 +250,26 @@ Demographic characteristics, such as sex, age group, and type of sport, are reco
 
 Thank you!
 
-## Resources 
+## References 
 
-1. Hu, T., Zhang, D., &amp; Wang, J. (2014, December 13). A meta-analysis of the Trait Resilience and Mental Health. Personality and Individual Differences. https://www.sciencedirect.com/science/article/pii/S0191886914006710 
+1. Knowles, C., Breslin, G., Shannon, S., & Prentice, G.. (2020). Athlete_Non-Athlete MH Survey - ALL DATA.csv.figshare. 
 
-2. Dale, H., Brassington, L., &amp; King, K. (2014, March 5). The impact of healthy lifestyle interventions on Mental Health and Wellbeing: A systematic review. Mental Health Review Journal. https://www.emerald.com/insight/content/doi/10.1108/MHRJ-05-2013-0016/full/html 
+2. Uroh, C., & Adewunmi, C. (2021). Psychological Impact of the COVID-19 Pandemic on Athletes. Frontiers In Sports And Active Living, 3. doi: 10.3389/fspor.2021.603415
 
-3. A cross-cultural psychometric evaluation of the Athletic Identity Measurement Scale. Taylor &amp; Francis. (n.d.). https://www.tandfonline.com/doi/full/10.1080/10413200802415048
+3.  Hu, T., Zhang, D., & Wang, J. (2014, December 13). A meta-analysis of the Trait Resilience and Mental Health. Personality and Individual Differences. <https://www.sciencedirect.com/science/article/pii/S0191886914006710>
 
-4. The brief resilience scale. Evaluating wellbeing. (2021, March 15). https://measure.whatworkswellbeing.org/measures-bank/brief-resilience-scale/ 
+4.  Dale, H., Brassington, L., & King, K. (2014, March 5). The impact of healthy lifestyle interventions on Mental Health and Wellbeing: A systematic review. Mental Health Review Journal. <https://www.emerald.com/insight/content/doi/10.1108/MHRJ-05-2013-0016/full/html>
 
-## Resources
+## References
 
-5. Fung S. F. (2020). Validity of the Brief Resilience Scale and Brief Resilient Coping Scale in a Chinese Sample. International journal of environmental research and public health, 17(4), 1265. https://doi.org/10.3390/ijerph17041265
+5.  A cross-cultural psychometric evaluation of the Athletic Identity Measurement Scale. Taylor & Francis. (n.d.). <https://www.tandfonline.com/doi/full/10.1080/10413200802415048>
 
-6. Mental health continuum short form. Lee Kum Sheung Center for Health and Happiness. (2022, March 16). Retrieved May 3, 2022, from https://www.hsph.harvard.edu/health-happiness/mental-health-continuum-short-form/ 
+6.  The brief resilience scale. Evaluating wellbeing. (2021, March 15). <https://measure.whatworkswellbeing.org/measures-bank/brief-resilience-scale/>
+
+7.  Fung S. F. (2020). Validity of the Brief Resilience Scale and Brief Resilient Coping Scale in a Chinese Sample. International journal of environmental research and public health, 17(4), 1265. <https://doi.org/10.3390/ijerph17041265>
+
+## References
+
+8.  Mental health continuum short form. Lee Kum Sheung Center for Health and Happiness. (2022, March 16). <https://www.hsph.harvard.edu/health-happiness/mental-health-continuum-short-form/>
+
+9.  Hides, L., Quinn, C., Stoyanov, S., Cockshaw, W., Mitchell, T., & Kavanagh, D. J. (2016, April 23). Is the mental wellbeing of young Australians best represented by a single, multidimensional or bifactor model? Psychiatry Research. <https://www.sciencedirect.com/science/article/pii/S0165178115305758>
