@@ -18,7 +18,6 @@ header-includes:
 fontsize: 11pt
 ---
 
-
 ## Introduction
 
 The onset of COVID-19 has influenced almost every sphere of work and leisure. The athletic industry in particular has been affected by the pandemic in interesting ways, as they exist at the intersection of work and leisure. Many sports events, including the 2020 Olympics, had been cancelled or postponed in an effort to mitigate the transmission of COVID-19, and recent studies have shown that lockdowns have had profound impacts on the psychological well-being of athletes$^{[2]}$. In this study, we sought to quantify the impact that a person's athletic identity, and other potentially mediating characteristics, may have had on their overall well-being in the context of a global pandemic.
@@ -125,8 +124,6 @@ Additionally, we would recommend that the latent variable measuring healthy life
 
 Finally, though this study is in agreement with research that has been conducted regarding the positive effect resilience has on one's overall well-being, the act of developing resilience implicitly requires undergoing some sort of adverse event. Often, resilience is a characteristic that is paired with the experience of trauma. Thus, while making efforts to bolster one's resilience may be something to consider, some exercises to do so may be more risky than they would be beneficial. 
 
-All of the code for this study can be found in [this](https://github.com/waveley/p8158_final) GitHub repository.
-
 \newpage
 
 ## References
@@ -198,6 +195,8 @@ Appendix 21: Athlete and Non-Athlete Comparison SEM
 Appendix 22: Unstandardized Effects of Athletic Identity, Athletes
 
 Appendix 23: Unstandardized Effects of Athletic Identity, Non-Athletes
+
+Appendix 24: GitHub Repository
 
 \newpage
 
@@ -293,4 +292,8 @@ Appendix 23: Unstandardized Effects of Athletic Identity, Non-Athletes
 ### Appendix 23: Unstandardized Effects of Athletic Identity, Non-Athletes
 
 ![](images/non_athlete_unstandardized_direct_indirect.png)
+### Appendix 24: GitHub Repository
+
+All of the code for this study can be found in [this](https://github.com/waveley/p8158_final) GitHub repository.
+
 
