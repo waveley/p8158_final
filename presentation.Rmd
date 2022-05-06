@@ -28,9 +28,9 @@ source("shared_code/data_prep_and_setup.R")
 
 1. Conduct PCA to estimate number of components ($n$) underlying observed variables.
 2. Run EFA models on $n$ and $n \pm$ 1 components, compare  fit statistics and interpretability to select structure to move forward with.
-3. Perform CFA to evaluate fit of latent structure.
-2. Evaluate reliability of the determined latent variables with Chronbach's alpha.
-2. Construct SEM(s) to quantify the relationship between our constructed latent variables and mental health score.
+3. Evaluate reliability of the determined latent variables with Chronbach's alpha.
+4. Perform CFA to evaluate fit of latent structure.
+5. Construct SEM(s) to quantify the relationship between our constructed latent variables and mental health score.
 
 ## Data: Athlete Mental Health Survey
 

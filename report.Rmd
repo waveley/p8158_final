@@ -4,166 +4,143 @@ title: |
    | Investigating the Effect of Athletic Identity on Overall Well-Being during COVID-19
 author: |
   | Waveley Qiu, Yihan Qiu, Yuanyuan Zeng
-date: "2022-05-04"
+date: "2022-05-06"
 output:
-  pdf_document: default
-  
+  pdf_document
+
 header-includes:
   - \usepackage{amsmath,amssymb,amsthm,amsfonts,bbm,graphics,enumitem}
+  - \usepackage{setspace}\onehalfspacing
   - \usepackage{geometry,mathrsfs}
   - \usepackage{tikz}
   - \usepackage{pgfplots}
+  
+fontsize: 11pt
 ---
+
 
 ## Introduction
 
-|   The onset of COVID-19 affected almost every sphere of work and leisure. Certain industries and the people in them were affected by the pandemic in interesting ways, as they exist between both work and leisure. In this project, we focused in on one of these industries, athletics, to investigate how one's athletic identity may have impacted their overall well-being, as one's experience of playing a sport and being an athlete may have undergone dramatic changes over the past few years.
+The onset of COVID-19 has influenced almost every sphere of work and leisure. The athletic industry in particular has been affected by the pandemic in interesting ways, as they exist at the intersection of work and leisure. Many sports events, including the 2020 Olympics, had been cancelled or postponed in an effort to mitigate the transmission of COVID-19, and recent studies have shown that lockdowns have had profound impacts on the psychological well-being of athletes (Uroh & Adewunmi, 2021). In this project, we used a dataset collected after the first COVID-19 lockdown in the United Kingdom to investigate the impact that one's athletic identity, and other potentially mediating characteristics, may have had on their overall well-being in the context of a global pandemic.
 
 ## Dataset
-|   The dataset we selected contains demographic information and responses for five surveys for athletes and non-athletes in the UK. This data was collected after the country's first COVID-19 lockdown. In total, 753 individuals were interviewed -- we will focus our analysis on the 363 athletes represented in this study (reserving the 390 non-athletes for a comparison analysis). 
 
-- Athletic Identity Scale (AIMS)
+This dataset contains demographic information and responses to five surveys for athletes and non-athletes in the UK. In total, 753 individuals over the age of 18 were included, 363 of which indicated that they were athletes, and 390 indicated that they were not. A higher proportion of females were interviewed in the group of non-athletes than in the group of athletes, and the athletes tended to be younger than the non-athletes (Table 1). Most athletes interviewed were ball sport and track and field athletes (Table 2). For this study, we decided to focus our analysis on the athletes represented in this dataset, reserving the non-athletes for a comparison analysis.
 
-- The Brief Resilience Scale (BRS)
+### Measures of Interest
 
-- Mental Health Continuum Short Form (MHC-SF)
+The following scales and variables were considered over the course of our analysis as observed variables of defined latent constructs of interest.
 
+#### The Athletic Identity Measurement Scale (AIMS)
 
-### Variables of Interest
+The Athletic Identity Scale$^{[3]}$ (Figure 1) includes 6 items and is measured on a 7-point Likert scale from "strongly disagree" to "strongly agree". The participants indicate their agreements with each item. The latent variables that are within the observed variables in the scale itself were identified through factor analysis. The variables in this scale were hypothesized to be reflective of the latent construct athletic identity, which was the measure that we were primarily interested in.
 
-- Latent:
+#### The Mental Health Continuum Short Form (MHC-SF)
 
-- Athletic Identity
+The outcome variable in this study is the sum score of responses from the Mental Health Continuum Short Form (MHC-SF)$^{[6]}$ (Figure 3). This questionnaire measures emotional, social, and psychological well-being in its 14 items. Respondents were asked to indicate how often they experience the event asked in the prompt and their responses were coded from 0 to 5, based on the frequency of each event. Higher scores are associated with greater levels of positive well-being.
 
-The Athletic Identity Scale (AIMS) was used to assess the potential latent variable athletic identity. It contains 7 items and each item is measured on a 7-point Likert scale, ranging from 1 (strongly disagree) to 7 (strongly agree). For coding convenience, we renamed each item in a brief yet informative way.
+We elected to use the sum score of responses to thus questionnaire rather than each individual measure of well-being for a few reasons. As athletic identity is a construct that is should influence all dimensions of who an individual is, we wanted our measure of well-being to be a similarly comprehensive measure. Additionally, the nature of the total MHC-SF score being a observed, numeric value appealed to us. Though we considered using the three- or bi-factor latent variable structure that some researchers choose to use when employing the MHC-SF, the comparative ease of interpretability of having a measurable outcome variable seemed advantageous. Finally, we found that there is a precedent of use of the total MHC-SF score in previous research -- since this is a metric that has been used and found to be valid and consistent measure of overall well-being in a number of different studies$^{[7]}$, we felt comfortable with simply using the sum score as our outcome.
 
-- Resilience (potential mediator)
+#### The Brief Resilience Scale (BRS)
 
-|   The second latent variable we were interested in exploring is resilience and the scale we applied to measure it is the Brief Resilience Scale. It includes 6 items in total and each item is measured on a 5-point Likert scale, with 1 representing strongly disagree and 5 representing strongly agree. To ensure consistency, some of the items are reverse coded because they are negatively phrased, for example, brs2, 4, and 6. Aagin, we renamed each item just for coding convenience. 
+The Brief Resilience Scale$^{[4]}$ was developed to measure a person's resilience through a set of six questions. Each these items are measured on a 5-point Likert scale, where respondents mark their level of agreement to a given prompt. Depending on the question asked, each response is scored from 1 to 5, where higher scores indicate greater amounts of resilience.
 
-- Healthy Lifestyle (potential mediator)
+We were interested in this set of variables, as resilience is often thought of as a trait that high-performing athletes possess and endeavor to develop through their training. Furthermore, because resilience is also an attribute that has been identified to positively influence an individual's well-being$^{[1]}$, we hypothesized that this characteristic would exist on the causal pathway between athletic identity and overall well-being.
 
-|   We hypothesized that we could create a latent variable representing a healthy lifestyle using the following variables: the categorical variable five fruit and vegetables indicates whether the subject has eaten enough fruit and vegetables. The continuous variable smoking status is measured on a 7-point scale, where 1 represents never, and 7 represents consuming more than 21 cigarettes per day. The hour sleep is a numeric variable indicating how long the subject sleeps per day. 
+#### Healthy Lifestyle Measurements
 
-- Observed Outcome:
+The dataset we used also contained the following variables: a binary variable assessing whether the respondent typically consumes five fruits or vegetables in a day, an ordinal variable assessing the respondent's smoking habits, and a continuous variable measuring how many hours a sleep the respondent typically gets. At face value, these items appear to be measures of a healthy lifestyle, which piqued our interest as another potential mediating factor between athletic identity and overall well-being. Similarly to resilience, a healthy lifestyle has also been well-documented to be positively associated with an individual's well being$^{[2]}$ and also is a trait that is associated with athletes.
 
-- MHC-SF Sum Score
+## Exploratory and Confirmatory Factor Analysis
 
-|   The outcome variable was derived from the Mental Health Continuum Short Form (MHC-SF), which is basically a scale measuring the overall well-being. This form contains 14 items. The frequency of each item was measured and the response was coded from 0 to 5, with 0 representing never and 5 representing every day. Three components of well-being are assessed, emotional, social, and psychological well-being. For this study, we used the MHC-SF composite score, which is the sum of all responses, as our outcome variable, and its range is from 0 to 70. Higher scores indicate greater levels of positive well-being. 
+### Latent Variable 1: Athletic Identity
 
+Principal component analysis was first conducted on the seven AIMS variables collected in our dataset, from which a two-component latent structure was recommended (Figure 4) and would explain 63.8% of the variation within the seven items. One-, two-, and three-factor models were then fit in exploratory factor analysis, from which the three-factor model was selected, using BIC and RMSEA as criteria for goodness-of-fit (Table 3).
 
+The three latent variables were named as follows: external identity, internal value, and negative events (Figure 5). The external identity latent construct corresponds with one's demonstrable identity as an athlete and was initially found to be reflected in the items "I consider myself an athlete", "I have many goals related to sport", and "Most of my friends are athletes". Internal value corresponds with how much someone values sports and was found to be reflected in the items "Sport is the most important part of my life" and "I spend more time thinking about sport than anything else". Finally, the negative events latent construct corresponds with how one would react to negative events that may happen to them in sports and is reflected in the items "I feel bad about myself when I do badly in sport" and "I would be very depressed if I were injured and could not compete in sport".
 
-## Methdology
+The Cronbach's alphas for internal value and negative events are 0.81 and 0.63 respectively, indicating that they possess reasonable internal consistency, and the output suggested that no observed variables could be dropped to improve reliability for these two factors. However, we observed that Chronbach's alpha would significantly improve for the external identity latent variable if the variable corresponding with the question "Are most of your friends athletes?" is removed its structure, so this variable was dropped.
 
-| 1. Conduct PCA to estimate number of components ($n$) underlying observed variables.
-2. Run EFA models on $n$ and $n \pm$ 1 components, compare  fit statistics and interpretability to select structure to move forward with.
-3. Perform CFA to evaluate fit of latent structure.
-2. Evaluate reliability of the determined latent variables with Chronbach's alpha.
-2. Construct SEM(s) to quantify the relationship between our constructed latent variables and mental health score.
+We also hypothesized that there may exist a second-order latent factor underlying the three latent variables identified and we conducted a confirmatory factor analysis to verify our hypothesis (Figure 7). Because the model fit measures were adequate for this latent structure (CFI \> 0.99, RMSEA \< 0.05, $\chi^2$ = 0.514), we concluded that there was enough evidence for the hypothesized structure to underlie the observed variables of interest, and decided to proceed by using the second-order latent in our SEM.
 
-## Results
+### Latent Variable 2: Resilience
 
-- Athletic Indentity
+We followed a similar process in representing resilience as a latent variable. After conducting principal component analysis, which recommended a one-component latent structure that would explain 64.0% of the variation within the six items, we fit one- and two- factor models in exploratory factor analysis and compared their fits. The one-factor model was ultimately selected based on its lower BIC and parsimony (Table ???)
 
-|   After conducting exploratory factor analysis, we proposed that there are three latent variables underlying the AIMS variables: external_identity (comprised of sprt_goals, cnsdr_ath, frnds_ath), internal_value (comprised of sprt_impt, think_sprt), and negative_events (comprised of dprs_sprt, bad_sprt). The Cronbach's alphas for internal_value and negative_events are 0.81 and 0.63 respectively, indicating reasonable internal consistency, and the output suggests that no AIMS variable could be dropped to improve reliability for both latent variables. However, the situation is different for external_identity. Since the Cronbach's alpha would significantly improve from 0.65 to 0.75 if the variable frnds_ath is eliminated, we decided to remove this variable from our latent structure. In addition, based on our knowledge, we also hypothesized there might be a second-order latent factor underlying the latent variables external_identity, internal_value, and negative_events and we conducted an confirmatory factor analysis to verify our hypothesis. The result shows that the model fits well (CFI > 0.99, RMSEA < 0.05, χ2 = 0.514).
+We then assessed the internal consistency of this latent variable. This analysis produced a Chronbach's alpha of 0.89, which indicates that the items in the BRS are reliable measures of the latent variable resilience. In addition, all items were kept within the latent construct, as no items were suggested to be removed in the deleted alpha test. 
 
+After this, we conducted a confirmatory factor analysis to evaluate the fit of the latent structure we had constructed. As the fit measures were all sufficient (CFI > 0.98, RMSEA < 0.08), and all factor loadings were indicated to be significant (Figure ???), we concluded that this model fit the data adequately well.
 
-- Resilience
+### Latent Variable 3: Healthy Lifestyle
 
-|   The scree plot indicates that one underlying factor is sufficient to explain the variability across all variables, but we also conducted an exploratory factor analysis for verification. After running exploratory factor analysis on 1 and 2 factor models separately, we discovered that the 1-factor model, which contains all items from the Brief Resilience Scale, fits better. We also assessed the internal consistency of resilience using Cronbach’s alpha. An alpha value of 0.89 indicates that the overall internal consistency is good, and the result of deleted alpha test suggests that we should keep all variables because Cronbach's alpha won't be improved if we drop any of the variable. Finally, we conducted a confirmatory factor analysis to examine the model we built. Since the CFI is greater than 0.98, RMSEA is less than 0.08, and the factor loadings are all significant, the overall fit of the model is good.
+Finally, we endeavored to construct a latent variable that would reflect the "healthy lifestyle" measures that were collected in our dataset, as aforementioned. Similarly to the previous two latent constructs, we first conducted parallel component analysis, in which a single component was recommended, though it would only explain 39.0% of the variability in the three items.
 
+Both one- and two- factor models were then fit to the three items in exploratory factor analysis, from which both produced very poorly fit models. Though this inclined us to reconsider using this latent structure, we decided to perform a reliability analysis on the one-factor model to examine its internal consistency.
 
-- Healthy Lifestyle (potential mediator)
+Unsurprisingly, the Cronbach's alpha for this model was very low (-0.26), indicating that the variables hr_sleep, smoking, fruit_veg are not reliable measures of this latent variable. Upon seeing these results, we made the decision to not move forward with using this latent structure and excluded it from being used as a mediator between athletic identity and overall well-being. 
 
-|   The Chronbach’s alpha is very low (-0.26), indicating that the variables hr_sleep, smoking, fruit_veg might not reliably measure the latent variable healthy_lifestyle, so we made the decision to exclude it from the structural equation modeling analysis.
+## Structural Equation Modeling
 
-## Effect of Athletic Identity and Overall Well-being
+After establishing the athletic identity and resilience latent variables, we constructed a number of structural equation models to assess the strength of the association between athletic identity and overall well-being, with resilience acting as a mediator between the two. 
 
-|   The regression path diagram was constructed to explore correlation between athletic identity and overall well-being (Figure ?). The result revealed that the correlation between aspect of athletic identity and overall well-being is negative (z = -1.20, std.error = 1.66, p = 0.23).
+### Athletic Identity and Overall Well-Being
 
-## Mediation Effect of Resilience on Correlation between Athletic Identity and Overall Well-being
+First, we constructed a structural equation model between athletic identity and overall well-being to examine the effect athletic identity has on the outcome without the presence of a mediating variable. Using the latent variable structure defined for athletic in confirmatory factor analysis, we constructed a simple regression path diagram between the two-factor latent variable and the outcome, MHC-SF composite score (Figure 11). 
 
-|   Path analysis of mediation of resilience was shown in Figure(?). The correlation between athletic identity and overall well-being was -0.028 (z = -0.44, std.error = 1.53, p = 0.658). There was a negative correlation between athletic identity and resilience (z = -1.93, std.error = 0.094, p = 0.054). Resilience had significant correlation with overall well-being. Resilience had significant relationship with overall well-being, which indicated that stronger resilience leaded to better overall well-being (z = 6.69, std.error = 1.14, p<0.05). The standardized indirect effect from athletic identity to overall well-being was -0.056 (z = -1.88, std.error = 0.73, p = 0.061), which was not significant at 0.05 significant level. The estimated direct effect from athletic identity to overall well-being was -0.084 (z = -1.23, std.error = 1.67, p = 0.218). The result showed that the resilience did not mediate the effect of athletic identity on overall well-being. But the correlation between resilience and overall well-being was significant at 0.05 significant level.
+The resulting model revealed that the correlation between aspect of athletic identity and overall well-being is negative, though the p-value of this estimate was greater than 0.05. This indicates that there is not a significant association between athletic identity and overall well-being, at a 0.05 significance level, and we cannot reject the null hypothesis that the estimated effect of athletic identity on overall well-being is 0. 
 
-## Comparison of Mediation Effect of Resilience in Athletes and Non-Athletes
+### Athletic Identity and Overall Well-Being, Mediated by Resilience
 
-|   A series of regressions was conducted to test if there are differences in the effects of athletic identity, resilience, and overall well-being between athletes and non-athletes. The correlation between athletic identity and overall well-being was stronger among non-athletes and athletes. The coefficient between athletic identity and overall well-being was -1.657 (z = -2.12, std.error = 0.780, p = 0.034), which indicated stronger athletic identity leaded to worse overall well-being. Resilience had significant correlation with overall well-being for both athletes and non-athletes (z = 1.68, std.error=1.05, p <0.05). The estimated indirect and direct effect of athletic identity on overall well-being are not significant for both athletes and non-athletes. The result indicated that mediation effect of resilience in both groups are not significant at 0.05 significant level.
+We then constructed another model to examine the association between athletic identity and overall well-being, placing the resilience latent construct we defined in between the two as a mediating variable. 
 
+Again, the resulting path analysis (Figure 12) demonstrated a negative, but insignificant, correlation between athletic and well-being, as athletic identity was estimated to have a standardized direct effect of -0.084. A negative correlation between athletic identity and resilience also existed, which was not statistically significant at the 0.05 significance level (p = 0.054). 
 
-## Conclusion
+Though athletic identity did not have significant correlations with the other two variables in the model, resilience was shown to have had a significant correlation with overall well-being. This indicates that increased levels of resilience tend to be associated with improved overall well-being (Fighre ???).  
+
+The standardized indirect effect from athletic identity to overall well-being was -0.056, which also proved to be insignificant at the 0.05 significance level. 
+
+Ultimately, the results from this model demonstrate that resilience did not mediate the effect of athletic identity on overall well-being, and athletic identity again did not significantly impact overall well-being. Resilience, however, does appear to have a significant effect on overall well-being.
+
+### Athletic Identity and Overall Well-Being, Mediated by Resilience, and According to Athlete Status
+
+We then conducted a series of regressions to test if there are any differences that exist in the effects of athletic identity, resilience, and overall well-being between athletes and non-athletes (Figure 13). To do so, we constructed two structural equation models associating athletic identity with MHC-SF composite score and mediated by resilience; one using the portion of the dataset corresponding to responses from athletes and the other using the portion of the dataset corresponding to responses from non-athletes. These models were constructed to report unstandardized coefficients in order to assist in comparing the results between these two groups.
+
+As expected, the correlations between the model variables were different for athletes and non-athletes. The SEM for non-athletes indicated a stronger correlation between athletic identity and overall well-being than the SEM for athletes did. For non-athletes, the coefficient between athletic identity and overall well-being was -1.657, and was indicated to be significant, where as the corresponding association for athletes was much smaller in magnitude and insignificant. 
+
+Resilience had significant correlation with overall well-being for both athletes and non-athletes. The estimated indirect and direct effect of athletic identity on overall well-being are not significant for both athletes and non-athletes. The result indicated that mediation effect of resilience in both groups are not significant at 0.05 significance level.
 
 ## Discussion
-|   Given the context of this survey, a lack of access to one's sport is a possible explanation for the negative effect athletic identity seems to have produced on overall well-being. 
 
-|   The differences in direct effects between athletic identity and overall well-being between athletes and non-athletes is difficult to account for. Perhaps one possible explanation for the well-being of non-athletes being affected far more than the well-being of athletes by one's reported athletic identity is that though COVID-19 made playing a sport different/difficult universally, athletes may have had more resources at their disposal (i.e., support from coaches, other athletic professionals, etc.)
+Though the constructed models indicated consistently insignificant effect estimates between athletic identity and overall well-being for athletes, the estimated effects between these two variables were consistently negative, with and without the presence of resilience as the mediator between the two. The significant negative association between athletic identity and overall well-being between non-athletes seems to make this phenomenon more pronounced. Given the context of this survey, a lack of access to one's sport is a possible explanation for the negative effect athletic identity seems to be producing on overall well-being. Individuals who have a stronger athletic identity may have felt a greater frustration than individuals with a weaker athletic identity during the COVID-19 lockdowns, as it may have become more inconvenient or entirely impossible to participate in sports as they had been accustomed to.
 
-|   Our findings for resilience as a trait that is positively associated with mental health and overall well-being agrees with previous research. 
+The differences in direct effects between athletic identity and overall well-being between athletes and non-athletes was notable in our structural equation modeling. Non-athletes appeared to have had athletic identity affect their overall well-being nearly 2.5 times more negatively than athletes. Perhaps one possible explanation for the well-being of non-athletes being affected far more than the well-being of athletes by one's reported athletic identity is that though COVID-19 made the experience of playing a sport different universally, athletes may have had more resources at their disposal to cope with the changes. For example, an athlete may have individuals around them, such as coaches and other athletic professionals, who would be able to support them or even keep them accountable to their training regimen. On the other hand, non-athletes may have had a more difficult time maintaining a community of similarly minded individuals around them, and may have had a more difficult time adjusting to the striking change of pace the COVID-19 lockdowns may have brought about.
+
+Our findings for resilience were the least surprising, as the positive association with overall well-being that we noticed in our analysis agrees with previous research that has been conducted. Resilience did seem to have a greater positive effect on overall well-being for non-athletes than it did for athletes, but was still noted to be the variable with the greatest influence on overall well-being in both models. 
 
 ## Limitations and Recommendations for Further Study
 
-|   The results of this study should be applied with caution -- while making efforts to bolster one's resilience may be something to consider, some exercises to do so may be dangerous. 
+More variables may exist between the causal pathways we have defined (between athletic identity and overall well-being and perhaps even between athletic identity and resilience). Treating the healthy lifestyle latent variable as a formative (rather than a reflective) construct might more accurately reflect its nature and allow this construct to be used in SEM. Demographic characteristics, such as sex, age group, and type of sport, are recommended to be included in future analysis.
 
-|   More variables may exist between the causal pathways we have defined (between athletic identity and overall well-being and perhaps even between athletic identity and resilience). 
-
-|   Treating the `healthy_lifestyle` latent variable as a formative (rather than a reflective) construct might more accurately reflect its nature and allow this construct to be used in SEM. 
-
-|   Demographic characteristics, such as sex, age group, and type of sport, are recommended to be included in future analysis.
+Though this study is in agreement with research that has been conducted regarding the positive effect resilience has on one's overall well-being, the act of developing resilience implicitly requires undergoing some sort of adverse event. Often, resilience is a characteristic that is paired with the experience of trauma. Thus, while making efforts to bolster one's resilience may be something to consider, some exercises to do so may be more risky than they would be beneficial.
 
 \newpage
 
 ## References
 
-1. Hu, T., Zhang, D., &amp; Wang, J. (2014, December 13). A meta-analysis of the Trait Resilience and Mental Health. Personality and Individual Differences. https://www.sciencedirect.com/science/article/pii/S0191886914006710 
+1.  Hu, T., Zhang, D., & Wang, J. (2014, December 13). A meta-analysis of the Trait Resilience and Mental Health. Personality and Individual Differences. <https://www.sciencedirect.com/science/article/pii/S0191886914006710>
 
-2. Dale, H., Brassington, L., &amp; King, K. (2014, March 5). The impact of healthy lifestyle interventions on Mental Health and Wellbeing: A systematic review. Mental Health Review Journal. https://www.emerald.com/insight/content/doi/10.1108/MHRJ-05-2013-0016/full/html 
+2.  Dale, H., Brassington, L., & King, K. (2014, March 5). The impact of healthy lifestyle interventions on Mental Health and Wellbeing: A systematic review. Mental Health Review Journal. <https://www.emerald.com/insight/content/doi/10.1108/MHRJ-05-2013-0016/full/html>
 
-3. A cross-cultural psychometric evaluation of the Athletic Identity Measurement Scale. Taylor &amp; Francis. (n.d.). https://www.tandfonline.com/doi/full/10.1080/10413200802415048
+3.  A cross-cultural psychometric evaluation of the Athletic Identity Measurement Scale. Taylor & Francis. (n.d.). <https://www.tandfonline.com/doi/full/10.1080/10413200802415048>
 
-4. The brief resilience scale. Evaluating wellbeing. (2021, March 15). https://measure.whatworkswellbeing.org/measures-bank/brief-resilience-scale/ 
+4.  The brief resilience scale. Evaluating wellbeing. (2021, March 15). <https://measure.whatworkswellbeing.org/measures-bank/brief-resilience-scale/>
 
-5. Fung S. F. (2020). Validity of the Brief Resilience Scale and Brief Resilient Coping Scale in a Chinese Sample. International journal of environmental research and public health, 17(4), 1265. https://doi.org/10.3390/ijerph17041265
+5.  Fung S. F. (2020). Validity of the Brief Resilience Scale and Brief Resilient Coping Scale in a Chinese Sample. International journal of environmental research and public health, 17(4), 1265. <https://doi.org/10.3390/ijerph17041265>
 
-6. Mental health continuum short form. Lee Kum Sheung Center for Health and Happiness. (2022, March 16). Retrieved May 3, 2022, from https://www.hsph.harvard.edu/health-happiness/mental-health-continuum-short-form/ 
+6.  Mental health continuum short form. Lee Kum Sheung Center for Health and Happiness. (2022, March 16). <https://www.hsph.harvard.edu/health-happiness/mental-health-continuum-short-form/>
+
+7.  Hides, L., Quinn, C., Stoyanov, S., Cockshaw, W., Mitchell, T., & Kavanagh, D. J. (2016, April 23). Is the mental wellbeing of young Australians best represented by a single, multidimensional or bifactor model? Psychiatry Research. <https://www.sciencedirect.com/science/article/pii/S0165178115305758>
 
 \newpage
 
 ## Appendix
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
