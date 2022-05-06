@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.6) (preloaded format=pdflatex 2021.9.13)  6 MAY 2022 09:59
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.6) (preloaded format=pdflatex 2021.9.13)  6 MAY 2022 11:20
 entering extended mode
 **./report.tex
 (report.tex
@@ -991,173 +991,173 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 
 {C:/Users/14088/AppData/Local/MiKTeX/pdftex/config/pdftex.map}] [2] [3] [4] [5]
 [6] [7] [8] [9]
-<images/athletes_non_athletes.png, id=111, 361.35pt x 273.969pt>
+<images/athletes_non_athletes.png, id=110, 361.35pt x 273.969pt>
 File: images/athletes_non_athletes.png Graphic file (type png)
 <use images/athletes_non_athletes.png>
 Package pdftex.def Info: images/athletes_non_athletes.png  used on input line 5
-62.
+60.
 (pdftex.def)             Requested size: 361.34912pt x 273.9683pt.
-<images/sports_played.png, id=113, 361.35pt x 257.544pt>
+<images/sports_played.png, id=112, 361.35pt x 257.544pt>
 File: images/sports_played.png Graphic file (type png)
 <use images/sports_played.png>
-Package pdftex.def Info: images/sports_played.png  used on input line 568.
+Package pdftex.def Info: images/sports_played.png  used on input line 566.
 (pdftex.def)             Requested size: 361.34912pt x 257.54337pt.
-<images/AIMS.png, id=114, 880.28876pt x 311.1625pt>
+<images/AIMS.png, id=113, 880.28876pt x 311.1625pt>
 File: images/AIMS.png Graphic file (type png)
 <use images/AIMS.png>
-Package pdftex.def Info: images/AIMS.png  used on input line 574.
+Package pdftex.def Info: images/AIMS.png  used on input line 572.
 (pdftex.def)             Requested size: 469.74767pt x 166.04535pt.
 [10 <./images/athletes_non_athletes.png> <./images/sports_played.png>]
-<images/complete_mhc-sf.png, id=126, 499.8675pt x 634.37pt>
+<images/complete_mhc-sf.png, id=125, 499.8675pt x 634.37pt>
 File: images/complete_mhc-sf.png Graphic file (type png)
 <use images/complete_mhc-sf.png>
-Package pdftex.def Info: images/complete_mhc-sf.png  used on input line 580.
+Package pdftex.def Info: images/complete_mhc-sf.png  used on input line 578.
 (pdftex.def)             Requested size: 469.76872pt x 596.17236pt.
 [11 <./images/AIMS.png>]
-<images/resilience scale.png, id=134, 883.3pt x 330.23375pt>
+<images/resilience scale.png, id=133, 883.3pt x 330.23375pt>
 File: images/resilience scale.png Graphic file (type png)
 <use images/resilience scale.png>
-Package pdftex.def Info: images/resilience scale.png  used on input line 586.
+Package pdftex.def Info: images/resilience scale.png  used on input line 584.
 (pdftex.def)             Requested size: 469.75067pt x 175.62268pt.
 [12 <./images/complete_mhc-sf.png>]
-<images/athletic_identity_pca.png, id=142, 617.30624pt x 436.63126pt>
+<images/athletic_identity_pca.png, id=141, 617.30624pt x 436.63126pt>
 File: images/athletic_identity_pca.png Graphic file (type png)
 <use images/athletic_identity_pca.png>
 Package pdftex.def Info: images/athletic_identity_pca.png  used on input line 5
-92.
+90.
 (pdftex.def)             Requested size: 469.76987pt x 332.27626pt.
-<images/athletic_identity_efa.png, id=143, 449.2785pt x 255.95625pt>
+<images/athletic_identity_efa.png, id=142, 449.2785pt x 255.95625pt>
 File: images/athletic_identity_efa.png Graphic file (type png)
 <use images/athletic_identity_efa.png>
 Package pdftex.def Info: images/athletic_identity_efa.png  used on input line 5
-98.
+96.
 (pdftex.def)             Requested size: 449.27739pt x 255.95561pt.
 [13 <./images/resilience scale.png> <./images/athletic_identity_pca.png>]
-<images/athletic_identity_efa_fit.png, id=155, 385.44pt x 121.6545pt>
+<images/athletic_identity_efa_fit.png, id=154, 385.44pt x 121.6545pt>
 File: images/athletic_identity_efa_fit.png Graphic file (type png)
 <use images/athletic_identity_efa_fit.png>
 Package pdftex.def Info: images/athletic_identity_efa_fit.png  used on input li
-ne 604.
+ne 602.
 (pdftex.def)             Requested size: 385.43906pt x 121.65419pt.
-<images/athletic_identity_alpha.png, id=156, 213.79875pt x 99.9735pt>
+<images/athletic_identity_alpha.png, id=155, 213.79875pt x 99.9735pt>
 File: images/athletic_identity_alpha.png Graphic file (type png)
 <use images/athletic_identity_alpha.png>
 Package pdftex.def Info: images/athletic_identity_alpha.png  used on input line
- 610.
+ 608.
 (pdftex.def)             Requested size: 213.79822pt x 99.97324pt.
-<images/athletic_identity_cfa.png, id=157, 326.4195pt x 163.20975pt>
+<images/athletic_identity_cfa.png, id=156, 326.4195pt x 163.20975pt>
 File: images/athletic_identity_cfa.png Graphic file (type png)
 <use images/athletic_identity_cfa.png>
 Package pdftex.def Info: images/athletic_identity_cfa.png  used on input line 6
-16.
+14.
 (pdftex.def)             Requested size: 326.42863pt x 163.21431pt.
 [14 <./images/athletic_identity_efa.png> <./images/athletic_identity_efa_fit.pn
 g> <./images/athletic_identity_alpha.png>]
-<images/resilience_scree.png, id=171, 895.84688pt x 504.38437pt>
+<images/resilience_scree.png, id=170, 895.84688pt x 504.38437pt>
 File: images/resilience_scree.png Graphic file (type png)
 <use images/resilience_scree.png>
-Package pdftex.def Info: images/resilience_scree.png  used on input line 622.
+Package pdftex.def Info: images/resilience_scree.png  used on input line 620.
 (pdftex.def)             Requested size: 469.75253pt x 264.48251pt.
-<images/resilience_efa.png, id=172, 806.26219pt x 341.02406pt>
+<images/resilience_efa.png, id=171, 806.26219pt x 341.02406pt>
 File: images/resilience_efa.png Graphic file (type png)
 <use images/resilience_efa.png>
-Package pdftex.def Info: images/resilience_efa.png  used on input line 628.
+Package pdftex.def Info: images/resilience_efa.png  used on input line 626.
 (pdftex.def)             Requested size: 469.76074pt x 198.6943pt.
 [15 <./images/athletic_identity_cfa.png> <./images/resilience_scree.png>]
-<images/resilience_efa_fit_measures.png, id=183, 387.24675pt x 100.57574pt>
+<images/resilience_efa_fit_measures.png, id=182, 387.24675pt x 100.57574pt>
 File: images/resilience_efa_fit_measures.png Graphic file (type png)
 <use images/resilience_efa_fit_measures.png>
 Package pdftex.def Info: images/resilience_efa_fit_measures.png  used on input 
-line 634.
+line 632.
 (pdftex.def)             Requested size: 387.2635pt x 100.58008pt.
-<images/resilience_cfa.png, id=184, 301.72725pt x 100.57574pt>
+<images/resilience_cfa.png, id=183, 301.72725pt x 100.57574pt>
 File: images/resilience_cfa.png Graphic file (type png)
 <use images/resilience_cfa.png>
-Package pdftex.def Info: images/resilience_cfa.png  used on input line 640.
+Package pdftex.def Info: images/resilience_cfa.png  used on input line 638.
 (pdftex.def)             Requested size: 301.7311pt x 100.57701pt.
-<images/healthy_scree.png, id=185, 843.90282pt x 538.26094pt>
+<images/healthy_scree.png, id=184, 843.90282pt x 538.26094pt>
 File: images/healthy_scree.png Graphic file (type png)
 <use images/healthy_scree.png>
-Package pdftex.def Info: images/healthy_scree.png  used on input line 646.
+Package pdftex.def Info: images/healthy_scree.png  used on input line 644.
 (pdftex.def)             Requested size: 469.76231pt x 299.62538pt.
 [16 <./images/resilience_efa.png> <./images/resilience_efa_fit_measures.png> <.
 /images/resilience_cfa.png>]
-<images/health_efa.png, id=199, 475.7775pt x 323.70938pt>
+<images/health_efa.png, id=198, 475.7775pt x 323.70938pt>
 File: images/health_efa.png Graphic file (type png)
 <use images/health_efa.png>
-Package pdftex.def Info: images/health_efa.png  used on input line 652.
+Package pdftex.def Info: images/health_efa.png  used on input line 650.
 (pdftex.def)             Requested size: 469.77974pt x 319.62863pt.
 [17 <./images/healthy_scree.png>]
-<images/health_alpha.png, id=207, 166.82326pt x 89.133pt>
+<images/health_alpha.png, id=206, 166.82326pt x 89.133pt>
 File: images/health_alpha.png Graphic file (type png)
 <use images/health_alpha.png>
-Package pdftex.def Info: images/health_alpha.png  used on input line 658.
+Package pdftex.def Info: images/health_alpha.png  used on input line 656.
 (pdftex.def)             Requested size: 166.83302pt x 89.1382pt.
-<images/SEM_1.png, id=208, 1087.06125pt x 639.38875pt>
+<images/SEM_1.png, id=207, 1087.06125pt x 639.38875pt>
 File: images/SEM_1.png Graphic file (type png)
 <use images/SEM_1.png>
-Package pdftex.def Info: images/SEM_1.png  used on input line 664.
+Package pdftex.def Info: images/SEM_1.png  used on input line 662.
 (pdftex.def)             Requested size: 469.76602pt x 276.30743pt.
 [18 <./images/health_efa.png> <./images/health_alpha.png>]
-<images/SEM_2.png, id=219, 1113.15875pt x 658.46pt>
+<images/SEM_2.png, id=218, 1113.15875pt x 658.46pt>
 File: images/SEM_2.png Graphic file (type png)
 <use images/SEM_2.png>
-Package pdftex.def Info: images/SEM_2.png  used on input line 670.
+Package pdftex.def Info: images/SEM_2.png  used on input line 668.
 (pdftex.def)             Requested size: 469.76556pt x 277.87756pt.
-<images/standardized_direct_indirect.png, id=220, 532.99126pt x 74.2775pt>
+<images/standardized_direct_indirect.png, id=219, 532.99126pt x 74.2775pt>
 File: images/standardized_direct_indirect.png Graphic file (type png)
 <use images/standardized_direct_indirect.png>
 Package pdftex.def Info: images/standardized_direct_indirect.png  used on input
- line 676.
+ line 674.
 (pdftex.def)             Requested size: 469.76572pt x 65.4664pt.
 [19 <./images/SEM_1.png> <./images/SEM_2.png>]
-<images/SEM_3.png, id=232, 1123.19624pt x 639.38875pt>
+<images/SEM_3.png, id=231, 1123.19624pt x 639.38875pt>
 File: images/SEM_3.png Graphic file (type png)
 <use images/SEM_3.png>
-Package pdftex.def Info: images/SEM_3.png  used on input line 682.
+Package pdftex.def Info: images/SEM_3.png  used on input line 680.
 (pdftex.def)             Requested size: 469.75113pt x 267.40971pt.
-<images/athlete_unstandardized_direct_indirect.png, id=233, 404.51125pt x 76.28
+<images/athlete_unstandardized_direct_indirect.png, id=232, 404.51125pt x 76.28
 5pt>
 File: images/athlete_unstandardized_direct_indirect.png Graphic file (type png)
 
 <use images/athlete_unstandardized_direct_indirect.png>
 Package pdftex.def Info: images/athlete_unstandardized_direct_indirect.png  use
-d on input line 688.
+d on input line 686.
 (pdftex.def)             Requested size: 404.51642pt x 76.28596pt.
-<images/non_athlete_unstandardized_direct_indirect.png, id=234, 399.4925pt x 71
+<images/non_athlete_unstandardized_direct_indirect.png, id=233, 399.4925pt x 71
 .26625pt>
 File: images/non_athlete_unstandardized_direct_indirect.png Graphic file (type 
 png)
 <use images/non_athlete_unstandardized_direct_indirect.png>
 Package pdftex.def Info: images/non_athlete_unstandardized_direct_indirect.png 
- used on input line 694.
+ used on input line 692.
 (pdftex.def)             Requested size: 399.49152pt x 71.26605pt.
 [20 <./images/standardized_direct_indirect.png> <./images/SEM_3.png> <./images/
 athlete_unstandardized_direct_indirect.png> <./images/non_athlete_unstandardize
-d_direct_indirect.png>] (report.aux) ) 
+d_direct_indirect.png>] [21] (report.aux) ) 
 Here is how much of TeX's memory you used:
- 33188 strings out of 478864
- 764353 string characters out of 2848660
+ 33189 strings out of 478864
+ 764360 string characters out of 2848660
  1224150 words of memory out of 3000000
  50296 multiletter control sequences out of 15000+600000
  440268 words of font info for 112 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,6n,83p,1169b,609s stack positions out of 5000i,500n,10000p,200000b,80000s
-{C:/Users/14088/AppData/Local/Programs/Mi
-KTeX/fonts/enc/dvips/lm/lm-mathit.enc}{C:/Users/14088/AppData/Local/Programs/Mi
-KTeX/fonts/enc/dvips/lm/lm-ec.enc}{C:/Users/14088/AppData/Local/Programs/MiKTeX
-/fonts/enc/dvips/lm/lm-rm.enc}<C:/Users/14088/AppData/Local/Programs/MiKTeX/fon
-ts/type1/public/lm/lmbx10.pfb><C:/Users/14088/AppData/Local/Programs/MiKTeX/fon
-ts/type1/public/lm/lmbx12.pfb><C:/Users/14088/AppData/Local/Programs/MiKTeX/fon
-ts/type1/public/lm/lmmi10.pfb><C:/Users/14088/AppData/Local/Programs/MiKTeX/fon
-ts/type1/public/lm/lmr10.pfb><C:/Users/14088/AppData/Local/Programs/MiKTeX/font
-s/type1/public/lm/lmr12.pfb><C:/Users/14088/AppData/Local/Programs/MiKTeX/fonts
-/type1/public/lm/lmr17.pfb><C:/Users/14088/AppData/Local/Programs/MiKTeX/fonts/
-type1/public/lm/lmr8.pfb>
-Output written on report.pdf (20 pages, 1526381 bytes).
+{C:/Users/14088/AppData/Local/Progra
+ms/MiKTeX/fonts/enc/dvips/lm/lm-mathit.enc}{C:/Users/14088/AppData/Local/Progra
+ms/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}{C:/Users/14088/AppData/Local/Programs/M
+iKTeX/fonts/enc/dvips/lm/lm-rm.enc}<C:/Users/14088/AppData/Local/Programs/MiKTe
+X/fonts/type1/public/lm/lmbx10.pfb><C:/Users/14088/AppData/Local/Programs/MiKTe
+X/fonts/type1/public/lm/lmbx12.pfb><C:/Users/14088/AppData/Local/Programs/MiKTe
+X/fonts/type1/public/lm/lmmi10.pfb><C:/Users/14088/AppData/Local/Programs/MiKTe
+X/fonts/type1/public/lm/lmr10.pfb><C:/Users/14088/AppData/Local/Programs/MiKTeX
+/fonts/type1/public/lm/lmr12.pfb><C:/Users/14088/AppData/Local/Programs/MiKTeX/
+fonts/type1/public/lm/lmr17.pfb><C:/Users/14088/AppData/Local/Programs/MiKTeX/f
+onts/type1/public/lm/lmr8.pfb>
+Output written on report.pdf (21 pages, 1527404 bytes).
 PDF statistics:
- 423 PDF objects out of 1000 (max. 8388607)
- 114 named destinations out of 1000 (max. 500000)
+ 428 PDF objects out of 1000 (max. 8388607)
+ 115 named destinations out of 1000 (max. 500000)
  18864 words of extra memory for PDF output out of 20736 (max. 10000000)
 
 
