@@ -74,7 +74,7 @@ After this, we conducted a confirmatory factor analysis to evaluate the fit of t
 
 Finally, we endeavored to construct a latent variable that would reflect the "healthy lifestyle" measures that were collected in our dataset, as aforementioned. Similarly to the previous two latent constructs, we first conducted parallel component analysis (Appendix 15), in which a single component was recommended, though it would only explain 39.0% of the variability in the three items.
 
-Both one- and two- factor models were then fit to the three items in exploratory factor analysis, from which both produced very poorly fit models. Though this inclined us to reconsider using this latent structure, we decided to perform a reliability analysis on the one-factor model to examine its internal consistency (Appendix 16).
+Both one- and two- factor models were then fit to the three items in exploratory factor analysis, from which both produced very poorly fit models. Though this inclined us to reconsider using this latent structure, we still decided to perform a reliability analysis on the one-factor model to examine its internal consistency (Appendix 16).
 
 Unsurprisingly, the Cronbach's alpha for this model was very low (-0.26) (Appendix 17), indicating that these three variables are not reliable measures of this latent variable. Upon seeing these results, we made the decision to not move forward with using this latent structure and excluded it from being used as a mediator between athletic identity and overall well-being. 
 
